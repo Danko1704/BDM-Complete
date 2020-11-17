@@ -2,6 +2,13 @@ CREATE DATABASE IF NOT EXISTS proyectodb;
 
 USE proyectodb;
 
+DROP TABLE IF EXISTS Comentario;
+DROP TABLE IF EXISTS Multimedia;
+DROP TABLE IF EXISTS LikeNoticia;
+DROP TABLE IF EXISTS Noticia;
+DROP TABLE IF EXISTS Seccion;
+DROP TABLE IF EXISTS Usuario;
+DROP TABLE IF EXISTS Video;
 DROP TABLE IF EXISTS Imagen;
 
 CREATE TABLE IF NOT EXISTS Imagen(
@@ -10,15 +17,11 @@ CREATE TABLE IF NOT EXISTS Imagen(
     primary key (imagenId)
 );
 
-DROP TABLE IF EXISTS Video;
-
 CREATE TABLE IF NOT EXISTS Video(
 	videoId int auto_increment not null comment 'Id del video en la tabla',
     videoFile mediumblob comment 'Archivo de video',
     primary key (videoId)
 );
-
-DROP TABLE IF EXISTS Usuario;
 
 CREATE TABLE IF NOT EXISTS Usuario(
 	usuarioId int auto_increment not null comment 'Id del usuario en la tabla',
@@ -33,7 +36,14 @@ CREATE TABLE IF NOT EXISTS Usuario(
 	foreign key (imagenIdF) References Imagen(imagenId)
 );
 
-DROP TABLE IF EXISTS Noticia;
+CREATE TABLE IF NOT EXISTS Seccion(
+	seccionId int auto_increment not null comment 'Id de la seccion',
+    Nombre varchar(25) comment 'Nombre de la seccion',
+    isActive bool default true comment 'Seccion activa o no',
+    usuarioIdF int comment 'Id del usuario que creo la seccion',
+    Color varchar(7) comment 'Numero hexadecimal del color de la seccion',
+    CONSTRAINT pk_Seccion PRIMARY KEY (seccionId)
+);
 
 CREATE TABLE IF NOT EXISTS Noticia(
 	noticiaId int auto_increment not null comment 'Id de la noticia en la tabla',
@@ -46,13 +56,13 @@ CREATE TABLE IF NOT EXISTS Noticia(
 	palabraClave3 varchar (25) not null comment 'palabra clave3 de la noticia',
 	autorIdF int not null comment 'id del autor/usuario de la noticia',
 	isActive bool default false comment 'booleana para "eliminar" la noticia',
-    comentarioEditor varchar(65535) null comment 'comentario del editor para errores',
 	estadoNoticia enum ('Edicion','Revision','Publicado') default 'Edicion' comment 'estado de la noticia',
+    comentarioEditor varchar(65535) null comment 'comentario del editor para errores',
+    seccionIdF int comment 'seccion a la que pertenece la noticia',
 	primary key (noticiaId),
-	foreign key(autorIdf) References Usuario(usuarioId)
+	foreign key(autorIdf) References Usuario(usuarioId),
+    foreign key(seccionIdf) References Seccion(seccionId)
 );
-
-DROP TABLE IF EXISTS LikeNoticia;
 
 CREATE TABLE IF NOT EXISTS LikeNoticia(
 	likeNoticiaId int auto_increment not null comment 'Id del like en la noticia en la tabla',
@@ -63,8 +73,6 @@ CREATE TABLE IF NOT EXISTS LikeNoticia(
 	foreign key (usuarioIdF) references Usuario(usuarioId),
 	foreign key (noticiaIdF) references Noticia(noticiaId)
 );
-
-DROP TABLE IF EXISTS Multimedia;
 
 CREATE TABLE IF NOT EXISTS Multimedia(
 	multimediaId int auto_increment not null,
@@ -77,17 +85,36 @@ CREATE TABLE IF NOT EXISTS Multimedia(
 	foreign key (noticiaIdF) references Noticia(noticiaId)
 );
 
-DROP TABLE IF EXISTS Comentario;
-
 CREATE TABLE IF NOT EXISTS Comentario (
 	comentarioId int auto_increment not null comment 'Id del comentario en la tabla',    
 	comentario text comment 'texto del comentario',
-	usuariIdF int,
+	usuarioIdF int,
 	isActive bool default true comment 'comentario activo o no',
 	fecha timestamp not null default now() comment 'fecha actual',
 	respuestaIdF int,
 	noticiaIdF int,
 	primary key (comentarioId),
 	foreign key  (respuestaIdF) references Comentario(comentarioId),
-	foreign key  (noticiaIdF) references Noticia(noticiaId)
+	foreign key  (noticiaIdF) references Noticia(noticiaId),
+    foreign key (usuarioIdF) references Usuario(usuarioId)
 );
+
+SELECT distinct
+	c.table_name,
+    c.column_name,
+    c.column_type,
+    c.column_default,
+    c.column_key,
+    c.is_nullable,
+    /*t.table_name,*/
+    c.column_comment
+FROM information_schema.tables AS t
+INNER JOIN information_schema.columns AS c
+	ON t.table_name = c.table_name
+    AND t.table_schema = c.table_schema
+WHERE t.table_type IN ('BASE TABLE')
+AND t.table_schema = 'proyectodb'
+ORDER BY
+	1,
+    --c.column_name,
+    c.ordinal_position;
