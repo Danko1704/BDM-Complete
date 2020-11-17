@@ -36,6 +36,10 @@ CREATE TABLE IF NOT EXISTS Usuario(
 	foreign key (imagenIdF) References Imagen(imagenId)
 );
 
+INSERT INTO Imagen(imagenFile) values ('osito.jpg');
+INSERT INTO Usuario(nombre, correo, telefono, contraseña, imagenIdF) values('pirobo', 'wachin@hotmail.com' ,'9512375708', 'zambombaso', '2');
+select * from Usuario;
+
 CREATE TABLE IF NOT EXISTS Seccion(
 	seccionId int auto_increment not null comment 'Id de la seccion',
     Nombre varchar(25) comment 'Nombre de la seccion',
