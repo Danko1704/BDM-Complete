@@ -16,7 +16,7 @@ h2{
 }
 
 .carousel-caption {
-    position: center;
+    position: relative;
     left: 0;
     top: 0;
 }
