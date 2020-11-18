@@ -1,5 +1,5 @@
 <?php
-    require 'dbOrlando.php';
+    require 'dbRodrigo.php';
 
     $correo=$_POST['correoBox'];
     $contraseña=$_POST['contraseñaBox'];

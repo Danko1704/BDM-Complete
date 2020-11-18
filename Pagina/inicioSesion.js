@@ -16,6 +16,8 @@ jQuery(document).on("submit", "#formlg", function (event) {
       if (!respuesta.error) {
         if (respuesta.tipo == "Admin") {
           location.href = "index.html";
+        } else if (respuesta.tipo == "Reportero") {
+          location.href = "index.html";
         } else if (respuesta.tipo == "Usuario") {
           location.href = "index.html";
         }
