@@ -41,7 +41,45 @@ Begin
 END %$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_cambiarReportero;
+
+DELIMITER %$
+CREATE PROCEDURE sp_cambiarReportero(
+	pNombre varchar(50)
+)
+Begin
+    UPDATE Usuario
+	SET tipoUsuario = 'Reportero'
+	WHERE nombre = pNombre;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_cambiarUsuario;
+
+DELIMITER %$
+CREATE PROCEDURE sp_cambiarUsuario(
+	pNombre varchar(50)
+)
+Begin
+    UPDATE Usuario
+	SET tipoUsuario = 'Usuario'
+	WHERE nombre = pNombre;
+END %$
+DELIMITER ; 
+
+DROP PROCEDURE IF EXISTS sp_selectUsuarios;
+
+DELIMITER %$
+CREATE PROCEDURE sp_selectUsuarios(
+)
+Begin
+    SELECT Usuario.nombre FROM Usuario ORDER BY Usuario.nombre ASC;
+END %$
+DELIMITER ; 
+
 call sp_agregarUsuario('erick', 'lala@hotmail.com', '9512375708', 'dodo');
 call sp_agregarImagenUsuario('lala@hotmail.com','monky_flip.mp4');
+call sp_cambiarReportero ('erick');
+call sp_selectUsuarios();
 select * from Usuario;
 select * from Imagen;

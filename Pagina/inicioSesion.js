@@ -15,11 +15,11 @@ jQuery(document).on("submit", "#formlg", function (event) {
       console.log(respuesta);
       if (!respuesta.error) {
         if (respuesta.tipo == "Admin") {
-          location.href = "index.html";
+          location.href = "index.php";
         } else if (respuesta.tipo == "Reportero") {
-          location.href = "index.html";
+          location.href = "index.php";
         } else if (respuesta.tipo == "Usuario") {
-          location.href = "index.html";
+          location.href = "index.php";
         }
       } else {
         $('.error').slideDown ('slow');
