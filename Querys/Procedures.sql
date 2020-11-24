@@ -32,11 +32,11 @@ DROP PROCEDURE IF EXISTS sp_agregarImagenUsuario;
 DELIMITER %$
 CREATE PROCEDURE sp_agregarImagenUsuario(
 	IN pCorreo varchar (30),
-    pImagen mediumblob
+    pImagen varchar(100)
 )
 Begin
-	INSERT INTO Imagen(imagenFile) 
-    VALUES (pImagen);
+	INSERT INTO Imagen 
+    VALUES (0, pImagen);
     UPDATE Usuario SET imagenIdF = last_insert_id() WHERE correo = pCorreo;
 END %$
 DELIMITER ;
@@ -75,11 +75,32 @@ CREATE PROCEDURE sp_selectUsuarios(
 Begin
     SELECT Usuario.nombre FROM Usuario ORDER BY Usuario.nombre ASC;
 END %$
-DELIMITER ; 
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_infoUsuario;
+
+DELIMITER %$
+CREATE PROCEDURE sp_infoUsuario(
+	pNombre varchar(50)
+)
+Begin
+    SELECT Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = pNombre;
+END %$
+DELIMITER ;
+
+INSERT INTO Usuario(nombre, correo, telefono, contraseña, tipoUsuario) VALUES ('danko', 'admin@hotmail.com', '9513375708', 'admin', 'Admin');
 
 call sp_agregarUsuario('erick', 'lala@hotmail.com', '9512375708', 'dodo');
 call sp_agregarImagenUsuario('lala@hotmail.com','monky_flip.mp4');
 call sp_cambiarReportero ('erick');
 call sp_selectUsuarios();
+call sp_infoUsuario('papotericudo');
+call sp_imagenUsuarioMostrar('papotericudo');
 select * from Usuario;
 select * from Imagen;
+
+SELECT Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = 'papotericudo';
+
+TRUNCATE TABLE Usuario;
+
+INSERT INTO Imagen(imagenfile) VALUES ("huevos");

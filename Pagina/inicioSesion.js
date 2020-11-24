@@ -8,8 +8,8 @@ jQuery(document).on("submit", "#formlg", function (event) {
       dataType: "json",
       data: $(this).serialize(),
       beforeSend: function () {
-        $('.btn').val('Validando...');
-      },
+        
+      }
     })
     .done(function (respuesta) {
       console.log(respuesta);

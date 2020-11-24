@@ -31,6 +31,15 @@ body{
     color: white;
 }
 
+
+.image-preview___image{
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
 .registrarse{
     background: #222A3F;
     padding: 10px;

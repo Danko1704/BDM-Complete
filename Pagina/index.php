@@ -31,12 +31,10 @@ $varSesionTipo =  $_SESSION['tipo']
   <div class="navbarSinUsuario" id="navbarSinUsuario">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
       <a class="navbar-brand" href="index.html">
-        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
-          width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
+        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo" width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
         3DJuegos
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -61,7 +59,7 @@ $varSesionTipo =  $_SESSION['tipo']
         </form>
         <div class="d-flex flex-row justify-content-center">
           <a href="inicioSesion.html" class="btn btn-danger  mr-2">Login</a>
-          <a href="registroUsuario.html" class="btn btn-danger">Registrarse</a>
+          <a href="registroUsuario.php" class="btn btn-danger">Registrarse</a>
         </div>
       </div>
     </nav>
@@ -71,12 +69,10 @@ $varSesionTipo =  $_SESSION['tipo']
   <div class="navbarUsuario" id="navbarUsuario">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
       <a class="navbar-brand" href="index.html">
-        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
-          width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
+        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo" width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
         3DJuegos
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -100,7 +96,7 @@ $varSesionTipo =  $_SESSION['tipo']
           </div>
         </form>
         <div class="d-flex flex-row justify-content-center">
-          <a href="perfilUsuario.html" class="btn btn-success  mr-2">Editar Perfil</a>
+          <a href="perfilUsuario.php" class="btn btn-success  mr-2">Editar Perfil</a>
           <a href="Php/cerrarSesion.php" class="btn btn-warning  mr-2">Cerrar Sesion</a>
         </div>
       </div>
@@ -111,12 +107,10 @@ $varSesionTipo =  $_SESSION['tipo']
   <div class="navbarUsuarioRepprtero" id="navbarUsuarioReportero">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
       <a class="navbar-brand" href="index.html">
-        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
-          width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
+        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo" width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
         3DJuegos
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -141,23 +135,21 @@ $varSesionTipo =  $_SESSION['tipo']
         </form>
         <div class="d-flex flex-row justify-content-center">
           <a href="crearNoticia.html" class="btn btn-success  mr-2">Crear Noticia</a>
-          <a href="perfilUsuario.html" class="btn btn-success  mr-2">Editar Perfil</a>
+          <a href="perfilUsuario.php" class="btn btn-success  mr-2">Editar Perfil</a>
           <a href="Php/cerrarSesion.php" class="btn btn-warning  mr-2">Cerrar Sesion</a>
         </div>
       </div>
     </nav>
   </div>
-  
+
   <!-- NAVBAR CON USUARIO ADMIN-->
   <div class="navbarUsuarioAdmin" id="navbarUsuarioAdmin">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
       <a class="navbar-brand" href="index.html">
-        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
-          width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
+        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo" width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
         3DJuegos
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -236,8 +228,10 @@ $varSesionTipo =  $_SESSION['tipo']
         </div>
         <div class="col-md-8">
           <h2 class="card-title mt-2">It's about time!</h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora iusto minus architecto illo magnam
-            deserunt voluptate aperiam alias, porro itaque vero eveniet velit? Molestias possimus nulla, quia recusandae
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora iusto minus architecto illo
+            magnam
+            deserunt voluptate aperiam alias, porro itaque vero eveniet velit? Molestias possimus nulla,
+            quia recusandae
             iusto sunt.</p>
           <a href="noticia.html" class="btn btn-danger  mr-2">Ver más</a>
         </div>
@@ -250,8 +244,10 @@ $varSesionTipo =  $_SESSION['tipo']
         </div>
         <div class="col-md-8">
           <h2 class="card-title mt-2">Sin Downgrades</h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora iusto minus architecto illo magnam
-            deserunt voluptate aperiam alias, porro itaque vero eveniet velit? Molestias possimus nulla, quia recusandae
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora iusto minus architecto illo
+            magnam
+            deserunt voluptate aperiam alias, porro itaque vero eveniet velit? Molestias possimus nulla,
+            quia recusandae
             iusto sunt.</p>
           <a href="noticia.html" class="btn btn-danger  mr-2">Ver más</a>
         </div>
@@ -264,8 +260,10 @@ $varSesionTipo =  $_SESSION['tipo']
         </div>
         <div class="col-md-8">
           <h2 class="card-title mt-2">Peter modo Guapo?</h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora iusto minus architecto illo magnam
-            deserunt voluptate aperiam alias, porro itaque vero eveniet velit? Molestias possimus nulla, quia recusandae
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora iusto minus architecto illo
+            magnam
+            deserunt voluptate aperiam alias, porro itaque vero eveniet velit? Molestias possimus nulla,
+            quia recusandae
             iusto sunt.</p>
           <a href="noticia.html" class="btn btn-danger  mr-2">Ver más</a>
         </div>
@@ -306,7 +304,8 @@ $varSesionTipo =  $_SESSION['tipo']
       <img class="card-img-top" src="Imagenes/SpiderMan.jpg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+          content.
           This card has even longer content than the first to show that equal height action.</p>
       </div>
       <div class="card-footer">
@@ -317,18 +316,15 @@ $varSesionTipo =  $_SESSION['tipo']
   </div>
 
   <!-- Footer -->
-  <footer class="section footer-classic context-dark bg-image mt-3 border-top border-danger"
-    style="background: #2b2b2b;">
+  <footer class="section footer-classic context-dark bg-image mt-3 border-top border-danger" style="background: #2b2b2b;">
     <div class="container">
       <div class="row row-30 mt-1">
         <div class="col-md-4 col-xl-5">
-          <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light"
-                src="Imagenes/Header.jpg" alt="" width="140" height="37"
-                srcset="Imagenes/Header.jpg"></a>
+          <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light" src="Imagenes/Header.jpg" alt="" width="140" height="37" srcset="Imagenes/Header.jpg"></a>
             <p>Proyecto de Base de datos multimedia a cargo de Rodrigo Yap y Orlando Gámez.</p>
             <!-- Rights-->
-            <p class="rights"><span>©  </span><span
-                class="copyright-year">2020</span><span> </span><span>BDM</span><span>. </span><span>All Rights
+            <p class="rights"><span>©  </span><span class="copyright-year">2020</span><span> </span><span>BDM</span><span>. </span><span>All
+                Rights
                 Reserved.</span></p>
           </div>
         </div>
@@ -357,65 +353,64 @@ $varSesionTipo =  $_SESSION['tipo']
     </div>
   </footer>
 
-  
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
   <script src="js/bootstrap.min.js"></script>
 </body>
 
 <?php
-    if($varSesion == null || $varSesion = ''){
-      ?>
-      <script type='text/javascript'>
-        $(document).ready(function(){
-          $("#navbarUsuario").hide();
-          $("#navbarUsuarioReportero").hide();
-          $("#navbarUsuarioAdmin").hide();
-        });  
-     </script>
-     <?php
-    }
-
-    if($varSesionTipo == 'Usuario'){
-      ?>
-      <script type='text/javascript'>
-        $(document).ready(function(){
-          $("#navbarSinUsuario").hide();
-          $("#navbarUsuarioReportero").hide();
-          $("#navbarUsuarioAdmin").hide();
-        });  
-     </script>
-     <?php
-    }
-
-    if($varSesionTipo == 'Reportero'){
-      ?>
-      <script type='text/javascript'>
-        $(document).ready(function(){
-          $("#navbarSinUsuario").hide();
-          $("#navbarUsuario").hide();
-          $("#navbarUsuarioAdmin").hide();
-        });  
-     </script>
-     <?php
-    }
-
-    if($varSesionTipo == 'Admin'){
-      ?>
-      <script type='text/javascript'>
-        $(document).ready(function(){
-          $("#navbarSinUsuario").hide();
-          $("#navbarUsuario").hide();
-          $("#navbarUsuarioReportero").hide();
-        });  
-     </script>
-     <?php
-    }
+if ($varSesion == null || $varSesion = '') {
 ?>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $("#navbarUsuario").hide();
+      $("#navbarUsuarioReportero").hide();
+      $("#navbarUsuarioAdmin").hide();
+    });
+  </script>
+<?php
+}
+
+if ($varSesionTipo == 'Usuario') {
+?>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $("#navbarSinUsuario").hide();
+      $("#navbarUsuarioReportero").hide();
+      $("#navbarUsuarioAdmin").hide();
+    });
+  </script>
+<?php
+}
+
+if ($varSesionTipo == 'Reportero') {
+?>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $("#navbarSinUsuario").hide();
+      $("#navbarUsuario").hide();
+      $("#navbarUsuarioAdmin").hide();
+    });
+  </script>
+<?php
+}
+
+if ($varSesionTipo == 'Admin') {
+?>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $("#navbarSinUsuario").hide();
+      $("#navbarUsuario").hide();
+      $("#navbarUsuarioReportero").hide();
+    });
+  </script>
+<?php
+}
+?>
+
 </html>

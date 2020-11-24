@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS proyectodb;
+
 CREATE DATABASE IF NOT EXISTS proyectodb;
 
 USE proyectodb;
@@ -13,13 +15,13 @@ DROP TABLE IF EXISTS Imagen;
 
 CREATE TABLE IF NOT EXISTS Imagen(
 	imagenId int auto_increment not null comment 'Id de la imagen en la tabla',
-    imagenFile mediumblob comment 'Archivo de imagen',
+    imagenFile varchar(100) comment 'Archivo de imagen',
     primary key (imagenId)
 );
 
 CREATE TABLE IF NOT EXISTS Video(
 	videoId int auto_increment not null comment 'Id del video en la tabla',
-    videoFile mediumblob comment 'Archivo de video',
+    videoFile varchar(100) comment 'Archivo de video',
     primary key (videoId)
 );
 
@@ -57,7 +59,7 @@ CREATE TABLE IF NOT EXISTS Noticia(
 	autorIdF int not null comment 'id del autor/usuario de la noticia',
 	isActive bool default false comment 'booleana para "eliminar" la noticia',
 	estadoNoticia enum ('Edicion','Revision','Publicado') default 'Edicion' comment 'estado de la noticia',
-    comentarioEditor varchar(65535) null comment 'comentario del editor para errores',
+    comentarioEditor varchar(1000) null comment 'comentario del editor para errores',
     seccionIdF int comment 'seccion a la que pertenece la noticia',
 	primary key (noticiaId),
 	foreign key(autorIdf) References Usuario(usuarioId),
