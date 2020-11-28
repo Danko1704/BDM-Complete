@@ -3,12 +3,12 @@ jQuery(document).ready("#categoBox", function() {
 
     $.ajax({
         url: "Php/cargaCatego.php",
-        type: "POST",
+        type: "GET",
         dataType: "json",
-        /*data: $(this).serialize(),
+        data: $(this).serialize(),
         beforeSend: function () {
-            $('.btn').val('Validando...');
-        },*/
+        
+        }
     });
 });
 
