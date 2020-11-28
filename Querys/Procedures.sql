@@ -88,6 +88,74 @@ Begin
 END %$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_updateUsuario;
+
+DELIMITER %$
+CREATE PROCEDURE sp_updateUsuario(
+	oNombre varchar (50),
+	pNombre varchar(50),
+    pCorreo varchar(30),
+    pTelefono varchar(10),
+    pContraseña varchar(30),
+    pImagen varchar(100)
+)
+Begin
+	DECLARE idImagenSearch int;
+	SET 
+		idImagenSearch = (SELECT Usuario.imagenIdF FROM Usuario WHERE Usuario.nombre = oNombre);
+	
+    UPDATE Usuario, Imagen
+    SET Usuario.nombre = pNombre,
+    Usuario.correo = pCorreo,
+    Usuario.telefono = pTelefono,
+    Usuario.contraseña = pContraseña,
+    Imagen.imagenFile = pImagen
+    WHERE Usuario.nombre = oNombre AND Imagen.imagenId = idImagenSearch;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_agregarNoticia;
+
+DELIMITER %$
+CREATE PROCEDURE sp_agregarNoticia(
+	pTitulo varchar (40),
+	pSinopsis varchar(80),
+    pTexto text,
+    pPalabraClave1 varchar(25),
+    pPalabraClave2 varchar(25),
+    pPalabraClave3 varchar(25),
+    pAutorId int,
+    pComentarioEditor varchar(1000),
+	pCategoria int
+)
+Begin
+	INSERT INTO Noticia(titulo, sinopsis, fechaCreacion, palabraClave1, palabraClave2, palabraClave3, autorIdF, comentatioEditor, seccionIdF)
+    VALUES (pTitulo, pSinopsis, now(), pPalabraClave1, pPalabraClave2, pPalabraClave3, pAutorId, pComentarioEditor, pCategoria);
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_agregarCategoria;
+
+DELIMITER %$
+CREATE PROCEDURE sp_agregarCategoria(
+	pTitulo varchar (40),
+	pSinopsis varchar(80),
+    pTexto text,
+    pPalabraClave1 varchar(25),
+    pPalabraClave2 varchar(25),
+    pPalabraClave3 varchar(25),
+    pAutorId int,
+    pComentarioEditor varchar(1000),
+	pCategoria int
+)
+Begin
+	INSERT INTO Noticia(titulo, sinopsis, fechaCreacion, palabraClave1, palabraClave2, palabraClave3, autorIdF, comentatioEditor, seccionIdF)
+    VALUES (pTitulo, pSinopsis, now(), pPalabraClave1, pPalabraClave2, pPalabraClave3, pAutorId, pComentarioEditor, pCategoria);
+END %$
+DELIMITER ;
+
+select * from noticia;
+
 INSERT INTO Usuario(nombre, correo, telefono, contraseña, tipoUsuario) VALUES ('danko', 'admin@hotmail.com', '9513375708', 'admin', 'Admin');
 
 call sp_agregarUsuario('erick', 'lala@hotmail.com', '9512375708', 'dodo');
@@ -96,6 +164,8 @@ call sp_cambiarReportero ('erick');
 call sp_selectUsuarios();
 call sp_infoUsuario('papotericudo');
 call sp_imagenUsuarioMostrar('papotericudo');
+call sp_updateUsuario ('papucho', 'perro', 'perro@hotmail.com', '9512278531', 'Peludin9$', 'perro.jpg');
+call sp_agregarNoticia ('huevos', 'muchos huevos', 'huevo1', 'huevo2', 'huevo3', '6', 'no hay pah', '2');
 select * from Usuario;
 select * from Imagen;
 

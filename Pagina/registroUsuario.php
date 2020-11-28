@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-group mx-sm-4 pb-2" style="text-align: center;">
                         <!-- <span class="text-center"><a class="btn btn-block registrarse" onclick='required()'>REGISTRARSE</a></span> -->
-                        <input type="submit" class="uploadfilesub btn btn-block registrarse" name="uploadfilesub"
+                        <input type="submit" class="uploadfilesub btn btn-block editar" name="uploadfilesub"
                             value="REGISTRARSE">
                     </div>
                     <div class="form-group mx-sm-4 pb-2" style="text-align: center;">
