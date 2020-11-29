@@ -11,6 +11,6 @@ if($rows) {
         $categoria = $catego['Nombre'];
         $id = $catego['seccionId'];
 
-        echo "<option value='$id'>$categoria</option>";
+        echo "<a class='nav-item nav-link active seccion' href='#' id='color$id'>$categoria</a>";
     }
 }

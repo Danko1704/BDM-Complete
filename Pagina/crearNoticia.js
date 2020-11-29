@@ -1,29 +1,48 @@
-jQuery(document).ready("#categoBox", function() {
-    //$("#categoBox").load("Php/cargaCatego.php");
-
+$(document).ready(function() {
     $.ajax({
-        url: "Php/cargaCatego.php",
-        type: "GET",
-        dataType: "json",
-        data: $(this).serialize(),
-        beforeSend: function () {
-        
+        type: 'POST',
+        url: 'Php/cargaCatego.php',
+        //data: '',
+        success:function(data){
+            
+            $('#categoBox').append(data);
+
+        }
+    });
+
+});
+
+$(document).ready(function(){
+    $.ajax({
+        type: "POST",
+        url: "Php/loadSections.php",
+
+        success: function (response) {
+
+            $('#categoria').append(response);
         }
     });
 });
 
-/*jQuery(document).on("submit", "#aceptar", function (event) {
-    event.preventDefault();
+$(document).ready(function(){
+    $.ajax({
+        type: "POST",
+        url: "Php/colorSeccion.php",
+        
+        success: function (response) {
 
-    jQuery
-        .ajax({
-            url: "Php/createNews.php",
-            type: "POST",
-            dataType: "json",
-            data: $(this).serialize(),
-            beforeSend: function () {
-                $('.btn').val('Validando...');
-            },
-        })
-});*/
-//window.location.href = "perfilReportero.html";
+            let colores = JSON.parse(response);
+            let temp = '#color';
+
+            colores.forEach(color => {
+
+                temp += `${color.id}`;
+
+                $(temp).css('color', color.color);
+
+                temp = '#color';
+
+            });
+        }
+    });
+});
