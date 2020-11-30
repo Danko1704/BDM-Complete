@@ -23,7 +23,7 @@ $("form.addSeccion").on("submit", function(event){
         success: function(response){
             console.log(response);
         }
-    });    
+    });   
     //console.log(data);
 
     return false;

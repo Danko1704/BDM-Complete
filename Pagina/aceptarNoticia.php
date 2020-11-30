@@ -1,5 +1,10 @@
 <?php
-    require 'Php/dbOrlando.php';
+    require 'Php/dbRodrigo.php';
+    session_start();
+    error_reporting(0);
+    
+    $varSesion = $_SESSION['usuario'];
+    $varSesionTipo =  $_SESSION['tipo'];
     $sqlquery = mysqli_query($con, "CALL sp_selectUsuarios()");
 ?>
 
@@ -90,8 +95,10 @@
                     <div class="text-center py-3">
                         <h1 class="text-dark">Agregar Secciones</h1>
 
-                        <form action="Php/insertSeccion.php" method="post" class="addSeccion">
-
+                        <form action="Php/insertSeccion.php" method="post" class="addSeccion" name="addSeccion">
+                            <?php
+                                echo "<input type='hidden' name='usuario' value='$varSesion'>"
+                            ?>
                             <div class="form-group" style="padding-top: 15px;">
                                 <div class="text-dark">
                                     <label for="nombreSeccion">Nombre de la Seccion</label>
@@ -132,8 +139,7 @@
                             </div>
                             <div class="justify-content-center bd-highlight"
                                 style="padding-bottom:15px; padding-top: 15px;">
-                                <input type="submit" value="Eliminar" class="btn btn-danger  mr-2 ml-auto"
-                                    >
+                                <input type="submit" value="Eliminar" class="btn btn-danger  mr-2 ml-auto" onclick="location.href='aceptarNoticia.php';">
                             </div>
                         </form>
                     </div>

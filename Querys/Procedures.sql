@@ -150,8 +150,8 @@ CREATE PROCEDURE sp_agregarCategoria(
     pUsuario varchar(30),
     pColor varchar(7)
 )
-Begin
-DECLARE idAutor int;
+BEGIN
+	DECLARE idAutor int;
 	SET 
         idAutor = (SELECT Usuario.usuarioId FROM Usuario WHERE Usuario.nombre = pUsuario);
 
@@ -210,13 +210,9 @@ DROP PROCEDURE IF EXISTS sp_deleteCategorias;
 
 DELIMITER %$
 CREATE PROCEDURE sp_deleteCategorias(
-	pSeccion varchar(30)
+	idCategoria int
 )
-Begin
-DECLARE idCategoria int;
-	SET 
-        idCategoria = (SELECT Seccion.seccionId FROM Seccion WHERE Seccion.nombre = pSeccion);
-	
+BEGIN
 	UPDATE Seccion SET isActive = 0 WHERE seccionId = idCategoria;
 END %$
 DELIMITER ;
@@ -227,10 +223,9 @@ DELIMITER %$
 CREATE PROCEDURE sp_cargaCategorias(
 )
 Begin
-	SELECT Seccion.seccionId, Seccion.nombre FROM seccion WHERE isActive = 1;
+	SELECT Seccion.seccionId, Seccion.nombre, Seccion.color FROM seccion WHERE isActive = 1;
 END %$
 DELIMITER ;
-
 
 
 
@@ -257,3 +252,23 @@ select * from Seccion;
 select * from noticia;
 
 SELECT Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = 'erick';
+
+CALL sp_cargaCategorias();
+
+CALL sp_validarUsuario('rodyap182@gmail.com', 'admin');
+
+CALL sp_deleteCategorias('5');
+
+SELECT nombre, tipoUsuario FROM Usuario where correo='orlando_gague17@hotmail.com' and contraseña='moquito';
+select * from usuario;
+select * from seccion;
+
+TRUNCATE TABLE seccion;
+
+INSERT INTO Usuario (nombre, correo, telefono, contraseña, imagenIdF, tipoUsuario) VALUES ('Rodrigo', 'rodyap182@gmail.com', '8116751678', 'admin', null, 'Admin');
+
+INSERT INTO seccion SET Nombre = "Orange", isActive = 1, usuarioIdF = 1, Color = "#FF6633"
+INSERT INTO seccion SET Nombre = "Pink", isActive = 1, usuarioIdF = 1, Color = "#FF80C0"
+INSERT INTO seccion SET Nombre = "Cyan", isActive = 1, usuarioIdF = 1, Color = "#6FF6FF"
+
+UPDATE seccion SET isActive = 1 WHERE seccionId = 5

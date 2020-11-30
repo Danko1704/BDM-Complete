@@ -4,7 +4,7 @@ $(document).ready(function(){
         url: "Php/loadSections.php",
 
         success: function (response) {
-
+            //console.log(response);
             $('#categoria').append(response);
         }
     });

@@ -1,13 +1,13 @@
 <?php
-    require 'Php/dbOrlando.php';
+    require 'Php/dbRodrigo.php';
     session_start();
     error_reporting(0);
     
     $varSesion = $_SESSION['usuario'];
     $varSesionTipo =  $_SESSION['tipo'];
   
-    $fillCat = "CALL sp_llenarCategorias()";
-    $sqlquery = mysqli_query($con,  $fillCat) or die('FALLO DE CATEGORIA');
+    //$fillCat = "CALL sp_llenarCategorias()";
+    //$sqlquery = mysqli_query($con,  $fillCat) or die('FALLO DE CATEGORIA');
 ?>
 
 <!doctype html>
@@ -43,7 +43,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <div class="navbar-nav mr-auto ml-auto text-center">
+            <div class="navbar-nav mr-auto ml-auto text-center" id="categoria">
                 <a class="nav-item nav-link active" href="index.html">Inicio</a>
                 <a class="nav-item nav-link active" href="#">PC</a>
                 <a class="nav-item nav-link active" href="#">PS5</a>
@@ -153,7 +153,7 @@
                 <div class="col-md-4 col-xl-5">
                     <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light"
                                 src="Imagenes/Header.jpg" alt="" width="140" height="37"
-                                srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+                                srcset="Imagenes/Header.jpg"></a>
                         <p>Proyecto de Base de datos multimedia a cargo de Rodrigo Yap y Orlando Gámez.</p>
                         <!-- Rights-->
                         <p class="rights"><span>©  </span><span
@@ -191,15 +191,16 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
 
     <!-- JavaScript -->
-    <script src="crearNoticia.js"></script>
+    <script src="navbarSeccion.js"></script>
+    <script src="optionSeccion.js"></script>
 </body>
 
 </html>
