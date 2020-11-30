@@ -11,8 +11,6 @@ if(mysqli_connect_errno()) {
 	exit();
 }
 
-mysqli_select_db($con, $dbname) or die ("No se encuentra base de datos!")
+mysqli_select_db($con, $dbname) or die ("No se encuentra base de datos!");
 
 //$con->close();
-
-?>

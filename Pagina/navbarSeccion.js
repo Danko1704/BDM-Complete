@@ -30,16 +30,3 @@ $(document).ready(function(){
         }
     });
 });
-
-$(document).ready(function() {
-    $.ajax({
-        type: 'POST',
-        url: 'Php/cargaCatego.php',
-
-        success:function(data){
-            
-            $('#categoBox').append(data);
-
-        }
-    });
-});

@@ -2,7 +2,7 @@
 
 require 'dbRodrigo.php';
 
-$result = mysqli_query($con, "SELECT * FROM seccion");
+$result = mysqli_query($con, "SELECT * FROM seccion WHERE isActive = 1");
 
 $rows = mysqli_num_rows($result);
 
