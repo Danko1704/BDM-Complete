@@ -147,11 +147,15 @@ DROP PROCEDURE IF EXISTS sp_agregarCategoria;
 DELIMITER %$
 CREATE PROCEDURE sp_agregarCategoria(
 	pNombre varchar(25),
-    pUsuarioIdF int,
+    pUsuario varchar(30),
     pColor varchar(7)
 )
 Begin
-	INSERT INTO Seccion(Nombre, usuarioIdF, Color) VALUES (pNombre, pUsuarioIdF, pColor);
+DECLARE idAutor int;
+	SET 
+        idAutor = (SELECT Usuario.usuarioId FROM Usuario WHERE Usuario.nombre = pUsuario);
+
+    INSERT INTO Seccion(Nombre, usuarioIdF, Color) VALUES (pNombre, idAutor, pColor);
 END %$
 DELIMITER ;
 
@@ -162,9 +166,11 @@ CREATE PROCEDURE sp_llenarCategorias(
 
 )
 Begin
-	SELECT Seccion.nombre FROM Seccion ORDER BY Seccion.nombre ASC;
+	SELECT Seccion.nombre FROM Seccion WHERE Seccion.isActive = true ORDER BY Seccion.nombre ASC;
 END %$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_agregarImagenNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_agregarImagenNoticia
@@ -175,6 +181,7 @@ SELECT imagenId FROM Imagen WHERE imagenId = LAST_INSERT_ID();
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_agregarVideoNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_agregarVideoNoticia
@@ -185,6 +192,7 @@ SELECT videoId   FROM Video WHERE videoId  = LAST_INSERT_ID();
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_llenarMultimedia;
 
 DELIMITER //
 CREATE PROCEDURE sp_llenarMultimedia
@@ -196,6 +204,31 @@ BEGIN
 		INSERT INTO Multimedia VALUES(0, null, pIdMultimedia, pNoticiaId);
 	END if;
 END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_deleteCategorias;
+
+DELIMITER %$
+CREATE PROCEDURE sp_deleteCategorias(
+	pSeccion varchar(30)
+)
+Begin
+DECLARE idCategoria int;
+	SET 
+        idCategoria = (SELECT Seccion.seccionId FROM Seccion WHERE Seccion.nombre = pSeccion);
+	
+	UPDATE Seccion SET isActive = 0 WHERE seccionId = idCategoria;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_cargaCategorias;
+
+DELIMITER %$
+CREATE PROCEDURE sp_cargaCategorias(
+)
+Begin
+	SELECT Seccion.seccionId, Seccion.nombre FROM seccion WHERE isActive = 1;
+END %$
 DELIMITER ;
 
 
@@ -214,7 +247,8 @@ call sp_infoUsuario('danko');
 call sp_imagenUsuarioMostrar('papotericudo');
 call sp_updateUsuario ('papucho', 'perro', 'perro@hotmail.com', '9512278531', 'Peludin9$', 'perro.jpg');
 call sp_agregarNoticia ('Una partida de Huevos', 'hubo muchos huevos', 'se sacaron los calzones', 'huevos', 'juegos', 'Lol', 'orlando', '', 'ps5', false);
-call sp_agregarCategoria('ps5', '1', '#f0f0f0');
+call sp_agregarCategoria('el', 'danko', '#f0f0f0');
+call sp_deleteCategorias('ella');
 
 select * from Usuario;
 select * from Imagen;

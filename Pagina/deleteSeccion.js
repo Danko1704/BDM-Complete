@@ -6,16 +6,21 @@ $("form.deleteSeccion").on("submit", function(event){
         type = that.attr('method'),
         data = {};
 
-    that.find('[name]').each(function(index, e) {
-        //console.log(e);
-        var that = $(this),
-            name = that.attr('name'),
-            value = that.val();
+    // that.find('[name]').each(function(index, e) {
+    //     //console.log(e);
+    //     var that = $(this),
+    //         name = that.find.text(),
+    //         value = that.val();
         
-        data[name] = value;
-    });
+    //     data[name] = name;
+    //     debugger;
+    // });
+    var selectCat = $("#categoBox").children("option:selected").text();
+    
+    data[name] = selectCat;
 
-    //console.log(data);
+    debugger;
+    
     $.ajax({
         url : url,
         type: type,

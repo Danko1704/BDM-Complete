@@ -173,6 +173,7 @@ $varSesionTipo =  $_SESSION['tipo']
           </div>
         </form>
         <div class="d-flex flex-row justify-content-center">
+          <a href="aceptarNoticia.php" class="btn btn-danger  mr-2">Noticias</a>
           <a href="cambiarUsuario.php" class="btn btn-danger  mr-2">Cambiar</a>
           <a href="Php/cerrarSesion.php" class="btn btn-warning  mr-2">Cerrar Sesion</a>
         </div>
