@@ -1,17 +1,3 @@
-$(document).ready(function() {
-    $.ajax({
-        type: 'POST',
-        url: 'Php/cargaCatego.php',
-        //data: '',
-        success:function(data){
-            
-            $('#categoBox').append(data);
-
-        }
-    });
-
-});
-
 $(document).ready(function(){
     $.ajax({
         type: "POST",
@@ -37,12 +23,23 @@ $(document).ready(function(){
             colores.forEach(color => {
 
                 temp += `${color.id}`;
-
                 $(temp).css('color', color.color);
-
                 temp = '#color';
 
             });
+        }
+    });
+});
+
+$(document).ready(function() {
+    $.ajax({
+        type: 'POST',
+        url: 'Php/cargaCatego.php',
+
+        success:function(data){
+            
+            $('#categoBox').append(data);
+
         }
     });
 });

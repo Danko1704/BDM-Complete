@@ -26,35 +26,89 @@
         <!------------------------------------------------------------------------------------->
         <div class="container">
             <div class="row justify-content-between pt-5 mt-5 m-1">
-                <div class="col-sm-12 col-lg-6 perfil">
-                    <div class="text-center py-3">
-                        <h1 class="text-dark">Reporteros</h1>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="inputGroupSelect01">Escoja un reportero</label>
+                <div class="col-sm-12 col-lg-6">
+                    <div class="perfil">
+                        <div class="text-center py-3">
+                            <h1 class="text-dark">Reporteros</h1>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect01">
-                          <option selected>Reportero 1</option>
-                          <option value="1">Reportero 1</option>
-                          <option value="2">Reportero 2</option>
-                          <option value="3">Reportero 3</option>
-                        </select>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <label class="input-group-text" for="inputGroupSelect01">Escoja un reportero</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01">
+                              <option selected>Reportero 1</option>
+                              <option value="1">Reportero 1</option>
+                              <option value="2">Reportero 2</option>
+                              <option value="3">Reportero 3</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <!-------------------->
-                <div class="col-sm-12 col-lg-6 perfil">                
-                    <div class="text-center py-3">
-                        <h1 class="text-dark">Noticias</h1>
+                <div class="col-sm-12 col-lg-6">
+                    <div class="perfil">
+                        <div class="text-center py-3">
+                            <h1 class="text-dark">Noticias</h1>
+                        </div>
+                        <div class="dropdown text-center py-3">
+                            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Noticias Pendientes
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="noticia.html">Noticia 1</a>
+                                <a class="dropdown-item" href="noticia.html">Noticia 2</a>
+                                <a class="dropdown-item" href="noticia.html">Noticia 3</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="dropdown text-center py-3">
-                        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Noticias Pendientes
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="noticia.html">Noticia 1</a>
-                            <a class="dropdown-item" href="noticia.html">Noticia 2</a>
-                            <a class="dropdown-item" href="noticia.html">Noticia 3</a>
+                </div>
+            </div>
+            <div class="row justify-content-between pt-5 mt-5 m-1">
+                <div class="col-sm-12 col-lg-6">
+                    <div class="perfil">
+                        <div class="text-center py-3">
+                            <h1 class="text-dark">Agregar Secciones</h1>
+
+                            <form action="">
+
+                                <div class="form-group" style="padding-top: 15px;">
+                                    <div class="text-dark">
+                                        <label for="exampleFormControlInput1">Nombre de la Seccion</label>
+                                    </div>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Seccion" name="nombreSeccion1">
+                                </div>
+                                <div class="form-group" style="padding-top: 15px;">
+                                    <div class="text-dark">
+                                        <label for="color-picker">Escoja un color</label>
+                                    </div>
+                                    <input type="color" class="form-control" id="exampleFormControlInput1" name="color-picker">
+                                </div>
+                                <div class="justify-content-center bd-highlight" style="padding-bottom:15px;padding-top: 15px;">
+                                    <a href="#" class="btn btn-success  mr-2 ml-auto" id="crearSeccion" type="submit">Crear</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!---------------------------------------->
+                <div class="col-sm-12 col-lg-6">
+                    <div class="perfil">
+                        <div class="text-center py-3">
+                            <h1 class="text-dark">Eliminar Secciones</h1>
+                            <form action="">
+                                <div class="form-group" style="padding-top: 15px;">
+                                    <div class="text-dark">
+                                        <label for="categoBox">Categoria</label>
+                                    </div>
+                                    <select class="form-control" id="categoBox" name="categoBox">
+                                        
+                                    </select>
+                                </div>
+                                <div class="justify-content-center bd-highlight" style="padding-bottom:15px;padding-top: 15px;">
+                                    <a href="#" class="btn btn-danger mr-2 ml-auto" id="dropSeccion" type="submit">Eliminar</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
