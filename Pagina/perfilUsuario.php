@@ -6,7 +6,7 @@
   $varSesionTipo =  $_SESSION['tipo'];
 
   $query= "call sp_infoUsuario('$varSesion')";
-  $result = mysqli_query($con, $query, $query2) or die("Fail");
+  $result = mysqli_query($con, $query) or die("Fail");
   $data = $result->fetch_assoc();
 ?>
 

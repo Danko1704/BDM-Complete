@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS Noticia(
 	estadoNoticia enum ('Edicion','Revision','Publicado') default 'Edicion' comment 'estado de la noticia',
     comentarioEditor varchar(1000) null comment 'comentario del editor para errores',
     seccionIdF int comment 'seccion a la que pertenece la noticia',
+    especial bool default false,
 	primary key (noticiaId),
 	foreign key(autorIdf) References Usuario(usuarioId),
     foreign key(seccionIdf) References Seccion(seccionId)
