@@ -1,8 +1,10 @@
 <?php
 
-require 'dbRodrigo.php';
+require 'dbOrlando.php';
 
-$result = mysqli_query($con, "SELECT * FROM seccion WHERE isActive = 1");
+$result = mysqli_query($con, "call sp_cargaCategorias()");
+
+// $result = mysqli_query($con, "SELECT * FROM seccion WHERE isActive = 1");
 
 $rows = mysqli_num_rows($result);
 
