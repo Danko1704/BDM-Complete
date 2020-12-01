@@ -1,4 +1,5 @@
 <?php
+require 'Php/dbRodrigo.php';
 session_start();
 error_reporting(0);
 $varSesion = $_SESSION['usuario'];
@@ -30,7 +31,7 @@ $varSesionTipo =  $_SESSION['tipo']
   <!-- NAVBAR SIN USUARIO -->
   <div class="navbarSinUsuario" id="navbarSinUsuario">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.php">
         <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo" width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
         3DJuegos
       </a>
@@ -38,14 +39,9 @@ $varSesionTipo =  $_SESSION['tipo']
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <div class="navbar-nav mr-auto ml-auto text-center">
-          <a class="nav-item nav-link active" href="index.html">Inicio</a>
-          <a class="nav-item nav-link active" href="#">PC</a>
-          <a class="nav-item nav-link active" href="#">PS5</a>
-          <a class="nav-item nav-link active" href="#">PS4</a>
-          <a class="nav-item nav-link active" href="#">XSeries</a>
-          <a class="nav-item nav-link active" href="#">XOne</a>
-          <a class="nav-item nav-link active" href="#">Switch</a>
+        <div class="navbar-nav mr-auto ml-auto text-center categoria">
+          <a class="nav-item nav-link active" href="index.php">Inicio</a>
+          
         </div>
         <form class="mx-2 my-auto d-inline w-40">
           <div class="input-group">
@@ -68,7 +64,7 @@ $varSesionTipo =  $_SESSION['tipo']
   <!-- NAVBAR CON USUARIO NORMAL-->
   <div class="navbarUsuario" id="navbarUsuario">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.php">
         <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo" width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
         3DJuegos
       </a>
@@ -76,14 +72,9 @@ $varSesionTipo =  $_SESSION['tipo']
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <div class="navbar-nav mr-auto ml-auto text-center">
-          <a class="nav-item nav-link active" href="index.html">Inicio</a>
-          <a class="nav-item nav-link active" href="#">PC</a>
-          <a class="nav-item nav-link active" href="#">PS5</a>
-          <a class="nav-item nav-link active" href="#">PS4</a>
-          <a class="nav-item nav-link active" href="#">XSeries</a>
-          <a class="nav-item nav-link active" href="#">XOne</a>
-          <a class="nav-item nav-link active" href="#">Switch</a>
+        <div class="navbar-nav mr-auto ml-auto text-center categoria">
+          <a class="nav-item nav-link active" href="index.php">Inicio</a>
+          
         </div>
         <form class="mx-2 my-auto d-inline w-40">
           <div class="input-group">
@@ -106,7 +97,7 @@ $varSesionTipo =  $_SESSION['tipo']
   <!-- NAVBAR CON USUARIO REPORTERO-->
   <div class="navbarUsuarioRepprtero" id="navbarUsuarioReportero">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.php">
         <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo" width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
         3DJuegos
       </a>
@@ -114,14 +105,9 @@ $varSesionTipo =  $_SESSION['tipo']
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <div class="navbar-nav mr-auto ml-auto text-center">
-          <a class="nav-item nav-link active" href="index.html">Inicio</a>
-          <a class="nav-item nav-link active" href="#">PC</a>
-          <a class="nav-item nav-link active" href="#">PS5</a>
-          <a class="nav-item nav-link active" href="#">PS4</a>
-          <a class="nav-item nav-link active" href="#">XSeries</a>
-          <a class="nav-item nav-link active" href="#">XOne</a>
-          <a class="nav-item nav-link active" href="#">Switch</a>
+        <div class="navbar-nav mr-auto ml-auto text-center categoria">
+          <a class="nav-item nav-link active" href="index.php">Inicio</a>
+          
         </div>
         <form class="mx-2 my-auto d-inline w-40">
           <div class="input-group">
@@ -145,7 +131,7 @@ $varSesionTipo =  $_SESSION['tipo']
   <!-- NAVBAR CON USUARIO ADMIN-->
   <div class="navbarUsuarioAdmin" id="navbarUsuarioAdmin">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.php">
         <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo" width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
         3DJuegos
       </a>
@@ -153,14 +139,9 @@ $varSesionTipo =  $_SESSION['tipo']
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <div class="navbar-nav mr-auto ml-auto text-center">
-          <a class="nav-item nav-link active" href="index.html">Inicio</a>
-          <a class="nav-item nav-link active" href="#">PC</a>
-          <a class="nav-item nav-link active" href="#">PS5</a>
-          <a class="nav-item nav-link active" href="#">PS4</a>
-          <a class="nav-item nav-link active" href="#">XSeries</a>
-          <a class="nav-item nav-link active" href="#">XOne</a>
-          <a class="nav-item nav-link active" href="#">Switch</a>
+        <div class="navbar-nav mr-auto ml-auto text-center categoria">
+          <a class="nav-item nav-link active" href="index.php">Inicio</a>
+          
         </div>
         <form class="mx-2 my-auto d-inline w-40">
           <div class="input-group">
@@ -321,7 +302,7 @@ $varSesionTipo =  $_SESSION['tipo']
     <div class="container">
       <div class="row row-30 mt-1">
         <div class="col-md-4 col-xl-5">
-          <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light" src="Imagenes/Header.jpg" alt="" width="140" height="37" srcset="Imagenes/Header.jpg"></a>
+          <div class="pr-xl-4"><a class="brand" href="index.php"><img class="brand-logo-light" src="Imagenes/Header.jpg" alt="" width="140" height="37" srcset="Imagenes/Header.jpg"></a>
             <p>Proyecto de Base de datos multimedia a cargo de Rodrigo Yap y Orlando Gámez.</p>
             <!-- Rights-->
             <p class="rights"><span>©  </span><span class="copyright-year">2020</span><span> </span><span>BDM</span><span>. </span><span>All
@@ -357,11 +338,12 @@ $varSesionTipo =  $_SESSION['tipo']
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-  </script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
   </script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="navbarSeccion.js"></script>
 </body>
 
 <?php

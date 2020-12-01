@@ -13,6 +13,10 @@ if($rows) {
         $categoria = $catego['nombre'];
         $id = $catego['seccionId'];
 
-        echo "<a class='nav-item nav-link active seccion' href='#' id='color$id'>$categoria</a>";
+        echo "<a class='nav-item nav-link active seccion color$id' href='#'>$categoria</a>";
     }
 }
+
+$con->close();
+
+?>

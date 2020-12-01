@@ -6,8 +6,8 @@
     $varSesion = $_SESSION['usuario'];
     $varSesionTipo =  $_SESSION['tipo'];
   
-    //$fillCat = "CALL sp_llenarCategorias()";
-    //$sqlquery = mysqli_query($con,  $fillCat) or die('FALLO DE CATEGORIA');
+    $fillCat = "CALL sp_llenarCategorias()";
+    $sqlquery = mysqli_query($con,  $fillCat) or die('FALLO DE CATEGORIA');
 ?>
 
 <!doctype html>
@@ -43,14 +43,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <div class="navbar-nav mr-auto ml-auto text-center" id="categoria">
-                <a class="nav-item nav-link active" href="index.html">Inicio</a>
-                <a class="nav-item nav-link active" href="#">PC</a>
-                <a class="nav-item nav-link active" href="#">PS5</a>
-                <a class="nav-item nav-link active" href="#">PS4</a>
-                <a class="nav-item nav-link active" href="#">XSeries</a>
-                <a class="nav-item nav-link active" href="#">XOne</a>
-                <a class="nav-item nav-link active" href="#">Switch</a>
+            <div class="navbar-nav mr-auto ml-auto text-center categoria">
+                <a class="nav-item nav-link active" href="index.php">Inicio</a>
+                
             </div>
             <form class="mx-2 my-auto d-inline w-40">
                 <div class="input-group">
@@ -200,13 +195,13 @@
 
     <!-- JavaScript -->
     <script src="navbarSeccion.js"></script>
-    <script src="optionSeccion.js"></script>
+
 </body>
 
 </html>
 
 <?php
-include('Php/dbOrlando.php');
+include('Php/dbRodrigo.php');
     if($con) {
         //if connection has been established display connected.
         }
@@ -267,14 +262,14 @@ include('Php/dbOrlando.php');
         }
 
         if( $noticiaBool === true) {
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $image1 = "call sp_agregarImagenNoticia('$filename1')";
             $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen1Bool = true;
@@ -284,14 +279,14 @@ include('Php/dbOrlando.php');
         }
 
         if( $imagen1Bool === true) {
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $image2 = "call sp_agregarImagenNoticia('$filename2')";
             $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen2Bool = true;
@@ -301,14 +296,14 @@ include('Php/dbOrlando.php');
         }
 
         if( $imagen2Bool === true) {
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $image3 = "call sp_agregarImagenNoticia('$filename3')";
             $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen3Bool = true;
@@ -318,14 +313,14 @@ include('Php/dbOrlando.php');
         }
 
         if( $imagen3Bool === true) {
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $video1 = "call sp_agregarVideoNoticia('$filename4')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $videoID= $row['videoId'];
             mysqli_close($con);
 
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $multimedia = "CALL sp_llenarMultimedia('$videoID','$notiID','1')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular video a noticia: <br/>" . mysqli_error($con));
             $videoBool = true;
@@ -405,14 +400,14 @@ include('Php/dbOrlando.php');
         }
 
         if( $noticiaBool === true) {
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $image1 = "call sp_agregarImagenNoticia('$filename1')";
             $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen1Bool = true;
@@ -422,14 +417,14 @@ include('Php/dbOrlando.php');
         }
 
         if( $imagen1Bool === true) {
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $image2 = "call sp_agregarImagenNoticia('$filename2')";
             $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen2Bool = true;
@@ -439,14 +434,14 @@ include('Php/dbOrlando.php');
         }
 
         if( $imagen2Bool === true) {
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $image3 = "call sp_agregarImagenNoticia('$filename3')";
             $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen3Bool = true;
@@ -456,14 +451,14 @@ include('Php/dbOrlando.php');
         }
 
         if( $imagen3Bool === true) {
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $video1 = "call sp_agregarVideoNoticia('$filename4')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $videoID= $row['videoId'];
             mysqli_close($con);
 
-            include('Php/dbOrlando.php');
+            include('Php/dbRodrigo.php');
             $multimedia = "CALL sp_llenarMultimedia('$videoID','$notiID','1')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular video a noticia: <br/>" . mysqli_error($con));
             $videoBool = true;

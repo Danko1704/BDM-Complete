@@ -1,5 +1,5 @@
 <?php
-    require 'Php/dbOrlando.php';
+    require 'Php/dbRodrigo.php';
     $sqlquery = mysqli_query($con, "CALL sp_selectUsuarios()");
 ?>
 

@@ -17,6 +17,8 @@ $("form.deleteSeccion").on("submit", function(event){
      });
 
      //console.log(data);
+
+     //console.log(data);
             //var selectCat = $("#categoBox").children("option:selected").text();
     
             //data[name] = selectCat;

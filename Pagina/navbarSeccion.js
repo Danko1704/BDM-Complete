@@ -1,11 +1,12 @@
 $(document).ready(function(){
+    console.log('JqUERY');
     $.ajax({
         type: "POST",
         url: "Php/loadSections.php",
 
         success: function (response) {
             //console.log(response);
-            $('#categoria').append(response);
+            $('.categoria').append(response);
         }
     });
 });
@@ -18,13 +19,14 @@ $(document).ready(function(){
         success: function (response) {
 
             let colores = JSON.parse(response);
-            let temp = '#color';
+            let temp = '.color';
 
             colores.forEach(color => {
 
                 temp += `${color.id}`;
                 $(temp).css('color', color.color);
-                temp = '#color';
+                //console.log(temp);
+                temp = '.color';
 
             });
         }

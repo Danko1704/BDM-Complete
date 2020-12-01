@@ -17,6 +17,11 @@ if($rows) {
         );
     }
 
+
     $jsonstring = json_encode($colors);
     echo $jsonstring;
 }
+
+$con->close();
+
+?>
