@@ -6,7 +6,7 @@ $result = mysqli_query($con, $sql);
 
 if (!$result) {
     echo "DB Error, could not list tables\n";
-    echo 'MySQL Error: ' . mysqli_error();
+    echo 'MySQL Error: ' . mysqli_error($result);
     exit;
 }
 

@@ -1,5 +1,5 @@
 <?php
-    require 'dbRodrigo.php';
+    require 'dbOrlando.php';
 
     $titulo = $_POST['tituloBox'];
     $sinposis = $_POST['sinopsisBox'];

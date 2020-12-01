@@ -1,5 +1,5 @@
 <?php
-    require 'Php/dbRodrigo.php';
+    require 'Php/dbOrlando.php';
     session_start();
     error_reporting(0);
     
@@ -45,7 +45,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <div class="navbar-nav mr-auto ml-auto text-center categoria">
                 <a class="nav-item nav-link active" href="index.php">Inicio</a>
-                
+
             </div>
             <form class="mx-2 my-auto d-inline w-40">
                 <div class="input-group">
@@ -113,8 +113,8 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Comentarios del Admin</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textoBoxAdmin"
-                    required></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    name="textoBoxAdmin"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Eliga la imagen 1 a mostrar</label>
@@ -201,7 +201,7 @@
 </html>
 
 <?php
-include('Php/dbRodrigo.php');
+include('Php/dbOrlando.php');
     if($con) {
         //if connection has been established display connected.
         }
@@ -262,14 +262,14 @@ include('Php/dbRodrigo.php');
         }
 
         if( $noticiaBool === true) {
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $image1 = "call sp_agregarImagenNoticia('$filename1')";
             $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen1Bool = true;
@@ -279,14 +279,14 @@ include('Php/dbRodrigo.php');
         }
 
         if( $imagen1Bool === true) {
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $image2 = "call sp_agregarImagenNoticia('$filename2')";
             $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen2Bool = true;
@@ -296,14 +296,14 @@ include('Php/dbRodrigo.php');
         }
 
         if( $imagen2Bool === true) {
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $image3 = "call sp_agregarImagenNoticia('$filename3')";
             $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen3Bool = true;
@@ -313,14 +313,14 @@ include('Php/dbRodrigo.php');
         }
 
         if( $imagen3Bool === true) {
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $video1 = "call sp_agregarVideoNoticia('$filename4')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $videoID= $row['videoId'];
             mysqli_close($con);
 
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $multimedia = "CALL sp_llenarMultimedia('$videoID','$notiID','1')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular video a noticia: <br/>" . mysqli_error($con));
             $videoBool = true;
@@ -400,14 +400,14 @@ include('Php/dbRodrigo.php');
         }
 
         if( $noticiaBool === true) {
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $image1 = "call sp_agregarImagenNoticia('$filename1')";
             $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen1Bool = true;
@@ -417,14 +417,14 @@ include('Php/dbRodrigo.php');
         }
 
         if( $imagen1Bool === true) {
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $image2 = "call sp_agregarImagenNoticia('$filename2')";
             $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen2Bool = true;
@@ -434,14 +434,14 @@ include('Php/dbRodrigo.php');
         }
 
         if( $imagen2Bool === true) {
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $image3 = "call sp_agregarImagenNoticia('$filename3')";
             $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
             mysqli_close($con);
 
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $multimedia = "CALL sp_llenarMultimedia('$imgID','$notiID','0')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular imagen a noticia: <br/>" . mysqli_error($con));
             $imagen3Bool = true;
@@ -451,14 +451,14 @@ include('Php/dbRodrigo.php');
         }
 
         if( $imagen3Bool === true) {
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $video1 = "call sp_agregarVideoNoticia('$filename4')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $videoID= $row['videoId'];
             mysqli_close($con);
 
-            include('Php/dbRodrigo.php');
+            include('Php/dbOrlando.php');
             $multimedia = "CALL sp_llenarMultimedia('$videoID','$notiID','1')";
 			$insertarImagen2 = mysqli_query($con, $multimedia) or die("<b>Error:</b> Error al vincular video a noticia: <br/>" . mysqli_error($con));
             $videoBool = true;

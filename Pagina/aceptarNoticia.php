@@ -1,11 +1,17 @@
 <?php
-    require 'Php/dbRodrigo.php';
+    require 'Php/dbOrlando.php';
     session_start();
     error_reporting(0);
     
     $varSesion = $_SESSION['usuario'];
     $varSesionTipo =  $_SESSION['tipo'];
+
     $sqlquery = mysqli_query($con, "CALL sp_selectUsuarios()");
+    $con->close();
+
+    require 'Php/dbOrlando.php';
+    $sqlquery2 = mysqli_query($con, "CALL sp_noticiasPendientes()");
+    $con->close();
 ?>
 
 <!doctype html>
@@ -18,7 +24,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="perfilReportero_style.css">
+    <link rel="stylesheet" href="aceptarNoticia_style.css">
     <title>3DJuegos</title>
 </head>
 
@@ -36,7 +42,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <div class="navbar-nav mr-auto ml-auto text-center">
-                    
+
                 </div>
                 <div class="d-flex flex-row justify-content-center">
                     <a href="cambiarUsuario.php" class="btn btn-danger  mr-2">Cambiar</a>
@@ -72,20 +78,30 @@
             <!-------------------->
             <div class="col-sm-12 col-lg-6">
                 <div class="perfil">
-                    <div class="text-center py-3">
-                        <h1 class="text-dark">Noticias</h1>
-                    </div>
-                    <div class="dropdown text-center py-3">
-                        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Noticias Pendientes
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="noticia.html">Noticia 1</a>
-                            <a class="dropdown-item" href="noticia.html">Noticia 2</a>
-                            <a class="dropdown-item" href="noticia.html">Noticia 3</a>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group text-center pt-3">
+                            <h1 class="text-dark">Usuario</h1>
                         </div>
+                        <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Escoja una Noticia</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01" name="comboNoticias">
+                            <?php
+                        while($row = mysqli_fetch_array($sqlquery2)){
+                            ?>
+                            <option value="<?=$row["titulo"];?>"><?=$row["titulo"];?></option>
+                            <?php
+                        }
+                        ?>
+                        </select>
                     </div>
+
+                        <div class="form-group mx-sm-4 pb-2" style="text-align: center;">
+                            <input type="submit" class="uploadfilesub btn btn-block editar" name="uploadfilesub"
+                                value="EDITAR">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -134,12 +150,13 @@
                                     <label for="categoriaLabel">Categoria</label>
                                 </div>
                                 <select class="form-control" id="categoBox" name="categoBox">
-                                    
+
                                 </select>
                             </div>
                             <div class="justify-content-center bd-highlight"
                                 style="padding-bottom:15px; padding-top: 15px;">
-                                <input type="submit" value="Eliminar" class="btn btn-danger  mr-2 ml-auto" onclick="location.href='aceptarNoticia.php';">
+                                <input type="submit" value="Eliminar" class="btn btn-danger  mr-2 ml-auto"
+                                    onclick="location.href='aceptarNoticia.php';">
                             </div>
                         </form>
                     </div>
@@ -163,3 +180,31 @@
 </body>
 
 </html>
+
+<?php
+include('Php/dbOrlando.php');
+
+    if($con) {
+        //if connection has been established display connected.
+        
+        }
+        //if button with the name uploadfilesub has been clicked
+    if(isset($_POST['uploadfilesub'])) {
+        //declaring variables
+        $titulo = $_POST['comboNoticias'];
+
+        session_start();
+        $varSesion = $_SESSION['usuario'];
+        $varSesionTipo =  $_SESSION['tipo'];
+        $_SESSION['noticia'] = $titulo;
+
+        if( $titulo != "") {
+            $yourURL="revisarNoticia.php";
+            echo ("<script>location.href='$yourURL'</script>");
+        } else {
+            echo "aqui te quedas";
+        }
+    }
+
+    $con->close();
+?>

@@ -227,9 +227,20 @@ Begin
 END %$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_noticiasPendientes;
+
+DELIMITER %$
+CREATE PROCEDURE sp_noticiasPendientes(
+)
+Begin
+	SELECT Noticia.noticiaId, Noticia.titulo FROM Noticia WHERE isActive = 0;
+END %$
+DELIMITER ;
 
 
-select * from noticia;
+
+
+/*------------------------------------------------------CAMPO DE PRUEBAS -----------------------------------------------------------------------------*/
 
 INSERT INTO Usuario(nombre, correo, telefono, contraseña, tipoUsuario) VALUES ('danko', 'admin@hotmail.com', '9513375708', 'admin', 'Admin');
 
@@ -244,12 +255,14 @@ call sp_updateUsuario ('papucho', 'perro', 'perro@hotmail.com', '9512278531', 'P
 call sp_agregarNoticia ('Una partida de Huevos', 'hubo muchos huevos', 'se sacaron los calzones', 'huevos', 'juegos', 'Lol', 'orlando', '', 'ps5', false);
 call sp_agregarCategoria('el', 'danko', '#f0f0f0');
 call sp_deleteCategorias('ella');
+call sp_noticiasPendientes();
 
 select * from Usuario;
 select * from Imagen;
 select * from video;
 select * from Seccion;
 select * from noticia;
+select * from multimedia;
 
 SELECT Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = 'erick';
 
@@ -267,8 +280,8 @@ TRUNCATE TABLE seccion;
 
 INSERT INTO Usuario (nombre, correo, telefono, contraseña, imagenIdF, tipoUsuario) VALUES ('Rodrigo', 'rodyap182@gmail.com', '8116751678', 'admin', null, 'Admin');
 
-INSERT INTO seccion SET Nombre = "Orange", isActive = 1, usuarioIdF = 1, Color = "#FF6633"
-INSERT INTO seccion SET Nombre = "Pink", isActive = 1, usuarioIdF = 1, Color = "#FF80C0"
-INSERT INTO seccion SET Nombre = "Cyan", isActive = 1, usuarioIdF = 1, Color = "#6FF6FF"
+INSERT INTO seccion SET Nombre = "Orange", isActive = 1, usuarioIdF = 1, Color = "#FF6633";
+INSERT INTO seccion SET Nombre = "Pink", isActive = 1, usuarioIdF = 1, Color = "#FF80C0";
+INSERT INTO seccion SET Nombre = "Cyan", isActive = 1, usuarioIdF = 1, Color = "#6FF6FF";
 
-UPDATE seccion SET isActive = 1 WHERE seccionId = 5
+UPDATE seccion SET isActive = 1 WHERE seccionId = 5;

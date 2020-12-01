@@ -31,7 +31,7 @@ body{
     color: white;
 }
 
-.tipo{
+.usuarioBtn{
     background: #222A3F;
     padding: 10px;
     font-size: 16px;
@@ -42,6 +42,20 @@ body{
 }
 
 .tipo:hover{
+    color: white;
+}
+
+.reporteroBtn{
+    background: #222A3F;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700!important;
+    color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.458);
+    transition: 0.5s ease-in;
+}
+
+.registrarse:hover{
     color: white;
 }
 

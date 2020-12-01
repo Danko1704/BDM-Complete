@@ -1,6 +1,6 @@
 <?php
 
-require 'dbRodrigo.php';
+require 'dbOrlando.php';
 
 $result = mysqli_query($con, "call sp_cargaCategorias()");
 

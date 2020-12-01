@@ -1,6 +1,6 @@
 <?php
 
-require 'dbRodrigo.php';
+require 'dbOrlando.php';
 
 $seccion = $_POST['nombreSeccion'];
 $nombre = $_POST['usuario'];

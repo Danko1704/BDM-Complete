@@ -1,5 +1,5 @@
 function cambioUsuario() {
-  jQuery(document).on("click", "#formCambio", function (event) {
+  jQuery(document).on("click", ".formCambio", function (event) {
     event.preventDefault();
 
     jQuery.ajax({
@@ -11,8 +11,11 @@ function cambioUsuario() {
         $(".usuario").slideDown("slow");
         setTimeout(function () {
           $(".usuario").slideUp("slow");
+          location = 'cambiarUsuario.php';
         }, 3000);
       },
     });
   });
+  this.onclick = function() {return true;};
+
 };

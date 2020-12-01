@@ -1,5 +1,5 @@
 <?php
-    require 'Php/dbRodrigo.php';
+    require 'Php/dbOrlando.php';
     $sqlquery = mysqli_query($con, "CALL sp_selectUsuarios()");
 ?>
 
@@ -28,7 +28,7 @@
     <div class="container">
         <div class="row justify-content-center pt-5 mt-5 m-1">
             <div class="col-md-6 col-sm-8 col-xl-6 col-lg-5 formulario">
-                <form action="" name="form1" method="post" id="formCambio">
+                <form action="" name="form1" method="post" id="formCambio" class="formCambio">
                     <div class="form-group text-center pt-3">
                         <h1 class="text-light">INICIAR SESION</h1>
                     </div>
@@ -42,10 +42,10 @@
                     ?>
                     </select>
                     <div class="form-group text-center pt-3">
-                    <span class="text-center"><a class="btn btn-block registrarse" onclick='cambioUsuario()'>USUARIO</a></span>
+                    <span class="text-center"><a class="btn btn-block usuarioBtn" value="Reset Form" onclick='cambioUsuario()'>USUARIO</a></span>
                     </div>
                     <div class="form-group text-center pt-3">
-                    <span class="text-center"><a class="btn btn-block registrarse" onclick='cambioReportero()'>REPORTERO</a></span>
+                    <span class="text-center"><a class="btn btn-block reporteroBtn" value="Reset Form" onclick='cambioReportero()'>REPORTERO</a></span>
                     </div>
                     <br>
                     <div class="form-group text-center">

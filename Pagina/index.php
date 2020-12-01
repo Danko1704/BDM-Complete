@@ -1,5 +1,5 @@
 <?php
-require 'Php/dbRodrigo.php';
+require 'Php/dbOrlando.php';
 session_start();
 error_reporting(0);
 $varSesion = $_SESSION['usuario'];

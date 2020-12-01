@@ -1,5 +1,5 @@
 <?php
-    require 'dbRodrigo.php';
+    require 'dbOrlando.php';
 
     $nombre=$_POST['mySelect'];
 
