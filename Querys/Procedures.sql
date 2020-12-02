@@ -227,7 +227,112 @@ Begin
 END %$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_Busqueda;
 
+DELIMITER %$
+CREATE PROCEDURE sp_Busqueda(
+    IN Texto varchar(40),
+    IN Seccion int,
+    IN FechaIni timestamp,
+    IN FechaFin timestamp
+)
+BEGIN
+	
+
+	#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	IF (Texto IS NULL AND FechaIni IS NULL AND FechaFin IS NULL) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE seccionIdF = Seccion
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+        
+	ELSEIF (Texto IS NULL AND FechaIni IS NULL AND Seccion IS NULL) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE fechaCreacion < FechaFin
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+        
+	ELSEIF (Texto IS NULL AND FechaIni IS NULL) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (fechaCreacion < FechaFin) AND (seccionIdf = Seccion)
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+        
+	ELSEIF (Texto IS NULL AND FechaFin IS NULL AND Seccion IS NULL) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE fechaCreacion > FechaIni
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+        
+	ELSEIF (Texto IS NULL AND FechaFin IS NULL) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (fechaCreacion > FechaIni) AND (seccionIdf = Seccion)
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+        
+	ELSEIF (Texto IS NULL AND Seccion IS NULL) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE fechaCreacion BETWEEN FechaIni AND FechaFin
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+        
+	ELSEIF (Texto IS NULL ) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (fechaCreacion BETWEEN FechaIni AND FechaFin)
+        AND seccionIdf = Seccion
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+       
+	#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    ELSEIF (FechaIni IS NULL AND FechaFin IS NULL AND Seccion IS NULL ) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (Texto LIKE CONCAT('%', titulo, '%') OR Texto LIKE CONCAT('%', palabraClave1, '%') OR Texto LIKE CONCAT('%', palabraClave2, '%') OR Texto LIKE CONCAT('%', palabraClave3, '%'))
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+    
+    ELSEIF (FechaIni IS NULL AND FechaFin IS NULL) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (Texto LIKE CONCAT('%', titulo, '%') OR Texto LIKE CONCAT('%', palabraClave1, '%') OR Texto LIKE CONCAT('%', palabraClave2, '%') OR Texto LIKE CONCAT('%', palabraClave3, '%'))
+        AND seccionIdf = Seccion
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+
+	ELSEIF (FechaIni IS NULL AND Seccion IS NULL ) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (Texto LIKE CONCAT('%', titulo, '%') OR Texto LIKE CONCAT('%', palabraClave1, '%') OR Texto LIKE CONCAT('%', palabraClave2, '%') OR Texto LIKE CONCAT('%', palabraClave3, '%'))
+        AND fechaCreacion < FechaFin
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+    
+    ELSEIF (FechaIni IS NULL) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (Texto LIKE CONCAT('%', titulo, '%') OR Texto LIKE CONCAT('%', palabraClave1, '%') OR Texto LIKE CONCAT('%', palabraClave2, '%') OR Texto LIKE CONCAT('%', palabraClave3, '%'))
+        AND fechaCreacion < FechaFin
+        AND seccionIdf = Seccion
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+    
+    ELSEIF (FechaFin IS NULL AND Seccion IS NULL ) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (Texto LIKE CONCAT('%', titulo, '%') OR Texto LIKE CONCAT('%', palabraClave1, '%') OR Texto LIKE CONCAT('%', palabraClave2, '%') OR Texto LIKE CONCAT('%', palabraClave3, '%'))
+        AND fechaCreacion > FechaIni
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+    
+    ELSEIF (FechaFin IS NULL) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (Texto LIKE CONCAT('%', titulo, '%') OR Texto LIKE CONCAT('%', palabraClave1, '%') OR Texto LIKE CONCAT('%', palabraClave2, '%') OR Texto LIKE CONCAT('%', palabraClave3, '%'))
+        AND fechaCreacion > FechaIni
+        AND seccionIdf = Seccion
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+	
+    ELSEIF (Seccion IS NULL ) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE (Texto LIKE CONCAT('%', titulo, '%') OR Texto LIKE CONCAT('%', palabraClave1, '%') OR Texto LIKE CONCAT('%', palabraClave2, '%') OR Texto LIKE CONCAT('%', palabraClave3, '%'))
+        AND (fechaCreacion BETWEEN FechaIni AND FechaFin)
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+
+    ELSEIF (FechaIni IS NOT NULL AND FechaFin IS NOT NULL AND Seccion IS NOT NULL ) THEN
+		SELECT noticiaId, titulo, sinopsis FROM Noticia
+		WHERE ((Texto LIKE CONCAT('%', titulo, '%') OR Texto LIKE CONCAT('%', palabraClave1, '%') OR Texto LIKE CONCAT('%', palabraClave2, '%') OR Texto LIKE CONCAT('%', palabraClave3, '%'))
+        AND (fechaCreacion BETWEEN FechaIni AND FechaFin)
+        AND seccionIdf = Seccion)
+        AND (isActive = 1 AND estadoNoticia = 'Publicado');
+       
+	END IF;
+
+END %$
+DELIMITER ;
 
 select * from noticia;
 
@@ -253,6 +358,18 @@ select * from noticia;
 
 SELECT Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = 'erick';
 
+INSERT INTO Noticia (titulo, sinopsis, texto, palabraClave1, palabraClave2, palabraClave3, autorIdF, isActive, estadoNoticia, seccionIdF)
+					VALUES('Crossplay en Warzon', 'Jugadores de PC se quejan', 'Jugadores de PC se quejan por el autoaim de la consola', 'Warzone', 'Crossplay', 'Consola', '1', '1', 'Publicado', '10');
+                    
+INSERT INTO Noticia (titulo, sinopsis, texto, palabraClave1, palabraClave2, palabraClave3, autorIdF, isActive, estadoNoticia, seccionIdF, fechaCreacion)
+					VALUES('Nueva temporada de Fornai', 'Nueva temporada esta semana', 'En esta semana se estrena la nueva temporada de Fortnite', 'Fortnite', 'Evento', 'Temporada', '1', '1', 'Publicado', '11', '2020-11-30 00:01:00');
+                    
+INSERT INTO Noticia (titulo, sinopsis, texto, palabraClave1, palabraClave2, palabraClave3, autorIdF, isActive, estadoNoticia, seccionIdF, fechaCreacion)
+					VALUES('Chingo de frio en monterrey', 'Hace frio en monterrey', 'Si o no raza', 'Monterrey', 'Frio', 'Chingos', '1', '1', 'Publicado', '2', '2020-12-12 00:01:00');
+
+
+CALL sp_Busqueda('Apex', NULL, NULL, NULL);
+
 CALL sp_cargaCategorias();
 
 CALL sp_validarUsuario('rodyap182@gmail.com', 'admin');
@@ -261,7 +378,9 @@ CALL sp_deleteCategorias('5');
 
 SELECT nombre, tipoUsuario FROM Usuario where correo='orlando_gague17@hotmail.com' and contraseña='moquito';
 select * from usuario;
-select * from seccion;
+select * from seccion WHERE isActive = 1;
+select * from noticia WHERE isActive = 1 AND estadoNoticia = 'Publicado'
+AND ('Apex' LIKE CONCAT('%', titulo, '%') OR 'Apex' LIKE CONCAT('%', palabraClave1, '%') OR 'Apex' LIKE CONCAT('%', palabraClave2, '%') OR 'Apex' LIKE CONCAT('%', palabraClave3, '%'));
 
 TRUNCATE TABLE seccion;
 
@@ -270,5 +389,7 @@ INSERT INTO Usuario (nombre, correo, telefono, contraseña, imagenIdF, tipoUsuar
 INSERT INTO seccion SET Nombre = "Orange", isActive = 1, usuarioIdF = 1, Color = "#FF6633"
 INSERT INTO seccion SET Nombre = "Pink", isActive = 1, usuarioIdF = 1, Color = "#FF80C0"
 INSERT INTO seccion SET Nombre = "Cyan", isActive = 1, usuarioIdF = 1, Color = "#6FF6FF"
+
+select * from Noticia;
 
 UPDATE seccion SET isActive = 1 WHERE seccionId = 5

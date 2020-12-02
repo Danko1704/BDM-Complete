@@ -24,7 +24,6 @@ $("form.addSeccion").on("submit", function(event){
             console.log(response);
         }
     });   
-    //console.log(data);
 
     return false;
 });

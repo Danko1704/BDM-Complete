@@ -16,3 +16,7 @@ if($rows) {
         echo "<option value='$id'>$categoria</option>";
     }
 }
+
+mysqli_free_result($result);
+
+$con->close();
