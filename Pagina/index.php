@@ -120,6 +120,7 @@ $varSesionTipo =  $_SESSION['tipo']
           </div>
         </form>
         <div class="d-flex flex-row justify-content-center">
+          <a href="aceptarNoticiaR.php" class="btn btn-success  mr-2">Administrar</a>
           <a href="crearNoticia.php" class="btn btn-success  mr-2">Crear Noticia</a>
           <a href="perfilUsuario.php" class="btn btn-success  mr-2">Editar Perfil</a>
           <a href="Php/cerrarSesion.php" class="btn btn-warning  mr-2">Cerrar Sesion</a>
@@ -154,7 +155,7 @@ $varSesionTipo =  $_SESSION['tipo']
           </div>
         </form>
         <div class="d-flex flex-row justify-content-center">
-          <a href="aceptarNoticia.php" class="btn btn-danger  mr-2">Noticias</a>
+          <a href="aceptarNoticia.php" class="btn btn-danger  mr-2">Administrar</a>
           <a href="cambiarUsuario.php" class="btn btn-danger  mr-2">Cambiar</a>
           <a href="Php/cerrarSesion.php" class="btn btn-warning  mr-2">Cerrar Sesion</a>
         </div>

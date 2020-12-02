@@ -10,7 +10,7 @@
     $con->close();
 
     require 'Php/dbOrlando.php';
-    $sqlquery2 = mysqli_query($con, "CALL sp_noticiasPendientes()");
+    $sqlquery2 = mysqli_query($con, "CALL sp_noticiasReportero('$varSesion')");
     $con->close();
 ?>
 
@@ -199,7 +199,7 @@ include('Php/dbOrlando.php');
         $_SESSION['noticia'] = $titulo;
 
         if( $titulo != "") {
-            $yourURL="noticiaRevision.php";
+            $yourURL="editarNoticia.php";
             echo ("<script>location.href='$yourURL'</script>");
         } else {
             echo "aqui te quedas";

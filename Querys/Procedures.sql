@@ -233,11 +233,179 @@ DELIMITER %$
 CREATE PROCEDURE sp_noticiasPendientes(
 )
 Begin
-	SELECT Noticia.noticiaId, Noticia.titulo FROM Noticia WHERE isActive = 0;
+	SELECT Noticia.noticiaId, Noticia.titulo FROM Noticia WHERE estadoNoticia = 'Edicion';
 END %$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_noticiaParaRevision;
 
+DELIMITER %$
+CREATE PROCEDURE sp_noticiaParaRevision(
+	pTitulo varchar(40)
+)
+Begin
+	DECLARE  autorNombre varchar(30);
+    DECLARE  seccionNombre varchar(30);
+    DECLARE  idAutor int;
+    DECLARE idSeccion int;
+	SET 
+		idSeccion = (SELECT Noticia.seccionIdf FROM Noticia WHERE noticia.titulo = pTitulo),
+		idAutor = (SELECT Noticia.autorIdF FROM Noticia Where noticia.titulo = pTitulo),
+        autorNombre = (SELECT Usuario.nombre FROM Usuario WHERE Usuario.usuarioId = idAutor),
+        seccionNombre = (SELECT Seccion.nombre FROM Seccion WHERE Seccion.seccionId = idSeccion);
+        
+        select * from noticia;
+        
+	SELECT Noticia.noticiaId, Noticia.titulo, Noticia.sinopsis, Noticia.texto, Noticia.fechaCreacion, noticia.palabraClave1, noticia.palabraClave2, noticia.palabraClave3, autorNombre, seccionNombre, noticia.comentarioEditor FROM Noticia WHERE titulo = pTitulo;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_imagenesParaRevision;
+
+DELIMITER %$
+CREATE PROCEDURE sp_imagenesParaRevision(
+	pTitulo varchar(40)
+)
+Begin
+    DECLARE  idNoticia int;
+	SET 
+		idNoticia = (SELECT Noticia.noticiaId FROM Noticia WHERE Noticia.titulo = pTitulo);
+        
+	SELECT 	multimedia.imagenIdF, imagen.imagenFile 
+    from multimedia 
+    INNER JOIN imagen on multimedia.imagenIdF = imagen.imagenId AND multimedia.noticiaIdF = idNoticia;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_videosParaRevision;
+
+DELIMITER %$
+CREATE PROCEDURE sp_videosParaRevision(
+	pTitulo varchar(40)
+)
+Begin
+    DECLARE  idNoticia int;
+	SET 
+		idNoticia = (SELECT Noticia.noticiaId FROM Noticia WHERE Noticia.titulo = pTitulo);
+        
+	SELECT 	multimedia.videoIdF, video.videoFile 
+    from multimedia 
+    INNER JOIN video on multimedia.videoIdF = video.videoId AND multimedia.noticiaIdF = idNoticia;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_updateComentarioAdmin;
+
+DELIMITER %$
+CREATE PROCEDURE sp_updateComentarioAdmin(
+	pTitulo varchar(40),
+    pComentario varchar(1000)
+)
+Begin
+    DECLARE  idNoticia int;
+	SET 
+		idNoticia = (SELECT Noticia.noticiaId FROM Noticia WHERE Noticia.titulo = pTitulo);
+        
+	UPDATE noticia
+	SET comentarioEditor = pComentario
+	WHERE noticia.noticiaId = idNoticia;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_aceptarNoticia;
+
+DELIMITER %$
+CREATE PROCEDURE sp_aceptarNoticia(
+	pTitulo varchar(40)
+)
+Begin
+    DECLARE  idNoticia int;
+	SET 
+		idNoticia = (SELECT Noticia.noticiaId FROM Noticia WHERE Noticia.titulo = pTitulo);
+        
+	UPDATE noticia
+	SET estadoNoticia = 'Publicado'
+	WHERE noticia.noticiaId = idNoticia;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_noticiasReportero;
+
+DELIMITER %$
+CREATE PROCEDURE sp_noticiasReportero(
+	pReportero varchar(30)
+)
+Begin
+	DECLARE idReportero int;
+    SET	
+		idReportero = (SELECT usuario.usuarioId from Usuario WHERE usuario.nombre = 'reportero1');
+	SELECT Noticia.noticiaId, Noticia.titulo FROM Noticia WHERE estadoNoticia = 'Edicion' and noticia.autorIdF = idReportero;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_editarNoticia;
+
+DELIMITER %$
+CREATE PROCEDURE sp_editarNoticia(
+	oTitulo varchar(40),
+	pTitulo varchar (40),
+	pSinopsis varchar(80),
+    pTexto text,
+    pPalabraClave1 varchar(25),
+    pPalabraClave2 varchar(25),
+    pPalabraClave3 varchar(25),
+	pCategoria varchar(50),
+    pEspecial bool
+)
+Begin
+DECLARE idSeccion int;
+DECLARE idNoticia int;
+	SET 
+		idSeccion = (SELECT Seccion.seccionId FROM Seccion WHERE Seccion.nombre = pCategoria),
+        idNoticia = (SELECT Noticia.noticiaId FROM Noticia WHERE noticia.titulo = oTitulo);
+    
+    UPDATE noticia
+	SET titulo = pTitulo,
+    sinopsis = pSinopsis,
+    texto = pTexto,
+    fechaCreacion = now(),
+    PalabraClave1 = pPalabraClave1,
+    PalabraClave2 = pPalabraClave2,
+    PalabraClave3 = pPalabraClave3,
+    seccionIdF = idSeccion,
+    especial = pEspecial
+	WHERE noticia.noticiaId = idNoticia;
+    
+    SELECT noticiaId FROM Noticia WHERE noticiaId = idNoticia;
+END %$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_updateImagenNoticia;
+
+DELIMITER //
+CREATE PROCEDURE sp_updateImagenNoticia
+(IN pImagen varchar(100), pOldImage varchar(100))
+BEGIN
+	IF pImagen != '' THEN
+		UPDATE Imagen 
+		SET imagenFile = pImagen WHERE imagenFile = pOldImage;
+	END IF;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_updateVideoNoticia;
+
+DELIMITER //
+CREATE PROCEDURE sp_updateVideoNoticia
+(IN pVideo varchar(100), pOldVideo varchar(100))
+BEGIN
+INSERT INTO Video VALUES(0, pVideo);
+	IF pVideo != '' THEN
+		UPDATE Video 
+			SET videoFile = pVideo WHERE videoFile = pOldVideo;
+	END IF;
+END //
+DELIMITER ;
 
 
 /*------------------------------------------------------CAMPO DE PRUEBAS -----------------------------------------------------------------------------*/
@@ -256,6 +424,13 @@ call sp_agregarNoticia ('Una partida de Huevos', 'hubo muchos huevos', 'se sacar
 call sp_agregarCategoria('el', 'danko', '#f0f0f0');
 call sp_deleteCategorias('ella');
 call sp_noticiasPendientes();
+call sp_noticiaParaRevision('nueva actualizada noticia seria');
+call sp_imagenesParaRevision('nueva nueva noticia seria');
+call sp_videosParaRevision('nueva actualizada noticia seria');
+call sp_updateComentarioAdmin('primera noticia seria', 'si jala carnal');
+call sp_noticiasReportero('reportero1');
+call sp_editarNoticia('Nueva noticia seria', 'Nueva nueva noticia seria', 'Ahora esta cambiada', 'Esta es nueva y mejorada', 'Nueva', 'Recargada', 'LMAO', 'switch', false);
+call sp_updateImagenNoticia('Kirby.png', 'nueva.jpg');
 
 select * from Usuario;
 select * from Imagen;
