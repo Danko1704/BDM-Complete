@@ -56,7 +56,7 @@
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.php">
             <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
                 width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
             3DJuegos

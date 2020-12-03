@@ -22,8 +22,6 @@
   $result2 = mysqli_query($con, $query3) or die("Fail Imagen");
   for ($set2 = array (); $row2 = $result2->fetch_assoc(); $set2[] = $row2);
   $con->close();
-
-  echo $data['autorNombre'];
 ?>
 
 <!doctype html>
@@ -44,7 +42,7 @@
 <body>
     <!-- HEADER -->
     <section class="container-fluid slider d-flex justify-content-center align-items-center">
-        <img src="Imagenes/Header.jpg" class="img-fluid" alt="Responsive image">
+        <a href="index.php"><img src="Imagenes/Header.jpg" class="img-fluid" alt="Responsive image"></a>
     </section>
 
     <!-- NAVBAR -->
