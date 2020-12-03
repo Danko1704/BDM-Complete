@@ -577,10 +577,3 @@ INSERT INTO seccion SET Nombre = "Orange", isActive = 1, usuarioIdF = 1, Color =
 INSERT INTO seccion SET Nombre = "Pink", isActive = 1, usuarioIdF = 1, Color = "#FF80C0";
 INSERT INTO seccion SET Nombre = "Cyan", isActive = 1, usuarioIdF = 1, Color = "#6FF6FF";
 
-<<<<<<< HEAD
-UPDATE seccion SET isActive = 1 WHERE seccionId = 5;
-=======
-select * from Noticia;
-
-UPDATE seccion SET isActive = 1 WHERE seccionId = 5
->>>>>>> Yap_branch2

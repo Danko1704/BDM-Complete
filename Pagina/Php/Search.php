@@ -69,3 +69,5 @@ if($rows) {
 mysqli_free_result($result);
 
 $con->close();
+
+?>
