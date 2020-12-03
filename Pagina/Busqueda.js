@@ -21,21 +21,22 @@ $("form.Busqueda").on("submit", function(event){
         success: function(response){
 
             if(response != ''){
-                let noticias = JSON.parse(response);
-                console.log(noticias);
-                //let temp = '.color';
 
-                /*colores.forEach(color => {
+                $(".misNoticias").append(response);
 
-                    temp += `${color.id}`;
-                    $(temp).css('color', color.color);
-                    //console.log(temp);
-                    temp = '.color';
-
-                });*/
             }
         },
     });
     
     return false;
 });
+
+$(document).ready(function(){
+    $("#clear").click(function(){
+        //console.log('hice click prro');
+      $("div").remove(".remove");
+      $("h2").remove(".remove");
+      $("p").remove(".remove");
+      $("a").remove(".remove");
+    });
+  });
