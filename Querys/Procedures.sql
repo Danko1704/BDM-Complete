@@ -254,8 +254,6 @@ Begin
         autorNombre = (SELECT Usuario.nombre FROM Usuario WHERE Usuario.usuarioId = idAutor),
         seccionNombre = (SELECT Seccion.nombre FROM Seccion WHERE Seccion.seccionId = idSeccion);
         
-        select * from noticia;
-        
 	SELECT Noticia.noticiaId, Noticia.titulo, Noticia.sinopsis, Noticia.texto, Noticia.fechaCreacion, noticia.palabraClave1, noticia.palabraClave2, noticia.palabraClave3, autorNombre, seccionNombre, noticia.comentarioEditor FROM Noticia WHERE titulo = pTitulo;
 END %$
 DELIMITER ;
@@ -384,11 +382,11 @@ DROP PROCEDURE IF EXISTS sp_updateImagenNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_updateImagenNoticia
-(IN pImagen varchar(100), pOldImage varchar(100))
+(IN pImagen varchar(100), idImagen int)
 BEGIN
 	IF pImagen != '' THEN
 		UPDATE Imagen 
-		SET imagenFile = pImagen WHERE imagenFile = pOldImage;
+		SET imagenFile = pImagen WHERE imagenId = idImagen;
 	END IF;
 END //
 DELIMITER ;
@@ -397,12 +395,12 @@ DROP PROCEDURE IF EXISTS sp_updateVideoNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_updateVideoNoticia
-(IN pVideo varchar(100), pOldVideo varchar(100))
+(IN pVideo varchar(100), idVideo int)
 BEGIN
 INSERT INTO Video VALUES(0, pVideo);
 	IF pVideo != '' THEN
 		UPDATE Video 
-			SET videoFile = pVideo WHERE videoFile = pOldVideo;
+			SET videoFile = pVideo WHERE videoId = idVideo;
 	END IF;
 END //
 DELIMITER ;
@@ -424,13 +422,14 @@ call sp_agregarNoticia ('Una partida de Huevos', 'hubo muchos huevos', 'se sacar
 call sp_agregarCategoria('el', 'danko', '#f0f0f0');
 call sp_deleteCategorias('ella');
 call sp_noticiasPendientes();
-call sp_noticiaParaRevision('nueva actualizada noticia seria');
-call sp_imagenesParaRevision('nueva nueva noticia seria');
-call sp_videosParaRevision('nueva actualizada noticia seria');
+call sp_noticiaParaRevision('prueba si');
+call sp_imagenesParaRevision('prueba');
+call sp_videosParaRevision('prueba si');
 call sp_updateComentarioAdmin('primera noticia seria', 'si jala carnal');
 call sp_noticiasReportero('reportero1');
 call sp_editarNoticia('Nueva noticia seria', 'Nueva nueva noticia seria', 'Ahora esta cambiada', 'Esta es nueva y mejorada', 'Nueva', 'Recargada', 'LMAO', 'switch', false);
-call sp_updateImagenNoticia('Kirby.png', 'nueva.jpg');
+call sp_updateImagenNoticia('avatar1.jpg', '1');
+call sp_updateImagenNoticia('Problems.jpg', '2');
 
 select * from Usuario;
 select * from Imagen;

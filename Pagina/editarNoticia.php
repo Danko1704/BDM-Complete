@@ -280,7 +280,7 @@ include('Php/dbOrlando.php');
             move_uploaded_file($filetmpname1, $folder.$filename1);
 
             include('Php/dbOrlando.php');
-            $oldImage1 = $set[0]['imagenFile'];
+            $oldImage1 = $set[0]['imagenIdF'];
             $image1 = "call sp_updateImagenNoticia('$filename1', '$oldImage1')";
             $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             mysqli_close($con);
@@ -289,7 +289,7 @@ include('Php/dbOrlando.php');
             move_uploaded_file($filetmpname2, $folder.$filename2);
 
             include('Php/dbOrlando.php');
-            $oldImage2 = $set[1]['imagenFile'];
+            $oldImage2 = $set[1]['imagenIdF'];
             $image2 = "call sp_updateImagenNoticia('$filename2', '$oldImage2')";
             $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             mysqli_close($con);
@@ -297,7 +297,7 @@ include('Php/dbOrlando.php');
         if ('inpFile3' != ''){
             move_uploaded_file($filetmpname3, $folder.$filename3);
             include('Php/dbOrlando.php');
-            $oldImage3 = $set[2]['imagenFile'];
+            $oldImage3 = $set[2]['imagenIdF'];
             $image3 = "call sp_updateImagenNoticia('$filename3', '$oldImage3')";
             $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             mysqli_close($con);
@@ -306,8 +306,8 @@ include('Php/dbOrlando.php');
             move_uploaded_file($filetmpname4, $folder.$filename4);
 
             include('Php/dbOrlando.php');
-            $oldImage3 = $set2[0]['videoFile'];
-            $video1 = "call sp_updateVideoNoticia('$filename4', '$oldImage3')";
+            $oldImage4 = $set2[0]['videoIdF'];
+            $video1 = "call sp_updateVideoNoticia('$filename4', '$oldImage4')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
@@ -381,7 +381,7 @@ include('Php/dbOrlando.php');
             move_uploaded_file($filetmpname1, $folder.$filename1);
 
             include('Php/dbOrlando.php');
-            $oldImage1 = $set[0]['imagenFile'];
+            $oldImage1 = $set[0]['imagenIdF'];
             $image1 = "call sp_updateImagenNoticia('$filename1', '$oldImage1')";
             $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             mysqli_close($con);
@@ -390,7 +390,7 @@ include('Php/dbOrlando.php');
             move_uploaded_file($filetmpname2, $folder.$filename2);
 
             include('Php/dbOrlando.php');
-            $oldImage2 = $set[1]['imagenFile'];
+            $oldImage2 = $set[1]['imagenIdF'];
             $image2 = "call sp_updateImagenNoticia('$filename2', '$oldImage2')";
             $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             mysqli_close($con);
@@ -398,7 +398,7 @@ include('Php/dbOrlando.php');
         if ('inpFile3' != ''){
             move_uploaded_file($filetmpname3, $folder.$filename3);
             include('Php/dbOrlando.php');
-            $oldImage3 = $set[2]['imagenFile'];
+            $oldImage3 = $set[2]['imagenIdF'];
             $image3 = "call sp_updateImagenNoticia('$filename3', '$oldImage3')";
             $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             mysqli_close($con);
@@ -407,8 +407,8 @@ include('Php/dbOrlando.php');
             move_uploaded_file($filetmpname4, $folder.$filename4);
 
             include('Php/dbOrlando.php');
-            $oldImage3 = $set2[0]['videoFile'];
-            $video1 = "call sp_updateVideoNoticia('$filename4', '$oldImage3')";
+            $oldImage4 = $set2[0]['videoIdF'];
+            $video1 = "call sp_updateVideoNoticia('$filename4', '$oldImage4')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }

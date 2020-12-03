@@ -45,7 +45,7 @@
 
                 </div>
                 <div class="d-flex flex-row justify-content-center">
-                    <a href="cambiarUsuario.php" class="btn btn-danger  mr-2">Cambiar</a>
+                    <a href="crearNoticia.php" class="btn btn-danger  mr-2">Crear Noticia</a>
                     <a href="Php/cerrarSesion.php" class="btn btn-warning  mr-2">Cerrar Sesion</a>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="inputGroupSelect01">Escoja una Noticia</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect01" name="comboNoticias">
+                        <select class="custom-select" name="comboNoticias">
                             <?php
                         while($row = mysqli_fetch_array($sqlquery2)){
                             ?>
