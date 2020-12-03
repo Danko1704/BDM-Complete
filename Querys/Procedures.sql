@@ -442,8 +442,8 @@ CREATE PROCEDURE sp_noticiasReportero(
 Begin
 	DECLARE idReportero int;
     SET	
-		idReportero = (SELECT usuario.usuarioId from Usuario WHERE usuario.nombre = 'reportero1');
-	SELECT Noticia.noticiaId, Noticia.titulo FROM Noticia WHERE estadoNoticia = 'Edicion' and noticia.autorIdF = idReportero;
+		idReportero = (SELECT usuario.usuarioId from Usuario WHERE usuario.nombre = pReportero);
+	SELECT Noticia.noticiaId, Noticia.titulo FROM Noticia WHERE isActive = false and noticia.autorIdF = idReportero;
 END %$
 DELIMITER ;
 
@@ -576,10 +576,10 @@ call sp_agregarCategoria('el', 'danko', '#f0f0f0');
 call sp_deleteCategorias('ella');
 call sp_noticiasPendientes();
 call sp_noticiaParaRevision('prueba si');
-call sp_imagenesParaRevision('prueba');
-call sp_videosParaRevision('prueba si');
+call sp_imagenesParaRevision('3');
+call sp_videosParaRevision('3');
 call sp_updateComentarioAdmin('primera noticia seria', 'si jala carnal');
-call sp_noticiasReportero('reportero1');
+call sp_noticiasReportero('reportero3');
 call sp_editarNoticia('Nueva noticia seria', 'Nueva nueva noticia seria', 'Ahora esta cambiada', 'Esta es nueva y mejorada', 'Nueva', 'Recargada', 'LMAO', 'switch', false);
 call sp_updateImagenNoticia('avatar1.jpg', '1');
 call sp_updateImagenNoticia('Problems.jpg', '2');
