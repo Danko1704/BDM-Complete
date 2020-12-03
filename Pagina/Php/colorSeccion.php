@@ -22,6 +22,6 @@ if($rows) {
     echo $jsonstring;
 }
 
-$con->close();
+mysqli_free_result($result);
 
-?>
+$con->close();

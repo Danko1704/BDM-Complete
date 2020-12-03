@@ -1,7 +1,5 @@
-$("form.addSeccion").on("submit", function(event){
-    //event.preventDefault();
-    //console.log('jQuery esta jalando');
-    
+$("form.Busqueda").on("submit", function(event){
+
     var that = $(this),
         url = that.attr('action'),
         type = that.attr('method'),
@@ -21,9 +19,24 @@ $("form.addSeccion").on("submit", function(event){
         type: type,
         data: data,
         success: function(response){
-            console.log(response);
-        }
-    });   
 
+            if(response != ''){
+
+                $(".misNoticias").append(response);
+
+            }
+        },
+    });
+    
     return false;
 });
+
+$(document).ready(function(){
+    $("#clear").click(function(){
+        //console.log('hice click prro');
+      $("div").remove(".remove");
+      $("h2").remove(".remove");
+      $("p").remove(".remove");
+      $("a").remove(".remove");
+    });
+  });
