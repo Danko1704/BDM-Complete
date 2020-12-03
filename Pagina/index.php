@@ -1,9 +1,32 @@
 <?php
-require 'Php/dbOrlando.php';
-session_start();
-error_reporting(0);
-$varSesion = $_SESSION['usuario'];
-$varSesionTipo =  $_SESSION['tipo']
+  require 'Php/dbOrlando.php';
+  session_start();
+  error_reporting(0);
+  $varSesion = $_SESSION['usuario'];
+  $varSesionTipo =  $_SESSION['tipo'];
+
+  $queryNotEsp= "call sp_NoticiasEspeciales();";
+  $result = mysqli_query($con, $queryNotEsp) or die("Fail Noticia");
+  for ($set = array (); $row = $result->fetch_assoc(); $set[] = $row);
+  $con->close();
+
+  require 'Php/dbOrlando.php';
+  $queryNotReg= "call sp_NoticiasRegulares();";
+  $result2 = mysqli_query($con, $queryNotReg) or die("Fail Noticia Regular");
+  for ($set2 = array (); $row2 = $result2->fetch_assoc(); $set2[] = $row2);
+  $con->close();
+
+  require 'Php/dbOrlando.php';
+  $queryImgEsp= "call sp_imagenesEspeciales();";
+  $result3 = mysqli_query($con, $queryImgEsp) or die("Fail Imagen Especial");
+  for ($set3 = array (); $row3 = $result3->fetch_assoc(); $set3[] = $row3);
+  $con->close();
+
+  require 'Php/dbOrlando.php';
+  $queryImgReg= "call sp_imagenesRegulares();";
+  $result4 = mysqli_query($con, $queryImgReg) or die("Fail Imagen Especial");
+  for ($set4 = array (); $row4 = $result4->fetch_assoc(); $set4[] = $row4);
+  $con->close();
 
 ?>
 
@@ -167,24 +190,24 @@ $varSesionTipo =  $_SESSION['tipo']
   <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="Imagenes/Crash.jpg" alt="First slide">
+        <img class="d-block w-100" src=<?php echo 'multimedia/'.$set3[0]['imagenFile']?> alt="First slide">
         <div class="carousel-caption d-none d-md-block bg-dark">
-          <h3>It's About Time!</h3>
-          <p style="font-size:120%;">Crash vuelve con una aventura a traves de diferentes eras</p>
+          <h3><?php echo $set['0']['titulo'] ?></h3>
+          <p style="font-size:120%;"><?php echo $set['0']['sinopsis'] ?></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="Imagenes/GOT.jpg" alt="Second slide">
+        <img class="d-block w-100" src=<?php echo 'multimedia/'.$set3[3]['imagenFile']?> alt="Second slide">
         <div class="carousel-caption d-none d-md-block bg-dark">
-          <h3>Sin Downgrades</h3>
-          <p style="font-size:120%;">Sony anuncia que Ghost of Tsushima correra a 60fps</p>
+          <h3><?php echo $set['1']['titulo'] ?></h3>
+          <p style="font-size:120%;"><?php echo $set['1']['sinopsis'] ?></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="Imagenes/SpiderMan.jpg" alt="Third slide">
+        <img class="d-block w-100" src=<?php echo 'multimedia/'.$set3[6]['imagenFile']?> alt="Third slide">
         <div class="carousel-caption d-none d-md-block bg-dark">
-          <h3>Cambios...Minimos?</h3>
-          <p style="font-size:120%;">Peter modo Guapo?</p>
+          <h3><?php echo $set['2']['titulo'] ?></h3>
+          <p style="font-size:120%;"><?php echo $set['2']['sinopsis'] ?></p>
         </div>
       </div>
     </div>
@@ -207,15 +230,11 @@ $varSesionTipo =  $_SESSION['tipo']
     <div class="card mt-3 text-white bg-dark">
       <div class="row">
         <div class="col-md-4">
-          <img src="Imagenes/Crash.jpg" class="img-fluid">
+          <img src=<?php echo 'multimedia/'.$set3[0]['imagenFile']?> class="img-fluid">
         </div>
         <div class="col-md-8">
-          <h2 class="card-title mt-2">It's about time!</h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora iusto minus architecto illo
-            magnam
-            deserunt voluptate aperiam alias, porro itaque vero eveniet velit? Molestias possimus nulla,
-            quia recusandae
-            iusto sunt.</p>
+          <h2 class="card-title mt-2"><?php echo $set['0']['titulo'] ?></h2>
+          <p><?php echo $set['0']['sinopsis'] ?></p>
           <a href="noticia.html" class="btn btn-danger  mr-2">Ver más</a>
         </div>
       </div>
@@ -223,15 +242,11 @@ $varSesionTipo =  $_SESSION['tipo']
     <div class="card mt-3 text-white bg-dark">
       <div class="row">
         <div class="col-md-4">
-          <img src="Imagenes/GOT.jpg" class="img-fluid">
+          <img src=<?php echo 'multimedia/'.$set3[3]['imagenFile']?> class="img-fluid">
         </div>
         <div class="col-md-8">
-          <h2 class="card-title mt-2">Sin Downgrades</h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora iusto minus architecto illo
-            magnam
-            deserunt voluptate aperiam alias, porro itaque vero eveniet velit? Molestias possimus nulla,
-            quia recusandae
-            iusto sunt.</p>
+          <h2 class="card-title mt-2"><?php echo $set['1']['titulo'] ?></h2>
+          <p><?php echo $set['1']['sinopsis'] ?></p>
           <a href="noticia.html" class="btn btn-danger  mr-2">Ver más</a>
         </div>
       </div>
@@ -239,15 +254,11 @@ $varSesionTipo =  $_SESSION['tipo']
     <div class="card mt-3 text-white bg-dark">
       <div class="row">
         <div class="col-md-4">
-          <img src="Imagenes/SpiderMan.jpg" class="img-fluid">
+          <img src=<?php echo 'multimedia/'.$set3[6]['imagenFile']?> class="img-fluid">
         </div>
         <div class="col-md-8">
-          <h2 class="card-title mt-2">Peter modo Guapo?</h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora iusto minus architecto illo
-            magnam
-            deserunt voluptate aperiam alias, porro itaque vero eveniet velit? Molestias possimus nulla,
-            quia recusandae
-            iusto sunt.</p>
+          <h2 class="card-title mt-2"><?php echo $set['2']['titulo'] ?></h2>
+          <p><?php echo $set['2']['sinopsis'] ?></p>
           <a href="noticia.html" class="btn btn-danger  mr-2">Ver más</a>
         </div>
       </div>
@@ -255,44 +266,41 @@ $varSesionTipo =  $_SESSION['tipo']
   </div>
 
   <div class="p-1 mt-3 mb-3 bg-danger text-white text-center">
-    <h2>Tendencias</h2>
+    <h2>Recien Horneadas</h2>
   </div>
 
   <!-- Deck de cartas -->
   <div class="card-deck mt-4" style="width: fit-content;">
     <div class="card text-white bg-dark">
-      <img class="card-img-top" src="Imagenes/Crash.jpg" alt="Card image cap">
+      <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[0]['imagenFile']?> alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-          content. This content is a little bit longer.</p>
+        <h5 class="card-title"><?php echo $set2['0']['titulo'] ?></h5>
+        <p class="card-text"><?php echo $set2['0']['sinopsis'] ?></p>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
+        <small class="text-muted"><?php echo $set2['0']['fechaCreacion'] ?></small>
         <a href="noticia.html" class="btn btn-danger  mr-2" style="float: right;">Ver más</a>
       </div>
     </div>
     <div class="card text-white bg-dark">
-      <img class="card-img-top" src="Imagenes/GOT.jpg" alt="Card image cap">
+      <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[3]['imagenFile']?> alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+        <h5 class="card-title"><?php echo $set2['1']['titulo'] ?></h5>
+        <p class="card-text"><?php echo $set2['1']['sinopsis'] ?></p>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
+        <small class="text-muted"><?php echo $set2['1']['fechaCreacion'] ?></small>
         <a href="noticia.html" class="btn btn-danger  mr-2" style="float: right;">Ver más</a>
       </div>
     </div>
     <div class="card text-white bg-dark">
-      <img class="card-img-top" src="Imagenes/SpiderMan.jpg" alt="Card image cap">
+      <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[6]['imagenFile']?> alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-          content.
-          This card has even longer content than the first to show that equal height action.</p>
+        <h5 class="card-title"><?php echo $set2['2']['titulo'] ?></h5>
+        <p class="card-text"><?php echo $set2['2']['sinopsis'] ?></p>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
+        <small class="text-muted"><?php echo $set2['2']['fechaCreacion'] ?></small>
         <a href="noticia.html" class="btn btn-danger  mr-2" style="float: right;">Ver más</a>
       </div>
     </div>

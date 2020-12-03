@@ -13,14 +13,14 @@
 
   require 'Php/dbOrlando.php';
   $query2= "call sp_imagenesParaRevision('$varTituloNoticia');";
-  $result = mysqli_query($con, $query2) or die("Fail Imagen");
-  for ($set = array (); $row = $result->fetch_assoc(); $set[] = $row);
+  $result2 = mysqli_query($con, $query2) or die("Fail Imagen");
+  for ($set = array (); $row = $result2->fetch_assoc(); $set[] = $row);
   $con->close();
 
   require 'Php/dbOrlando.php';
   $query3= "call sp_videosParaRevision('$varTituloNoticia');";
-  $result2 = mysqli_query($con, $query3) or die("Fail Imagen");
-  for ($set2 = array (); $row2 = $result2->fetch_assoc(); $set2[] = $row2);
+  $result3 = mysqli_query($con, $query3) or die("Fail Imagen");
+  for ($set2 = array (); $row2 = $result3->fetch_assoc(); $set2[] = $row2);
   $con->close();
 ?>
 

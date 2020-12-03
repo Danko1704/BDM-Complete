@@ -511,6 +511,54 @@ INSERT INTO Video VALUES(0, pVideo);
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_NoticiasEspeciales;
+
+DELIMITER //
+CREATE PROCEDURE sp_NoticiasEspeciales
+()
+BEGIN
+	SELECT 	v_noticiasespeciales.noticiaId, v_noticiasespeciales.titulo, v_noticiasespeciales.sinopsis, v_noticiasespeciales.texto, v_noticiasespeciales.fechaCreacion,
+			v_noticiasespeciales.palabraClave1, v_noticiasespeciales.palabraClave2, v_noticiasespeciales.palabraClave3, v_noticiasespeciales.autor,
+			v_noticiasespeciales.seccion, v_noticiasespeciales.comentarioEditor
+	FROM v_noticiasespeciales;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_NoticiasRegulares;
+
+DELIMITER //
+CREATE PROCEDURE sp_NoticiasRegulares
+()
+BEGIN
+	SELECT 	v_NoticiasRegulares.noticiaId, v_NoticiasRegulares.titulo, v_NoticiasRegulares.sinopsis, v_NoticiasRegulares.texto, v_NoticiasRegulares.fechaCreacion,
+			v_NoticiasRegulares.palabraClave1, v_NoticiasRegulares.palabraClave2, v_NoticiasRegulares.palabraClave3, v_NoticiasRegulares.autor,
+			v_NoticiasRegulares.seccion, v_NoticiasRegulares.comentarioEditor
+	FROM v_NoticiasRegulares;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_imagenesEspeciales;
+
+DELIMITER //
+CREATE PROCEDURE sp_imagenesEspeciales
+()
+BEGIN
+	SELECT 	v_imagenesEspeciales.imagenId, v_imagenesEspeciales.imagenFile
+	FROM v_imagenesEspeciales;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_imagenesRegulares;
+
+DELIMITER //
+CREATE PROCEDURE sp_imagenesRegulares
+()
+BEGIN
+	SELECT 	v_imagenesRegulares.imagenId, v_imagenesRegulares.imagenFile
+	FROM v_imagenesRegulares;
+END //
+DELIMITER ;
+
 /*------------------------------------------------------CAMPO DE PRUEBAS -----------------------------------------------------------------------------*/
 
 INSERT INTO Usuario(nombre, correo, telefono, contraseña, tipoUsuario) VALUES ('danko', 'admin@hotmail.com', '9513375708', 'admin', 'Admin');
@@ -535,6 +583,10 @@ call sp_noticiasReportero('reportero1');
 call sp_editarNoticia('Nueva noticia seria', 'Nueva nueva noticia seria', 'Ahora esta cambiada', 'Esta es nueva y mejorada', 'Nueva', 'Recargada', 'LMAO', 'switch', false);
 call sp_updateImagenNoticia('avatar1.jpg', '1');
 call sp_updateImagenNoticia('Problems.jpg', '2');
+call sp_NoticiasEspeciales();
+call sp_NoticiasRegulares();
+call sp_imagenesEspeciales();
+call sp_imagenesRegulares();
 
 select * from Usuario;
 select * from Imagen;

@@ -1,3 +1,13 @@
+<?php
+  require 'Php/dbOrlando.php';
+  session_start();
+  error_reporting(0);
+  $varSesion = $_SESSION['usuario'];
+  $varSesionTipo =  $_SESSION['tipo'];
+
+  
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -19,39 +29,148 @@
     <img src="Imagenes/Header.jpg" class="img-fluid" alt="Responsive image">
   </section>
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
-    <a class="navbar-brand" href="index.html">
-      <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
-        width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
-      3DJuegos
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <div class="navbar-nav mr-auto ml-auto text-center categoria">
-        <a class="nav-item nav-link active" href="index.php">Inicio</a>
-        
-      </div>
-      <form class="mx-2 my-auto d-inline w-40">
-        <div class="input-group">
-          <input type="text" class="form-control border border-right-0" placeholder="Search...">
-          <span class="input-group-append">
-            <a href="busqueda.html" class="btn btn-outline-secondary border border-left-0" type="button">
-              <i class="fa fa-search"></i>
-            </a>
-          </span>
+  <!-- NAVBAR SIN USUARIO -->
+  <div class="navbarSinUsuario" id="navbarSinUsuario">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
+      <a class="navbar-brand" href="index.php">
+        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
+          width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
+        3DJuegos
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="navbar-nav mr-auto ml-auto text-center categoria">
+          <a class="nav-item nav-link active" href="index.php">Inicio</a>
+
         </div>
-      </form>
-      <div class="d-flex flex-row justify-content-center">
-        <a href="crearNoticia.html" class="btn btn-success  mr-2">Crear Noticia</a>
-        <a href="inicioSesion.html" class="btn btn-danger  mr-2">Login</a>
-        <a href="registroUsuario.html" class="btn btn-danger">Registrarse</a>
+        <form class="mx-2 my-auto d-inline w-40">
+          <div class="input-group">
+            <input type="text" class="form-control border border-right-0" placeholder="Search...">
+            <span class="input-group-append">
+              <a href="busqueda.html" class="btn btn-outline-secondary border border-left-0" type="button">
+                <i class="fa fa-search"></i>
+              </a>
+            </span>
+          </div>
+        </form>
+        <div class="d-flex flex-row justify-content-center">
+          <a href="inicioSesion.html" class="btn btn-danger  mr-2">Login</a>
+          <a href="registroUsuario.php" class="btn btn-danger">Registrarse</a>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
+
+  <!-- NAVBAR CON USUARIO NORMAL-->
+  <div class="navbarUsuario" id="navbarUsuario">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
+      <a class="navbar-brand" href="index.php">
+        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
+          width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
+        3DJuegos
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="navbar-nav mr-auto ml-auto text-center categoria">
+          <a class="nav-item nav-link active" href="index.php">Inicio</a>
+
+        </div>
+        <form class="mx-2 my-auto d-inline w-40">
+          <div class="input-group">
+            <input type="text" class="form-control border border-right-0" placeholder="Search...">
+            <span class="input-group-append">
+              <a href="busqueda.html" class="btn btn-outline-secondary border border-left-0" type="button">
+                <i class="fa fa-search"></i>
+              </a>
+            </span>
+          </div>
+        </form>
+        <div class="d-flex flex-row justify-content-center">
+          <a href="perfilUsuario.php" class="btn btn-success  mr-2">Editar Perfil</a>
+          <a href="Php/cerrarSesion.php" class="btn btn-warning  mr-2">Cerrar Sesion</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- NAVBAR CON USUARIO REPORTERO-->
+  <div class="navbarUsuarioRepprtero" id="navbarUsuarioReportero">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
+      <a class="navbar-brand" href="index.php">
+        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
+          width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
+        3DJuegos
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="navbar-nav mr-auto ml-auto text-center categoria">
+          <a class="nav-item nav-link active" href="index.php">Inicio</a>
+
+        </div>
+        <form class="mx-2 my-auto d-inline w-40">
+          <div class="input-group">
+            <input type="text" class="form-control border border-right-0" placeholder="Search...">
+            <span class="input-group-append">
+              <a href="busqueda.html" class="btn btn-outline-secondary border border-left-0" type="button">
+                <i class="fa fa-search"></i>
+              </a>
+            </span>
+          </div>
+        </form>
+        <div class="d-flex flex-row justify-content-center">
+          <a href="aceptarNoticiaR.php" class="btn btn-success  mr-2">Administrar</a>
+          <a href="crearNoticia.php" class="btn btn-success  mr-2">Crear Noticia</a>
+          <a href="perfilUsuario.php" class="btn btn-success  mr-2">Editar Perfil</a>
+          <a href="Php/cerrarSesion.php" class="btn btn-warning  mr-2">Cerrar Sesion</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- NAVBAR CON USUARIO ADMIN-->
+  <div class="navbarUsuarioAdmin" id="navbarUsuarioAdmin">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top">
+      <a class="navbar-brand" href="index.php">
+        <img src="https://yt3.ggpht.com/a/AATXAJxZMZ0mKBqkcFUcoXXapAjbD0FjYbgDTe3yNCPyZA=s900-c-k-c0xffffffff-no-rj-mo"
+          width="30" height="30" class="d-inline-block align-top" alt="Logo-Boostrap">
+        3DJuegos
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="navbar-nav mr-auto ml-auto text-center categoria">
+          <a class="nav-item nav-link active" href="index.php">Inicio</a>
+
+        </div>
+        <form class="mx-2 my-auto d-inline w-40">
+          <div class="input-group">
+            <input type="text" class="form-control border border-right-0" placeholder="Search...">
+            <span class="input-group-append">
+              <a href="busqueda.html" class="btn btn-outline-secondary border border-left-0" type="button">
+                <i class="fa fa-search"></i>
+              </a>
+            </span>
+          </div>
+        </form>
+        <div class="d-flex flex-row justify-content-center">
+          <a href="aceptarNoticia.php" class="btn btn-danger  mr-2">Administrar</a>
+          <a href="cambiarUsuario.php" class="btn btn-danger  mr-2">Cambiar</a>
+          <a href="Php/cerrarSesion.php" class="btn btn-warning  mr-2">Cerrar Sesion</a>
+        </div>
+      </div>
+    </nav>
+  </div>
 
   <!-- Noticias -->
   <div class="container-lg my-4 bg-white rounded">
@@ -188,11 +307,9 @@
     <div class="container">
       <div class="row row-30 mt-1">
         <div class="col-md-4 col-xl-5">
-          <div class="pr-xl-4"><a 
-            class="brand" href="index.html"><img class="brand-logo-light"
-                src="Imagenes/Header.jpg" alt="" width="140" height="37"
-                >
-              </a>
+          <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light"
+                src="Imagenes/Header.jpg" alt="" width="140" height="37">
+            </a>
             <p>Proyecto de Base de datos multimedia a cargo de Rodrigo Yap y Orlando Gámez.</p>
             <!-- Rights-->
             <p class="rights"><span>©  </span><span
@@ -228,12 +345,62 @@
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="navbarSeccion.js"></script>
 </body>
+
+<?php
+if ($varSesion == null || $varSesion = '') {
+?>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $("#navbarUsuario").hide();
+      $("#navbarUsuarioReportero").hide();
+      $("#navbarUsuarioAdmin").hide();
+    });
+  </script>
+<?php
+}
+
+if ($varSesionTipo == 'Usuario') {
+?>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $("#navbarSinUsuario").hide();
+      $("#navbarUsuarioReportero").hide();
+      $("#navbarUsuarioAdmin").hide();
+    });
+  </script>
+<?php
+}
+
+if ($varSesionTipo == 'Reportero') {
+?>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $("#navbarSinUsuario").hide();
+      $("#navbarUsuario").hide();
+      $("#navbarUsuarioAdmin").hide();
+    });
+  </script>
+<?php
+}
+
+if ($varSesionTipo == 'Admin') {
+?>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $("#navbarSinUsuario").hide();
+      $("#navbarUsuario").hide();
+      $("#navbarUsuarioReportero").hide();
+    });
+  </script>
+<?php
+}
+?>
 
 </html>
