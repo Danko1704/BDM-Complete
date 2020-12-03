@@ -15,35 +15,38 @@
 
 <body>
   <h1 class="text mt-3">Busqueda</h1>
+  <form action="Php/Search.php" method="post" class="Busqueda" name="Busqueda">
   <nav class="navbar navbar-expand-sm navbar-dark bg-info bg-dark navbar-toggleable-md sticky-top mt-4">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
       aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <form action="Php/Search.php" method="post" class="Busqueda" name="Busqueda">
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <div class="mx-2 my-auto my-lg-0 d-inline w-75">
-          <input type="text" class="form-control border border-right-0" placeholder="Search..." name="Texto">
-        </div>
-        <div class="mx-2 my-auto my-lg-0 d-inline">
-          <input class="form-control" type="date" id="example-date-input" name="FechaIni">
-        </div>
-        <div class="mx-2 my-auto my-lg-0 d-inline">
-          <input class="form-control" type="date" id="example-date-input" name="FechaFin">
-        </div>
-        <div class="dropdown mr-2 my-auto my-lg-0">
-          <select class="form-control" id="categoBox" name="categoBox">
-            <option value='0'>Secciones</option>
-          </select>
-        </div>
-        <div class="my-4 my-lg-0 d-flex flex-row justify-content-center">
-          <input type="submit" value="Buscar" class="btn btn-danger" id="clear">
-        </div>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <div class="mx-2 my-auto my-lg-0 d-inline w-75">
+        <input type="text" class="form-control border border-right-0" placeholder="Search..." name="Texto">
       </div>
+      <div class="mx-2 my-auto my-lg-0 d-inline">
+        <input class="form-control" type="date" id="example-date-input" name="FechaIni">
+      </div>
+      <div class="mx-2 my-auto my-lg-0 d-inline">
+        <input class="form-control" type="date" id="example-date-input" name="FechaFin">
+        </div>
+      <div class="dropdown mr-2 my-auto my-lg-0 w-75">
+        <select class="form-control" id="categoBox" name="categoBox">
+          <option value='0'>Secciones</option>
+        </select>
+      </div>
+      <div class="my-4 my-lg-0 mx-auto d-flex flex-row justify-content-center">
+        <input type="submit" value="Buscar" class="btn btn-danger mr-auto" id="clear">
+      </div>
+      <div class="my-4 my-lg-0 ml-2 d-flex flex-row justify-content-center">
+        <a href="index.php" class="btn btn-success mr-2">Regresar</a>
+      </div>
+      </div>
+    </nav>
     </form>
     
-  </nav>
+  
 
   <!-- Noticias en lista -->
   <div class="container mt-3 misNoticias">
