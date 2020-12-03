@@ -13,7 +13,7 @@ if($rows) {
         $categoria = $catego['nombre'];
         $id = $catego['seccionId'];
 
-        echo "<a class='nav-item nav-link active seccion color$id' href='./busqueda.php?idSeccion=$id'>$categoria</a>";
+        echo "<a class='nav-item nav-link active seccion color$id' href='./busquedaCategoria.php?idSeccion=$id'>$categoria</a>";
     }
 }
 

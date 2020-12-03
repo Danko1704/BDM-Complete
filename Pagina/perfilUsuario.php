@@ -8,8 +8,6 @@
   $query= "call sp_infoUsuario('$varSesion')";
   $result = mysqli_query($con, $query) or die("Fail");
   $data = $result->fetch_assoc();
-
-  echo $data['imagenFile'];
 ?>
 
 <!doctype html>

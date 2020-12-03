@@ -559,6 +559,54 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_NoticiasUnica;
+
+DELIMITER //
+CREATE PROCEDURE sp_NoticiasUnica
+(pIdNoticia int)
+BEGIN
+	SELECT 	v_unicaNoticia.noticiaId, v_unicaNoticia.titulo, v_unicaNoticia.sinopsis, v_unicaNoticia.texto, v_unicaNoticia.fechaCreacion,
+			v_unicaNoticia.palabraClave1, v_unicaNoticia.palabraClave2, v_unicaNoticia.palabraClave3, v_unicaNoticia.autor,
+			v_unicaNoticia.seccion, v_unicaNoticia.comentarioEditor
+	FROM v_unicaNoticia WHERE noticiaId = pIdNoticia;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_imagenesUnica;
+
+DELIMITER //
+CREATE PROCEDURE sp_imagenesUnica
+(pNoticiaId int)
+BEGIN
+	SELECT 	v_imagenesUnica.imagenId, v_imagenesUnica.imagenFile
+	FROM v_imagenesUnica where noticiaIdF = pNoticiaId;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_videosUnica;
+
+DELIMITER //
+CREATE PROCEDURE sp_videosUnica
+(pNoticiaId int)
+BEGIN
+	SELECT 	v_videosUnica.videoId, v_videosUnica.videoFile
+	FROM v_videosUnica where v_videosUnica.noticiaIdF = pNoticiaId;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_comentariosNoticia;
+
+DELIMITER //
+CREATE PROCEDURE sp_comentariosNoticia
+(pNoticiaId int)
+BEGIN
+	
+	SELECT 	Comentario.comentario, U.nombre
+	FROM Comentario INNER JOIN usuario U ON U.usuarioId = comentario.usuarioIdF 
+    where Comentario.noticiaIdF = pNoticiaId AND isActive = true;
+END //
+DELIMITER ;
+
 /*------------------------------------------------------CAMPO DE PRUEBAS -----------------------------------------------------------------------------*/
 
 INSERT INTO Usuario(nombre, correo, telefono, contraseña, tipoUsuario) VALUES ('danko', 'admin@hotmail.com', '9513375708', 'admin', 'Admin');
@@ -587,6 +635,10 @@ call sp_NoticiasEspeciales();
 call sp_NoticiasRegulares();
 call sp_imagenesEspeciales();
 call sp_imagenesRegulares();
+
+call sp_NoticiasUnica('1');
+call sp_imagenesUnica('4');
+call sp_videosUnica('2');
 
 select * from Usuario;
 select * from Imagen;

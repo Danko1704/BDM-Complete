@@ -52,7 +52,7 @@ if($rows) {
         echo "<div class='card-body remove'>";
         echo "<h2 class='card-title mt-2 remove'>$titulo</h2>";
         echo "<p class='card-text remove'>$sinopsis</p>";
-        echo "<a href='./noticia_prueba.php?idNoticia=$id' class='btn btn-danger remove mr-2'>Ver más</a>";
+        echo "<a href='./noticia.php?idNoticia=$id' class='btn btn-danger remove mr-2'>Ver más</a>";
         echo "</div>";
         echo "</div>";
         echo "</div>";
