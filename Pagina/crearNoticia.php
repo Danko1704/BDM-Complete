@@ -235,6 +235,7 @@ include('Php/dbOrlando.php');
 
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
+        
 
         //folder where images will be uploaded
         $folder = 'multimedia/';

@@ -73,7 +73,8 @@ DELIMITER %$
 CREATE PROCEDURE sp_selectUsuarios(
 )
 Begin
-    SELECT Usuario.usuarioId, Usuario.nombre FROM Usuario ORDER BY Usuario.nombre ASC;
+    SELECT Usuario.usuarioId, Usuario.nombre FROM Usuario WHERE tipoUsuario = 'Usuario' OR tipoUsuario = 'Reportero'
+    ORDER BY Usuario.nombre ASC ;
 END %$
 DELIMITER ;
 
@@ -443,7 +444,7 @@ Begin
 	DECLARE idReportero int;
     SET	
 		idReportero = (SELECT usuario.usuarioId from Usuario WHERE usuario.nombre = pReportero);
-	SELECT Noticia.noticiaId, Noticia.titulo FROM Noticia WHERE isActive = false and noticia.autorIdF = idReportero;
+	SELECT Noticia.noticiaId, Noticia.titulo FROM Noticia WHERE estadoNoticia = 'edicion' and noticia.autorIdF = idReportero;
 END %$
 DELIMITER ;
 
@@ -633,14 +634,14 @@ CREATE PROCEDURE sp_mostrarComentarios(
 BEGIN
 	SELECT U.nombre, C.comentario FROM Comentario C
     INNER JOIN Usuario U ON U.usuarioId = C.usuarioIdF
-    WHERE C.noticiaIdF = noticia;
+    WHERE C.noticiaIdF = noticia AND C.isActive = true;
 END //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS sp_NoticiasReportero;
+DROP PROCEDURE IF EXISTS sp_NoticiasReporteroActivas;
 
 DELIMITER //
-CREATE PROCEDURE sp_NoticiasReportero(
+CREATE PROCEDURE sp_NoticiasReporteroActivas(
 	spUser varchar(50)
 )
 BEGIN
@@ -648,10 +649,98 @@ BEGIN
     SET userID = (SELECT usuarioId FROM Usuario WHERE nombre = spUser);
     
 	SELECT titulo FROM Noticia
-    WHERE autorIdF = userID;
+    WHERE autorIdF = userID AND noticia.isActive = true AND estadoNoticia = 'Publicado';
 
 END //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_NoticiasReporteroNoActivas;
+
+DELIMITER //
+CREATE PROCEDURE sp_NoticiasReporteroNoActivas(
+	spUser varchar(50)
+)
+BEGIN
+	DECLARE userID int;
+    SET userID = (SELECT usuarioId FROM Usuario WHERE nombre = spUser);
+    
+	SELECT titulo FROM Noticia
+    WHERE autorIdF = userID AND noticia.isActive = false AND estadoNoticia = 'Publicado';
+
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_bajaNoticia;
+
+DELIMITER //
+CREATE PROCEDURE sp_bajaNoticia(
+	pTitulo varchar(50)
+)
+BEGIN
+    UPDATE noticia set isActive = false WHERE titulo = pTitulo;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_alzaNoticia;
+
+DELIMITER //
+CREATE PROCEDURE sp_alzaNoticia(
+	pTitulo varchar(50)
+)
+BEGIN
+    UPDATE noticia set isActive = true WHERE titulo = pTitulo;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_comentariosActivos;
+
+DELIMITER //
+CREATE PROCEDURE sp_comentariosActivos(
+	pTitulo varchar(50)
+)
+BEGIN
+DECLARE idTitulo int;
+SET
+	idTitulo = (SELECT noticia.noticiaId FROM noticia WHERE titulo = pTitulo);
+    SELECT U.nombre FROM comentario C
+	INNER JOIN Usuario U ON U.usuarioId = C.usuarioIdF
+	WHERE C.isActive = true AND C.noticiaIdF = idTitulo;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_NoticiasReporteroGeneral;
+
+DELIMITER //
+CREATE PROCEDURE sp_NoticiasReporteroGeneral(
+    spUser varchar(50)
+)
+BEGIN
+    DECLARE userID int;
+    SET userID = (SELECT usuarioId FROM Usuario WHERE nombre = spUser);
+    
+    SELECT titulo FROM Noticia
+    WHERE autorIdF = userID AND estadoNoticia = 'Publicado';
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_eliminarComentarios;
+
+DELIMITER //
+CREATE PROCEDURE sp_eliminarComentarios(
+    spUser varchar(50),
+    spTitulo varchar(40)
+)
+BEGIN
+    DECLARE user_ID int;
+    DECLARE noticia_ID int;
+    SET user_ID = (SELECT usuarioId FROM Usuario WHERE nombre = spUser);
+    SET noticia_ID = (SELECT noticiaId FROM Noticia WHERE titulo = spTitulo);
+    
+    UPDATE Comentario SET isActive = false WHERE noticiaIdF = noticia_ID AND usuarioIdF = user_ID;
+
+END //
+DELIMITER ;
+
 
 /*------------------------------------------------------CAMPO DE PRUEBAS -----------------------------------------------------------------------------*/
 
@@ -686,12 +775,24 @@ call sp_NoticiasUnica('1');
 call sp_imagenesUnica('4');
 call sp_videosUnica('2');
 
+call sp_bajaNoticia('1');
+call sp_alzaNoticia('1');
+
+call sp_NoticiasReporteroActivas('reportero3');
+
+call sp_comentariosActivos('12');
+call sp_NoticiasReporteroGeneral('reportero3');
+call sp_eliminarComentarios('reportero3', '12');
+
+call sp_mostrarComentarios('9');
+
 select * from Usuario;
 select * from Imagen;
 select * from video;
 select * from Seccion;
 select * from noticia;
 select * from multimedia;
+select * from comentario;
 
 SELECT Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = 'erick';
 

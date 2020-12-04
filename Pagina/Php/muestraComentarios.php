@@ -1,5 +1,6 @@
 <?php
     require 'dbOrlando.php';
+    error_reporting(0);
 
     $noticia = $_POST['noticiaID'];
 

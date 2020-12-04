@@ -248,7 +248,9 @@
                     <div class="col-md-8">
                         <h2 class="card-title mt-2"><?php echo $set['0']['titulo'] ?></h2>
                         <p><?php echo $set['0']['sinopsis'] ?></p>
-                        <button class="btn btn-danger botonEspecial1" name="botonEspecial1">Ver más</button>
+                        <!-- <button class="btn btn-danger botonEspecial1" name="botonEspecial1">Ver más</button> -->
+                        <a href='./noticia.php?idNoticia= <?php echo $set['0']['noticiaId'] ?>'
+                        class='btn btn-danger botonEspecial1' name='botonEspecial1'>Ver más</a>
                     </div>
                 </div>
             </div>
@@ -260,7 +262,9 @@
                     <div class="col-md-8">
                         <h2 class="card-title mt-2"><?php echo $set['1']['titulo'] ?></h2>
                         <p><?php echo $set['1']['sinopsis'] ?></p>
-                        <button class="btn btn-danger botonEspecial1" name="botonEspecial2">Ver más</button>
+                        <!-- <button class="btn btn-danger botonEspecial1" name="botonEspecial2">Ver más</button> -->
+                        <a href='./noticia.php?idNoticia= <?php echo $set['1']['noticiaId'] ?>'
+                        class='btn btn-danger botonEspecial2' name='botonEspecial2'>Ver más</a>
                     </div>
                 </div>
             </div>
@@ -272,7 +276,9 @@
                     <div class="col-md-8">
                         <h2 class="card-title mt-2"><?php echo $set['2']['titulo'] ?></h2>
                         <p><?php echo $set['2']['sinopsis'] ?></p>
-                        <button class="btn btn-danger botonEspecial1" name="botonEspecial3">Ver más</button>
+                        <!-- <button class="btn btn-danger botonEspecial1" name="botonEspecial3">Ver más</button> -->
+                        <a href='./noticia.php?idNoticia= <?php echo $set['2']['noticiaId'] ?>'
+                        class='btn btn-danger botonEspecial3' name='botonEspecial3'>Ver más</a>
                     </div>
                 </div>
             </div>
@@ -447,7 +453,7 @@ include('Php/dbOrlando.php');
     error_reporting(0);
     $_SESSION['usuario'] = $varSesion;
     $_SESSION['tipo'] = $varSesionTipo;
-    $_SESSION['id'] = $set[0]['noticiaId'];
+    // $_SESSION['id'] = $set[0]['noticiaId'];
 
     $yourURL="noticia.php";
     echo ("<script>location.href='$yourURL'</script>");
@@ -458,7 +464,7 @@ include('Php/dbOrlando.php');
     error_reporting(0);
     $_SESSION['usuario'] = $varSesion;
     $_SESSION['tipo'] = $varSesionTipo;
-    $_SESSION['id'] = $set[1]['noticiaId'];
+    // $_SESSION['id'] = $set[1]['noticiaId'];
 
     $yourURL="noticia.php";
     echo ("<script>location.href='$yourURL'</script>");
@@ -469,7 +475,7 @@ include('Php/dbOrlando.php');
     error_reporting(0);
     $_SESSION['usuario'] = $varSesion;
     $_SESSION['tipo'] = $varSesionTipo;
-    $_SESSION['id'] = $set[2]['noticiaId'];
+    // $_SESSION['id'] = $set[2]['noticiaId'];
 
     $yourURL="noticia.php";
     echo ("<script>location.href='$yourURL'</script>");

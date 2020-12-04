@@ -35,8 +35,6 @@
   for ($set4 = array (); $row4 = $result4->fetch_assoc(); $set4[] = $row4);
   $con->close();
 
-    
-
 ?>
 
 <!doctype html>

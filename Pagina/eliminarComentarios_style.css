@@ -1,0 +1,89 @@
+body{
+    background-image: url(Imagenes/switch.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.formulario{
+    background: rgba(0, 0, 0, .1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, alpha);
+    color: white;
+}
+
+.form-control{
+    background: rgba(0, 0, 0, .3);
+    border-style: none;
+    transition: 0.5s ease-in;
+    outline: none;
+    box-shadow: none;
+}
+
+.form-control:focus{
+    background: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.form-control::placeholder{
+    color: white;
+}
+
+.usuarioBtn{
+    background: #222A3F;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700!important;
+    color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.458);
+    transition: 0.5s ease-in;
+}
+
+.tipo:hover{
+    color: white;
+}
+
+.reporteroBtn{
+    background: #222A3F;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700!important;
+    color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.458);
+    transition: 0.5s ease-in;
+}
+
+.registrarse:hover{
+    color: white;
+}
+
+.regresar{
+    background: #2d633a;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700!important;
+    color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.458);
+    transition: 0.5s ease-in;
+}
+
+.regresar:hover{
+    color: white;
+}
+
+label {
+    background-color: indigo;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  #file-chosen{
+    margin-left: 0.3rem;
+    font-family: sans-serif;
+  }
