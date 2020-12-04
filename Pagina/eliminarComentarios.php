@@ -7,7 +7,7 @@
     $varTituloNoticia = $_SESSION['titulo'];
     $temp = $_SESSION['temporal'];
 
-    echo $temp;
+    //echo $temp;
 
 
     $sqlquery = mysqli_query($con, "CALL sp_comentariosActivos('$varTituloNoticia')");
@@ -41,7 +41,7 @@
             <div class="col-md-6 col-sm-8 col-xl-6 col-lg-5 formulario">
                 <form action="" method="post">
                     <div class="form-group text-center pt-3">
-                        <h1 class="text-light">INICIAR SESION</h1>
+                        <h1 class="text-light">Eliminar Comentarios</h1>
                     </div>
                     <select class="form-control" name="nombreUsuario">
                         <?php
