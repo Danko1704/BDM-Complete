@@ -607,6 +607,52 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_agregarComentario;
+
+DELIMITER //
+CREATE PROCEDURE sp_agregarComentario(
+	com text, 
+    usuario varchar(50),
+    noticia int
+)
+BEGIN
+	DECLARE idusuario int;
+    SET idusuario = (SELECT usuarioId FROM Usuario WHERE nombre = usuario);
+
+	INSERT INTO Comentario (comentario, usuarioIdF, noticiaIdF) VALUES (com, idusuario, noticia);
+
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_mostrarComentarios;
+
+DELIMITER //
+CREATE PROCEDURE sp_mostrarComentarios(
+	noticia int
+)
+BEGIN
+	SELECT U.nombre, C.comentario FROM Comentario C
+    INNER JOIN Usuario U ON U.usuarioId = C.usuarioIdF
+    WHERE C.noticiaIdF = noticia;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_NoticiasReportero;
+
+DELIMITER //
+CREATE PROCEDURE sp_NoticiasReportero(
+	spUser varchar(50)
+)
+BEGIN
+	DECLARE userID int;
+    SET userID = (SELECT usuarioId FROM Usuario WHERE nombre = spUser);
+    
+	SELECT titulo FROM Noticia
+    WHERE autorIdF = userID;
+
+END //
+DELIMITER ;
+
 /*------------------------------------------------------CAMPO DE PRUEBAS -----------------------------------------------------------------------------*/
 
 INSERT INTO Usuario(nombre, correo, telefono, contraseña, tipoUsuario) VALUES ('danko', 'admin@hotmail.com', '9513375708', 'admin', 'Admin');
@@ -681,3 +727,5 @@ INSERT INTO seccion SET Nombre = "Orange", isActive = 1, usuarioIdF = 1, Color =
 INSERT INTO seccion SET Nombre = "Pink", isActive = 1, usuarioIdF = 1, Color = "#FF80C0";
 INSERT INTO seccion SET Nombre = "Cyan", isActive = 1, usuarioIdF = 1, Color = "#6FF6FF";
 
+CALL sp_MostrarComentarios(7);
+CALL sp_NoticiasReportero('reportero3');

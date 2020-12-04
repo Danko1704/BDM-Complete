@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    console.log('JqUERY');
+    //console.log('JqUERY');
     $.ajax({
         type: "POST",
         url: "Php/loadSections.php",

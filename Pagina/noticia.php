@@ -34,6 +34,9 @@
   $result4 = mysqli_query($con, $queryImgReg) or die("Fail Imagen Especial");
   for ($set4 = array (); $row4 = $result4->fetch_assoc(); $set4[] = $row4);
   $con->close();
+
+    
+
 ?>
 
 <!doctype html>
@@ -52,6 +55,9 @@
 </head>
 
 <body>
+    <?php
+        echo "<input type='hidden' id='noticiaID' value='$noticiaId'>";
+    ?>
     <!-- HEADER -->
     <section class="container-fluid slider d-flex justify-content-center align-items-center">
         <img src="Imagenes/Header.jpg" class="img-fluid" alt="Responsive image">
@@ -246,15 +252,33 @@
             </div>
         </div>
 
-        <div class="form-group mt-5">
-            <label for="exampleFormControlTextarea1">Comentarios del Admin</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" disabled rows="3"
-                name="textoComentario"><?= htmlspecialchars($data['comentarioEditor']) ?></textarea>
-        </div>
-
         <div class="Like d-flex bd-highlight" style="padding-bottom:15px">
             <button class="btn btn-primary ml-auto"><i class="fa fa-thumbs-up"> Like</i> </button>
         </div>
+
+        <form action="Php/addComentarios.php" method="post" class="addComment" name="addComment">
+            <?php
+                echo "<input type='hidden' name='noticia' value='$noticiaId'>";
+                echo "<input type='hidden' name='usuario' value='$varSesion'>";
+            ?>
+            <div class="form-group mt-5">
+                <label for="textoComentario">Comentar</label>
+                <textarea class="form-control" id="textoComentario" rows="3"
+                    name="textoComentario"></textarea>
+            </div>
+
+            <div class="Like d-flex bd-highlight" style="padding-bottom:15px">
+                <button class="btn btn-primary ml-auto" type="submit"><i class="fa fa-pencil" onclick="location.href='./noticia.php?idNoticia= <?php echo $noticiaId; ?> ';"> Comentar</i> </button>
+
+                <!-- <input type="submit" value="Comentar" class="btn btn-primary ml-auto"
+                                    onclick="location.href='aceptarNoticia.php';"> 
+                                    -->
+
+            </div>
+        </form>
+        <div id="seccionComentarios">
+        </div>
+
     </div>
 
     <div class="p-1 mt-3 mb-3 bg-danger text-white text-center">
@@ -359,6 +383,8 @@
     </script>
     <script src="js/bootstrap.min.js"></script>
     <script src="navbarSeccion.js"></script>
+    <script src="Comentarios.js"></script>
+
 </body>
 
 <?php
@@ -446,4 +472,11 @@ $(document).ready(function() {
     $yourURL="noticia.php";
     echo ("<script>location.href='$yourURL'</script>");
   }
+
+
+    if(!isset($_SESSION['usuario'])){
+        echo "<script>toggleDisable();</script>";
+        //echo "<script>console.log('$varSesion')</script>";
+    }
+    
 ?>
