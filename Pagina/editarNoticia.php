@@ -31,6 +31,7 @@
     $titulo = $data['titulo'];
     $sinopsis = $data['sinopsis'];
 
+
 ?>
 
 <!doctype html>
@@ -171,7 +172,7 @@
             <div class="Like d-flex bd-highlight" style="padding-bottom:15px">
                 <input type="submit" class="uploadfilesub btn btn-success  ml-auto" name="aceptar" value="Agregar">
                 <input type="submit" class="uploadfilesub btn btn-success  mr-2 ml-2" name="especial" value="Especial">
-                <a href="index.html" class="btn btn-danger">Cancelar</a>
+                <a href="aceptarNoticiaR.php" class="btn btn-danger">Cancelar</a>
             </div>
         </form>
     </div>
@@ -250,6 +251,8 @@ include('Php/dbOrlando.php');
         $imagen3Bool = false;
         $videoBool = false;
 
+        $notiID = '';
+
         $titulo = $_POST['tituloBox'];
         $sinopsis = $_POST['sinopsisBox'];
         $texto = $_POST['textoBox'];
@@ -271,6 +274,18 @@ include('Php/dbOrlando.php');
 
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
+
+        //inserting image details (ie image name) in the database
+        include('Php/dbOrlando.php');
+        $insertarNoticia = "call sp_editarNoticia ('$varTituloNoticia', '$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$categoria', false);";
+       
+        $current_id = mysqli_query($con, $insertarNoticia) or die("<b>Error:</b> Error al subir la noticia: <br/>" . mysqli_error($con));
+       
+        $row = mysqli_fetch_assoc($current_id);
+        $notiID = $row['noticiaId'];
+
+        $nombreVideoOrg = $notiID.$filename4;
+        $nombreVideoTmp = $titulo.$filetmpname4;
 
         //folder where images will be uploaded
         $folder = 'multimedia/';
@@ -303,23 +318,14 @@ include('Php/dbOrlando.php');
             mysqli_close($con);
         }
         if ('inpFile4' != ''){
-            move_uploaded_file($filetmpname4, $folder.$filename4);
+            move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
 
             include('Php/dbOrlando.php');
             $oldImage4 = $set2[0]['videoIdF'];
-            $video1 = "call sp_updateVideoNoticia('$filename4', '$oldImage4')";
+            $video1 = "call sp_updateVideoNoticia('$nombreVideoOrg', '$oldImage4')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
-               
-        //inserting image details (ie image name) in the database
-        include('Php/dbOrlando.php');
-        $insertarNoticia = "call sp_editarNoticia ('$varTituloNoticia', '$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$categoria', false);";
-
-        $current_id = mysqli_query($con, $insertarNoticia) or die("<b>Error:</b> Error al subir la noticia: <br/>" . mysqli_error($con));
-
-        $row = mysqli_fetch_assoc($current_id);
-        $notiID = $row['noticiaId'];
 
         if($current_id) {
           $noticiaBool = true;
@@ -373,6 +379,18 @@ include('Php/dbOrlando.php');
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
 
+        //inserting image details (ie image name) in the database
+        include('Php/dbOrlando.php');
+        $insertarNoticia = "call sp_editarNoticia ('$varTituloNoticia', '$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$categoria', true);";
+
+        $current_id = mysqli_query($con, $insertarNoticia) or die("<b>Error:</b> Error al subir la noticia: <br/>" . mysqli_error($con));
+
+        $row = mysqli_fetch_assoc($current_id);
+        $notiID = $row['noticiaId'];
+
+        $nombreVideoOrg = $notiID.$filename4;
+        $nombreVideoTmp = $titulo.$filetmpname4;
+
         //folder where images will be uploaded
         $folder = 'multimedia/';
 
@@ -404,23 +422,14 @@ include('Php/dbOrlando.php');
             mysqli_close($con);
         }
         if ('inpFile4' != ''){
-            move_uploaded_file($filetmpname4, $folder.$filename4);
+            move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
 
             include('Php/dbOrlando.php');
             $oldImage4 = $set2[0]['videoIdF'];
-            $video1 = "call sp_updateVideoNoticia('$filename4', '$oldImage4')";
+            $video1 = "call sp_updateVideoNoticia('$nombreVideoOrg', '$oldImage4')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
-               
-        //inserting image details (ie image name) in the database
-        include('Php/dbOrlando.php');
-        $insertarNoticia = "call sp_editarNoticia ('$varTituloNoticia', '$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$categoria', true);";
-
-        $current_id = mysqli_query($con, $insertarNoticia) or die("<b>Error:</b> Error al subir la noticia: <br/>" . mysqli_error($con));
-
-        $row = mysqli_fetch_assoc($current_id);
-        $notiID = $row['noticiaId'];
 
         if($current_id) {
           $noticiaBool = true;

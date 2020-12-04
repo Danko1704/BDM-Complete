@@ -760,7 +760,7 @@ call sp_deleteCategorias('ella');
 call sp_noticiasPendientes();
 call sp_noticiaParaRevision('prueba si');
 call sp_imagenesParaRevision('3');
-call sp_videosParaRevision('3');
+call sp_videosParaRevision('noticia 2 actualizada');
 call sp_updateComentarioAdmin('primera noticia seria', 'si jala carnal');
 call sp_noticiasReportero('reportero3');
 call sp_editarNoticia('Nueva noticia seria', 'Nueva nueva noticia seria', 'Ahora esta cambiada', 'Esta es nueva y mejorada', 'Nueva', 'Recargada', 'LMAO', 'switch', false);
@@ -793,6 +793,7 @@ select * from Seccion;
 select * from noticia;
 select * from multimedia;
 select * from comentario;
+	
 
 SELECT Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = 'erick';
 
@@ -830,3 +831,5 @@ INSERT INTO seccion SET Nombre = "Cyan", isActive = 1, usuarioIdF = 1, Color = "
 
 CALL sp_MostrarComentarios(7);
 CALL sp_NoticiasReportero('reportero3');
+
+Update comentario set isActive = true where usuarioIdF = '3';

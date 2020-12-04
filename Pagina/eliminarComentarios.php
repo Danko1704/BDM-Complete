@@ -5,6 +5,9 @@
     $varSesion = $_SESSION['usuario'];
     $varSesionTipo =  $_SESSION['tipo'];
     $varTituloNoticia = $_SESSION['titulo'];
+    $temp = $_SESSION['temporal'];
+
+    echo $temp;
 
 
     $sqlquery = mysqli_query($con, "CALL sp_comentariosActivos('$varTituloNoticia')");
@@ -36,11 +39,11 @@
     <div class="container">
         <div class="row justify-content-center pt-5 mt-5 m-1">
             <div class="col-md-6 col-sm-8 col-xl-6 col-lg-5 formulario">
-                    <form action="" method="post">
+                <form action="" method="post">
                     <div class="form-group text-center pt-3">
                         <h1 class="text-light">INICIAR SESION</h1>
                     </div>
-                    <select name="mySelect" class="form-control" name="nombreUsuario">
+                    <select class="form-control" name="nombreUsuario">
                         <?php
                         while($row = mysqli_fetch_array($sqlquery)){
                             ?>
@@ -54,7 +57,8 @@
                                 onclick='cambioUsuario()'>USUARIO</a></span>
                     </div> -->
                     <div class="form-group text-center pt-3">
-                        <input type="submit" class="btn btn-block usuarioBtn" name="darDeBaja" value="Dar de baja comentarios">
+                        <input type="submit" class="btn btn-block usuarioBtn" name="darDeBaja"
+                            value="Dar de baja comentarios">
                     </div>
                     <br>
                     <div class="form-group text-center">
@@ -91,17 +95,21 @@ include('Php/dbOrlando.php');
         //if button with the name uploadfilesub has been clicked
     if(isset($_POST['darDeBaja'])) {
         //declaring variables
+        session_start();
+        error_reporting(0);
+        $varSesion = $_SESSION['usuario'];
+        $varSesionTipo =  $_SESSION['tipo'];
+        $varTituloNoticia = $_SESSION['titulo'];
+
         $nombreUsuario = $_POST['nombreUsuario'];
+
+        $_SESSION['temporal'] = $nombreUsuario;
 
         $altaQuery = "call sp_eliminarComentarios('$nombreUsuario', $varTituloNoticia)";
 
         $qry = mysqli_query($con,  $altaQuery);
         if($qry){
-            session_start();
-            error_reporting(0);
-            $_SESSION['usuario'] = $varSesion;
-            $_SESSION['tipo'] = $varSesionTipo;
-
+            $_SESSION['temporal'] = $nombreUsuario;
             $yourURL="aceptarNoticiaR.php";
             echo ("<script>location.href='$yourURL'</script>");
         }else{

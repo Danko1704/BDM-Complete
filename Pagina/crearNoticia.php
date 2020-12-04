@@ -236,15 +236,7 @@ include('Php/dbOrlando.php');
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
         
-
-        //folder where images will be uploaded
-        $folder = 'multimedia/';
-
-        //function for saving the uploaded images in a specific folder
-        move_uploaded_file($filetmpname1, $folder.$filename1);
-        move_uploaded_file($filetmpname2, $folder.$filename2);
-        move_uploaded_file($filetmpname3, $folder.$filename3);
-        move_uploaded_file($filetmpname4, $folder.$filename4);
+        
 
         //inserting image details (ie image name) in the database
         $insertarNoticia = "call sp_agregarNoticia ('$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$varSesion', '$textoAdmin', '$categoria', false);";
@@ -253,6 +245,17 @@ include('Php/dbOrlando.php');
 
         $row = mysqli_fetch_assoc($current_id);
         $notiID = $row['noticiaId'];
+
+        $nombreVideoOrg = $notiID.$filename4;
+
+        //folder where images will be uploaded
+        $folder = 'multimedia/';
+
+        //function for saving the uploaded images in a specific folder
+        move_uploaded_file($filetmpname1, $folder.$filename1);
+        move_uploaded_file($filetmpname2, $folder.$filename2);
+        move_uploaded_file($filetmpname3, $folder.$filename3);
+        move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
 
         if($current_id) {
           $noticiaBool = true;
@@ -315,7 +318,7 @@ include('Php/dbOrlando.php');
 
         if( $imagen3Bool === true) {
             include('Php/dbOrlando.php');
-            $video1 = "call sp_agregarVideoNoticia('$filename4')";
+            $video1 = "call sp_agregarVideoNoticia('$nombreVideoOrg')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $videoID= $row['videoId'];
@@ -375,6 +378,8 @@ include('Php/dbOrlando.php');
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
 
+        $nombreVideoOrg = $titulo.$filename4;
+
         //folder where images will be uploaded
         $folder = 'multimedia/';
 
@@ -382,7 +387,8 @@ include('Php/dbOrlando.php');
         move_uploaded_file($filetmpname1, $folder.$filename1);
         move_uploaded_file($filetmpname2, $folder.$filename2);
         move_uploaded_file($filetmpname3, $folder.$filename3);
-        move_uploaded_file($filetmpname4, $folder.$filename4);
+        move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
+
 
         //inserting image details (ie image name) in the database
         $insertarNoticia = "call sp_agregarNoticia ('$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$varSesion', '$textoAdmin', '$categoria', true);";
@@ -391,6 +397,17 @@ include('Php/dbOrlando.php');
 
         $row = mysqli_fetch_assoc($current_id);
         $notiID = $row['noticiaId'];
+
+        $nombreVideoOrg = $notiID.$filename4;
+
+        //folder where images will be uploaded
+        $folder = 'multimedia/';
+
+        //function for saving the uploaded images in a specific folder
+        move_uploaded_file($filetmpname1, $folder.$filename1);
+        move_uploaded_file($filetmpname2, $folder.$filename2);
+        move_uploaded_file($filetmpname3, $folder.$filename3);
+        move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
 
         if($current_id) {
           $noticiaBool = true;
@@ -453,7 +470,7 @@ include('Php/dbOrlando.php');
 
         if( $imagen3Bool === true) {
             include('Php/dbOrlando.php');
-            $video1 = "call sp_agregarVideoNoticia('$filename4')";
+            $video1 = "call sp_agregarVideoNoticia('$nombreVideoOrg')";
             $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $videoID= $row['videoId'];

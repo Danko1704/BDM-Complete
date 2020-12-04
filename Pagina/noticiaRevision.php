@@ -22,6 +22,8 @@
   $result3 = mysqli_query($con, $query3) or die("Fail Imagen");
   for ($set2 = array (); $row2 = $result3->fetch_assoc(); $set2[] = $row2);
   $con->close();
+
+  echo 'multimedia/'.$set2[0]['videoFile'];
 ?>
 
 <!doctype html>
