@@ -1,11 +1,12 @@
 <?php
     require 'dbOrlando.php';
-    error_reporting(0);
+    //error_reporting(0);
 
     $noticia = $_POST['noticiaID'];
 
-    $temp = substr($noticia, 1);
-    $qry = "CALL sp_MostrarComentarios('$temp');";
+    //echo $noticia;
+    //$temp = substr($noticia, 1);
+    $qry = "CALL sp_MostrarComentarios('$noticia');";
 
     $result = mysqli_query($con, $qry);
     

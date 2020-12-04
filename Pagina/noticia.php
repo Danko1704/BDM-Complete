@@ -258,6 +258,7 @@
             <?php
                 echo "<input type='hidden' name='noticia' value='$noticiaId'>";
                 echo "<input type='hidden' name='usuario' value='$varSesion'>";
+                echo "<script>console.log($noticiaId)</script>";
             ?>
             <div class="form-group mt-5">
                 <label for="textoComentario">Comentar</label>
@@ -266,7 +267,7 @@
             </div>
 
             <div class="Like d-flex bd-highlight" style="padding-bottom:15px">
-                <button class="btn btn-primary ml-auto" type="submit"><i class="fa fa-pencil" onclick="location.href='./noticia.php?idNoticia= <?php echo $noticiaId; ?> ';"> Comentar</i> </button>
+                <button class="btn btn-primary ml-auto" type="submit"><i class="fa fa-pencil" onclick="location.href='./noticia.php?idNoticia=<?php echo $noticiaId; ?>';"> Comentar</i> </button>
 
                 <!-- <input type="submit" value="Comentar" class="btn btn-primary ml-auto"
                                     onclick="location.href='aceptarNoticia.php';"> 

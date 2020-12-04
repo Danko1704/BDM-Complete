@@ -249,7 +249,7 @@
                         <h2 class="card-title mt-2"><?php echo $set['0']['titulo'] ?></h2>
                         <p><?php echo $set['0']['sinopsis'] ?></p>
                         <!-- <button class="btn btn-danger botonEspecial1" name="botonEspecial1">Ver más</button> -->
-                        <a href='./noticia.php?idNoticia= <?php echo $set['0']['noticiaId'] ?>'
+                        <a href='./noticia.php?idNoticia=<?php echo $set['0']['noticiaId']?>'
                         class='btn btn-danger botonEspecial1' name='botonEspecial1'>Ver más</a>
                     </div>
                 </div>
@@ -263,7 +263,7 @@
                         <h2 class="card-title mt-2"><?php echo $set['1']['titulo'] ?></h2>
                         <p><?php echo $set['1']['sinopsis'] ?></p>
                         <!-- <button class="btn btn-danger botonEspecial1" name="botonEspecial2">Ver más</button> -->
-                        <a href='./noticia.php?idNoticia= <?php echo $set['1']['noticiaId'] ?>'
+                        <a href='./noticia.php?idNoticia=<?php echo $set['1']['noticiaId']?>'
                         class='btn btn-danger botonEspecial2' name='botonEspecial2'>Ver más</a>
                     </div>
                 </div>
@@ -277,7 +277,7 @@
                         <h2 class="card-title mt-2"><?php echo $set['2']['titulo'] ?></h2>
                         <p><?php echo $set['2']['sinopsis'] ?></p>
                         <!-- <button class="btn btn-danger botonEspecial1" name="botonEspecial3">Ver más</button> -->
-                        <a href='./noticia.php?idNoticia= <?php echo $set['2']['noticiaId'] ?>'
+                        <a href='./noticia.php?idNoticia=<?php echo $set['2']['noticiaId']?>'
                         class='btn btn-danger botonEspecial3' name='botonEspecial3'>Ver más</a>
                     </div>
                 </div>
@@ -300,7 +300,7 @@
                 <div class="card-footer">
                     <small class="text-muted"><?php echo $set2['0']['fechaCreacion'] ?></small>
                     <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular1">Ver más</button> -->
-                    <a href='./noticia.php?idNoticia= <?php echo $set2['0']['noticiaId'] ?>'
+                    <a href='./noticia.php?idNoticia=<?php echo $set2['0']['noticiaId']?>'
                         class='btn btn-danger botonRegular1 mr-2' style="float: right;" name='botonRegular3'>Ver más</a>
                 </div>
             </div>
@@ -313,7 +313,7 @@
                 <div class="card-footer">
                     <small class="text-muted"><?php echo $set2['1']['fechaCreacion'] ?></small>
                     <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular2">Ver más</button> -->
-                    <a href='./noticia.php?idNoticia= <?php echo $set2['1']['noticiaId'] ?>'
+                    <a href='./noticia.php?idNoticia=<?php echo $set2['1']['noticiaId']?>'
                         class='btn btn-danger botonRegular1 mr-2' style="float: right;" name='botonRegular3'>Ver más</a>
                 </div>
             </div>
@@ -326,7 +326,7 @@
                 <div class="card-footer">
                     <small class="text-muted"><?php echo $set2['2']['fechaCreacion'] ?></small>
                     <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular3">Ver más</button> -->
-                    <a href='./noticia.php?idNoticia= <?php echo $set2['2']['noticiaId'] ?>'
+                    <a href='./noticia.php?idNoticia=<?php echo $set2['2']['noticiaId']?>'
                         class='btn btn-danger botonRegular1 mr-2' style="float: right;" name='botonRegular3'>Ver más</a>
                 </div>
             </div>
