@@ -9,6 +9,7 @@
   $query= "call sp_NoticiasUnica('$noticiaId')";
   $result = mysqli_query($con, $query) or die("Fail");
   $data = $result->fetch_assoc();
+  $row = mysqli_fetch_assoc($current_id);
   $con -> close();
 
   require 'Php/dbOrlando.php';
@@ -35,6 +36,49 @@
   for ($set4 = array (); $row4 = $result4->fetch_assoc(); $set4[] = $row4);
   $con->close();
 
+  require 'Php/dbOrlando.php';
+  $notRel= "call sp_NoticiasRelacionadas('$noticiaId');";
+  $result6 = mysqli_query($con, $notRel) or die("Fail imagen");
+  for ($set6 = array (); $row6 = $result6->fetch_assoc(); $set6[] = $row6);
+  $con->close();
+
+  require 'Php/dbOrlando.php';
+  $imagenUser= "call sp_ImagenUsuario('$varSesion');";
+  $result5 = mysqli_query($con, $imagenUser) or die("Fail imagen");
+  for ($set5 = array (); $row5 = $result5->fetch_assoc(); $set5[] = $row5);
+  $con->close();
+
+  $mandado1 = $set6[0]['noticiaId'];
+  $mandado2 = $set6[1]['noticiaId'];
+  $mandado3 = $set6[2]['noticiaId'];
+
+  if(strcmp($mandado1, '') !== 0){
+    require 'Php/dbOrlando.php';
+    $imgRel= "call sp_ImagenNoticia('$mandado1');";
+    $result7 = mysqli_query($con, $imgRel) or die("Fail imagen1");
+    for ($set7 = array (); $row7 = $result7->fetch_assoc(); $set7[] = $row7);
+    $con->close();
+  }
+  else{
+
+  }
+
+  if(strcmp($mandado2, '') !== 0){
+    require 'Php/dbOrlando.php';
+    $imgRel2= "call sp_ImagenNoticia('$mandado2');";
+    $result8 = mysqli_query($con, $imgRel2) or die("Fail imagen2");
+    for ($set8 = array (); $row8 = $result8->fetch_assoc(); $set8[] = $row8);
+    $con->close();
+  }
+  
+
+  if(strcmp($mandado3, '') !== 0){
+    require 'Php/dbOrlando.php';
+    $imgRel3= "call sp_ImagenNoticia('$mandado3');";
+    $result9 = mysqli_query($con, $imgRel3) or die("Fail imagen3");
+    for ($set9 = array (); $row9 = $result9->fetch_assoc(); $set9[] = $row9);
+    $con->close();
+  } 
 ?>
 
 <!doctype html>
@@ -56,6 +100,10 @@
     <?php
         echo "<input type='hidden' id='noticiaID' value='$noticiaId'>";
     ?>
+
+    <button class="material-icons floating-btn imagenSinUsuario" onclick="window.location.href='perfilUsuario.php'"
+        id='imagenDentro'><img src=<?php echo 'multimedia/'.$set5[0]['imagenFile']?> /></button>
+
     <!-- HEADER -->
     <section class="container-fluid slider d-flex justify-content-center align-items-center">
         <img src="Imagenes/Header.jpg" class="img-fluid" alt="Responsive image">
@@ -250,10 +298,6 @@
             </div>
         </div>
 
-        <div class="Like d-flex bd-highlight" style="padding-bottom:15px">
-            <button class="btn btn-primary ml-auto"><i class="fa fa-thumbs-up"> Like</i> </button>
-        </div>
-
         <form action="Php/addComentarios.php" method="post" class="addComment" name="addComment">
             <?php
                 echo "<input type='hidden' name='noticia' value='$noticiaId'>";
@@ -262,12 +306,13 @@
             ?>
             <div class="form-group mt-5">
                 <label for="textoComentario">Comentar</label>
-                <textarea class="form-control" id="textoComentario" rows="3"
-                    name="textoComentario"></textarea>
+                <textarea class="form-control" id="textoComentario" rows="3" name="textoComentario"></textarea>
             </div>
 
             <div class="Like d-flex bd-highlight" style="padding-bottom:15px">
-                <button class="btn btn-primary ml-auto" type="submit"><i class="fa fa-pencil" onclick="location.href='./noticia.php?idNoticia=<?php echo $noticiaId; ?>';"> Comentar</i> </button>
+                <button class="btn btn-primary ml-auto" type="submit"><i class="fa fa-pencil"
+                        onclick="location.href='./noticia.php?idNoticia=<?php echo $noticiaId; ?>';"> Comentar</i>
+                </button>
 
                 <!-- <input type="submit" value="Comentar" class="btn btn-primary ml-auto"
                                     onclick="location.href='aceptarNoticia.php';"> 
@@ -288,43 +333,103 @@
     <form action="" method="post">
         <div class="card-deck mt-4" style="width: fit-content;">
             <div class="card text-white bg-dark">
-                <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[2]['imagenFile']?> alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $set2['0']['titulo'] ?></h5>
-                    <p class="card-text"><?php echo $set2['0']['sinopsis'] ?></p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted"><?php echo $set2['0']['fechaCreacion'] ?></small>
-                    <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular1">Ver más</button> -->
-                    <a href='./noticia.php?idNoticia= <?php echo $set2['0']['noticiaId'] ?>'
+                <?php 
+                    if (strcmp($mandado1, '') !== 0){
+                        ?>
+                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set7[0]['imagenFile']?> alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title"><?php echo $set6['0']['titulo'] ?></h5>
+                        <p class="card-text"><?php echo $set6['0']['sinopsis'] ?></p>
+                        </div>
+                        <div class="card-footer">
+                        <small class="text-muted"><?php echo $set6['0']['fechaCreacion'] ?></small>
+                        <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular1">Ver más</button> -->
+                        <a href='./noticia.php?idNoticia=<?php echo $set6['0']['noticiaId'] ?>'
                         class='btn btn-danger botonRegular1 mr-2' style="float: right;" name='botonRegular3'>Ver más</a>
-                </div>
+                        </div>
+                        <?php
+                    } else{
+                        ?>
+                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[2]['imagenFile']?> alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title"><?php echo $set2['0']['titulo'] ?></h5>
+                        <p class="card-text"><?php echo $set2['0']['sinopsis'] ?></p>
+                        </div>
+                        <div class="card-footer">
+                        <small class="text-muted"><?php echo $set2['0']['fechaCreacion'] ?></small>
+                        <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular1">Ver más</button> -->
+                        <a href='./noticia.php?idNoticia=<?php echo $set2['0']['noticiaId'] ?>'
+                        class='btn btn-danger botonRegular1 mr-2' style="float: right;" name='botonRegular3'>Ver más</a>
+                        </div>
+                        <?php
+                    }
+                ?>
             </div>
             <div class="card text-white bg-dark">
-                <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[5]['imagenFile']?> alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $set2['1']['titulo'] ?></h5>
-                    <p class="card-text"><?php echo $set2['1']['sinopsis'] ?></p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted"><?php echo $set2['1']['fechaCreacion'] ?></small>
-                    <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular2">Ver más</button> -->
-                    <a href='./noticia.php?idNoticia= <?php echo $set2['1']['noticiaId'] ?>'
+                <?php 
+                    if (strcmp($mandado2, '') !== 0){
+                        ?>
+                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set8[0]['imagenFile']?> alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title"><?php echo $set6[1]['titulo'] ?></h5>
+                        <p class="card-text"><?php echo $set6[1]['sinopsis'] ?></p>
+                        </div>
+                        <div class="card-footer">
+                        <small class="text-muted"><?php echo $set6[1]['fechaCreacion'] ?></small>
+                        <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular1">Ver más</button> -->
+                        <a href='./noticia.php?idNoticia=<?php echo $set6[1]['noticiaId'] ?>'
                         class='btn btn-danger botonRegular1 mr-2' style="float: right;" name='botonRegular3'>Ver más</a>
-                </div>
+                        </div>
+                        <?php
+                    } else{
+                        ?>
+                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[5]['imagenFile']?> alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title"><?php echo $set2[1]['titulo'] ?></h5>
+                        <p class="card-text"><?php echo $set2[1]['sinopsis'] ?></p>
+                        </div>
+                        <div class="card-footer">
+                        <small class="text-muted"><?php echo $set2[1]['fechaCreacion'] ?></small>
+                        <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular1">Ver más</button> -->
+                        <a href='./noticia.php?idNoticia=<?php echo $set2[1]['noticiaId'] ?>'
+                        class='btn btn-danger botonRegular1 mr-2' style="float: right;" name='botonRegular3'>Ver más</a>
+                        </div>
+                        <?php
+                    }
+                ?>
             </div>
             <div class="card text-white bg-dark">
-                <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[8]['imagenFile']?> alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $set2['2']['titulo'] ?></h5>
-                    <p class="card-text"><?php echo $set2['2']['sinopsis'] ?></p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted"><?php echo $set2['2']['fechaCreacion'] ?></small>
-                    <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular3">Ver más</button> -->
-                    <a href='./noticia.php?idNoticia= <?php echo $set2['2']['noticiaId'] ?>'
+                <?php 
+                    if (strcmp($mandado3, '') !== 0){
+                        ?>
+                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set9[0]['imagenFile']?> alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title"><?php echo $set6[2]['titulo'] ?></h5>
+                        <p class="card-text"><?php echo $set6[2]['sinopsis'] ?></p>
+                        </div>
+                        <div class="card-footer">
+                        <small class="text-muted"><?php echo $set6[2]['fechaCreacion'] ?></small>
+                        <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular1">Ver más</button> -->
+                        <a href='./noticia.php?idNoticia=<?php echo $set6[2]['noticiaId'] ?>'
                         class='btn btn-danger botonRegular1 mr-2' style="float: right;" name='botonRegular3'>Ver más</a>
-                </div>
+                        </div>
+                        <?php
+                    } else{
+                        ?>
+                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[8]['imagenFile']?> alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title"><?php echo $set2[2]['titulo'] ?></h5>
+                        <p class="card-text"><?php echo $set2[2]['sinopsis'] ?></p>
+                        </div>
+                        <div class="card-footer">
+                        <small class="text-muted"><?php echo $set2[2]['fechaCreacion'] ?></small>
+                        <!-- <button class="btn btn-danger botonRegular1 mr-2" style="float: right;" name="botonRegular1">Ver más</button> -->
+                        <a href='./noticia.php?idNoticia=<?php echo $set2[2]['noticiaId'] ?>'
+                        class='btn btn-danger botonRegular1 mr-2' style="float: right;" name='botonRegular3'>Ver más</a>
+                        </div>
+                        <?php
+                    }
+                ?>
             </div>
         </div>
     </form>

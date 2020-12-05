@@ -69,12 +69,12 @@
     <div class="container-lg my-4 bg-white rounded">
         <form form action="" method="post" enctype="multipart/form-data">
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">Titulo</label>
+                <label for="exampleFormControlInput1">Titulo (hasta 150 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese un titulo para la noticia" name="tituloBox" required>
             </div>
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">Sinopsis</label>
+                <label for="exampleFormControlInput1">Sinopsis (hasta 150 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese una Sinopsis para la noticia" name="sinopsisBox" required>
             </div>
@@ -97,17 +97,17 @@
                     required></textarea>
             </div>
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">PalabraClave1</label>
+                <label for="exampleFormControlInput1">PalabraClave1 (hasta 25 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese una palabra clave" name="clave1" required>
             </div>
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">PalabraClave2</label>
+                <label for="exampleFormControlInput1">PalabraClave2 (hasta 25 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese una palabra clave" name="clave2" required>
             </div>
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">PalabraClave3</label>
+                <label for="exampleFormControlInput1">PalabraClave3 (hasta 25 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese una palabra clave" name="clave3" required>
             </div>
@@ -236,7 +236,7 @@ include('Php/dbOrlando.php');
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
         
-        
+        require 'Php/dbOrlando.php';
 
         //inserting image details (ie image name) in the database
         $insertarNoticia = "call sp_agregarNoticia ('$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$varSesion', '$textoAdmin', '$categoria', false);";
@@ -247,6 +247,7 @@ include('Php/dbOrlando.php');
         $notiID = $row['noticiaId'];
 
         $nombreVideoOrg = $notiID.$filename4;
+        $nombreVideoTmp = $notiID.$filetmpname4;
 
         //folder where images will be uploaded
         $folder = 'multimedia/';
@@ -378,17 +379,10 @@ include('Php/dbOrlando.php');
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
 
-        $nombreVideoOrg = $titulo.$filename4;
-
         //folder where images will be uploaded
         $folder = 'multimedia/';
 
-        //function for saving the uploaded images in a specific folder
-        move_uploaded_file($filetmpname1, $folder.$filename1);
-        move_uploaded_file($filetmpname2, $folder.$filename2);
-        move_uploaded_file($filetmpname3, $folder.$filename3);
-        move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
-
+        require 'Php/dbOrlando.php';
 
         //inserting image details (ie image name) in the database
         $insertarNoticia = "call sp_agregarNoticia ('$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$varSesion', '$textoAdmin', '$categoria', true);";
@@ -399,6 +393,7 @@ include('Php/dbOrlando.php');
         $notiID = $row['noticiaId'];
 
         $nombreVideoOrg = $notiID.$filename4;
+        $nombreVideoTmp = $notiID.$filetmpname4;
 
         //folder where images will be uploaded
         $folder = 'multimedia/';

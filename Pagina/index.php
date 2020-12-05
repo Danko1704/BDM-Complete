@@ -28,6 +28,11 @@
   for ($set4 = array (); $row4 = $result4->fetch_assoc(); $set4[] = $row4);
   $con->close();
 
+  require 'Php/dbOrlando.php';
+  $imagenUser= "call sp_ImagenUsuario('$varSesion');";
+  $result5 = mysqli_query($con, $imagenUser) or die("Fail imagen");
+  for ($set5 = array (); $row5 = $result5->fetch_assoc(); $set5[] = $row5);
+  $con->close();
 ?>
 
 <!doctype html>
@@ -46,6 +51,7 @@
 </head>
 
 <body>
+    <button class="material-icons floating-btn imagenSinUsuario" onclick="window.location.href='perfilUsuario.php'" id='imagenDentro'><img src=<?php echo 'multimedia/'.$set5[0]['imagenFile']?> /></button>
     <!-- HEADER -->
     <section class="container-fluid slider d-flex justify-content-center align-items-center">
         <img src="Imagenes/Header.jpg" class="img-fluid" alt="Responsive image">
@@ -394,6 +400,7 @@ if ($varSesion == null || $varSesion = '') {
 ?>
 <script type='text/javascript'>
 $(document).ready(function() {
+    $(".imagenSinUsuario").hide();
     $("#navbarUsuario").hide();
     $("#navbarUsuarioReportero").hide();
     $("#navbarUsuarioAdmin").hide();

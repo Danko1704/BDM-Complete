@@ -11,6 +11,8 @@
 
 
     $sqlquery = mysqli_query($con, "CALL sp_comentariosActivos('$varTituloNoticia')");
+
+    echo $varTituloNoticia;
     
 ?>
 
@@ -105,11 +107,11 @@ include('Php/dbOrlando.php');
 
         $_SESSION['temporal'] = $nombreUsuario;
 
-        $altaQuery = "call sp_eliminarComentarios('$nombreUsuario', $varTituloNoticia)";
+        require 'Php/dbOrlando.php';
+        $altaQuery = "call sp_eliminarComentarios('$nombreUsuario', '$varTituloNoticia')";
 
-        $qry = mysqli_query($con,  $altaQuery);
+        $qry = mysqli_query($con, $altaQuery);
         if($qry){
-            $_SESSION['temporal'] = $nombreUsuario;
             $yourURL="aceptarNoticiaR.php";
             echo ("<script>location.href='$yourURL'</script>");
         }else{

@@ -72,7 +72,7 @@
                 <div class="perfil">
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="text-center py-3">
-                            <h1 class="text-dark">Reporteros</h1>
+                            <h1 class="text-dark">Tus Noticias</h1>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -119,7 +119,7 @@
                 <div class="perfil">
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group text-center pt-3">
-                            <h1 class="text-dark">Usuario</h1>
+                            <h1 class="text-dark">Pendientes</h1>
                         </div>
                         <div class="input-group mb-3">
                         <div class="input-group-prepend">
