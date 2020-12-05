@@ -105,4 +105,8 @@ CREATE TABLE IF NOT EXISTS Comentario (
     foreign key (usuarioIdF) references Usuario(usuarioId)
 );
 
+<<<<<<< refs/remotes/origin/Yap_branch2
 INSERT INTO Usuario(nombre, correo, contraseña, telefono, tipoUsuario) VALUES('admin', 'admin@hotmail.com', 'admin', '811578402','Admin');
+=======
+INSERT INTO Usuario(nombre, correo, contraseña, telefono, tipoUsuario) VALUES('admin', 'admin@hotmail.com', 'admin', '811578402','Admin');
+>>>>>>> todo backup
