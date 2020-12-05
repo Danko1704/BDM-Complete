@@ -34,8 +34,12 @@ DROP PROCEDURE IF EXISTS sp_agregarImagenUsuario;
 DELIMITER %$
 CREATE PROCEDURE sp_agregarImagenUsuario(
 	IN pCorreo varchar (30),
+<<<<<<< refs/remotes/origin/Yap_branch2
     pImagenNombre varchar(150),
     pImagenData mediumblob
+=======
+    pImagen blob
+>>>>>>> LISTO
 )
 Begin
 	INSERT INTO Imagen 
@@ -103,8 +107,12 @@ CREATE PROCEDURE sp_updateUsuario(
     pCorreo varchar(30),
     pTelefono varchar(10),
     pContraseña varchar(30),
+<<<<<<< refs/remotes/origin/Yap_branch2
     pImagen varchar(150),
     pImagenF mediumblob
+=======
+    pImagen blob
+>>>>>>> LISTO
 )
 Begin
 	DECLARE idImagenSearch int;
@@ -181,10 +189,15 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS sp_agregarImagenNoticia;
 
 DELIMITER //
+<<<<<<< refs/remotes/origin/Yap_branch2
 CREATE PROCEDURE sp_agregarImagenNoticia(
 	IN pImagen varchar(150),
     IN pImagenF mediumblob
 )
+=======
+CREATE PROCEDURE sp_agregarImagenNoticia
+(IN pImagen blob)
+>>>>>>> LISTO
 BEGIN
 INSERT INTO Imagen VALUES(0, pImagen, pImagenF);
 SELECT imagenId FROM Imagen WHERE imagenId = LAST_INSERT_ID();
@@ -498,7 +511,11 @@ DROP PROCEDURE IF EXISTS sp_updateImagenNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_updateImagenNoticia
+<<<<<<< refs/remotes/origin/Yap_branch2
 (IN pImagen varchar(150), pImagenF mediumblob, idImagen int)
+=======
+(IN pImagen blob, idImagen int)
+>>>>>>> LISTO
 BEGIN
 	IF pImagen != '' THEN
 		UPDATE Imagen 

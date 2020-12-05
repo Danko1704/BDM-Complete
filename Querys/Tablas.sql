@@ -15,8 +15,12 @@ DROP TABLE IF EXISTS Imagen;
 
 CREATE TABLE IF NOT EXISTS Imagen(
 	imagenId int auto_increment not null comment 'Id de la imagen en la tabla',
+<<<<<<< refs/remotes/origin/Yap_branch2
     imagenName varchar(150) comment 'Nombre de imagen',
     imagenFile mediumblob comment 'Archivo de la imagen',
+=======
+    imagenFile blob comment 'Archivo de imagen',
+>>>>>>> LISTO
     primary key (imagenId)
 );
 
@@ -106,7 +110,11 @@ CREATE TABLE IF NOT EXISTS Comentario (
 );
 
 <<<<<<< refs/remotes/origin/Yap_branch2
+<<<<<<< refs/remotes/origin/Yap_branch2
 INSERT INTO Usuario(nombre, correo, contraseña, telefono, tipoUsuario) VALUES('admin', 'admin@hotmail.com', 'admin', '811578402','Admin');
 =======
 INSERT INTO Usuario(nombre, correo, contraseña, telefono, tipoUsuario) VALUES('admin', 'admin@hotmail.com', 'admin', '811578402','Admin');
 >>>>>>> todo backup
+=======
+INSERT INTO Usuario(nombre, correo, contraseña, telefono, tipoUsuario) VALUES('admin', 'admin@hotmail.com', 'admin', '811578402','Admin');
+>>>>>>> LISTO
