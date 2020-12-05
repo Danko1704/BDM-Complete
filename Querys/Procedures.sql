@@ -32,7 +32,7 @@ DROP PROCEDURE IF EXISTS sp_agregarImagenUsuario;
 DELIMITER %$
 CREATE PROCEDURE sp_agregarImagenUsuario(
 	IN pCorreo varchar (30),
-    pImagen varchar(100)
+    pImagen blob
 )
 Begin
 	INSERT INTO Imagen 
@@ -98,7 +98,7 @@ CREATE PROCEDURE sp_updateUsuario(
     pCorreo varchar(30),
     pTelefono varchar(10),
     pContraseña varchar(30),
-    pImagen varchar(100)
+    pImagen blob
 )
 Begin
 	DECLARE idImagenSearch int;
@@ -175,7 +175,7 @@ DROP PROCEDURE IF EXISTS sp_agregarImagenNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_agregarImagenNoticia
-(IN pImagen varchar(100))
+(IN pImagen blob)
 BEGIN
 INSERT INTO Imagen VALUES(0, pImagen);
 SELECT imagenId FROM Imagen WHERE imagenId = LAST_INSERT_ID();
@@ -186,7 +186,7 @@ DROP PROCEDURE IF EXISTS sp_agregarVideoNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_agregarVideoNoticia
-(IN pVideo varchar(100))
+(IN pVideo blob)
 BEGIN
 INSERT INTO Video VALUES(0, pVideo);
 SELECT videoId   FROM Video WHERE videoId  = LAST_INSERT_ID();
@@ -489,7 +489,7 @@ DROP PROCEDURE IF EXISTS sp_updateImagenNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_updateImagenNoticia
-(IN pImagen varchar(100), idImagen int)
+(IN pImagen blob, idImagen int)
 BEGIN
 	IF pImagen != '' THEN
 		UPDATE Imagen 
@@ -502,7 +502,7 @@ DROP PROCEDURE IF EXISTS sp_updateVideoNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_updateVideoNoticia
-(IN pVideo varchar(100), idVideo int)
+(IN pVideo blob, idVideo int)
 BEGIN
 INSERT INTO Video VALUES(0, pVideo);
 	IF pVideo != '' THEN

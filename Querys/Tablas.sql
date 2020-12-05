@@ -15,13 +15,13 @@ DROP TABLE IF EXISTS Imagen;
 
 CREATE TABLE IF NOT EXISTS Imagen(
 	imagenId int auto_increment not null comment 'Id de la imagen en la tabla',
-    imagenFile varchar(100) comment 'Archivo de imagen',
+    imagenFile blob comment 'Archivo de imagen',
     primary key (imagenId)
 );
 
 CREATE TABLE IF NOT EXISTS Video(
 	videoId int auto_increment not null comment 'Id del video en la tabla',
-    videoFile varchar(100) comment 'Archivo de video',
+    videoFile blob comment 'Archivo de video',
     primary key (videoId)
 );
 
