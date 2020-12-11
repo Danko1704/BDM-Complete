@@ -15,13 +15,14 @@ DROP TABLE IF EXISTS Imagen;
 
 CREATE TABLE IF NOT EXISTS Imagen(
 	imagenId int auto_increment not null comment 'Id de la imagen en la tabla',
-    imagenFile varchar(100) comment 'Archivo de imagen',
+    imagenName varchar(150) comment 'Nombre de imagen',
+    imagenFile mediumblob comment 'Archivo de la imagen',
     primary key (imagenId)
 );
 
 CREATE TABLE IF NOT EXISTS Video(
 	videoId int auto_increment not null comment 'Id del video en la tabla',
-    videoFile varchar(100) comment 'Archivo de video',
+    videoFile blob comment 'Archivo de video',
     primary key (videoId)
 );
 
@@ -38,6 +39,8 @@ CREATE TABLE IF NOT EXISTS Usuario(
 	foreign key (imagenIdF) References Imagen(imagenId)
 );
 
+select * from usuario;
+
 CREATE TABLE IF NOT EXISTS Seccion(
 	seccionId int auto_increment not null comment 'Id de la seccion',
     Nombre varchar(25) comment 'Nombre de la seccion',
@@ -49,8 +52,8 @@ CREATE TABLE IF NOT EXISTS Seccion(
 
 CREATE TABLE IF NOT EXISTS Noticia(
 	noticiaId int auto_increment not null comment 'Id de la noticia en la tabla',
-	titulo varchar(40) not null comment 'titulo de la noticia',
-	sinopsis varchar(80) not null comment 'sinopsis/descripcion de la noticia',
+	titulo varchar(150) not null comment 'titulo de la noticia',
+	sinopsis varchar(150) not null comment 'sinopsis/descripcion de la noticia',
 	texto text not null comment 'texto de la noticia',
 	fechaCreacion timestamp not null default now() comment 'fecha y hora de la noticia',
 	palabraClave1 varchar (25) not null comment 'palabra clave1 de la noticia',
@@ -102,22 +105,4 @@ CREATE TABLE IF NOT EXISTS Comentario (
     foreign key (usuarioIdF) references Usuario(usuarioId)
 );
 
-SELECT distinct
-	c.table_name,
-    c.column_name,
-    c.column_type,
-    c.column_default,
-    c.column_key,
-    c.is_nullable,
-    /*t.table_name,*/
-    c.column_comment
-FROM information_schema.tables AS t
-INNER JOIN information_schema.columns AS c
-	ON t.table_name = c.table_name
-    AND t.table_schema = c.table_schema
-WHERE t.table_type IN ('BASE TABLE')
-AND t.table_schema = 'proyectodb'
-ORDER BY
-	1,
-    --c.column_name,
-    c.ordinal_position;
+INSERT INTO Usuario(nombre, correo, contraseña, telefono, tipoUsuario) VALUES('admin', 'admin@hotmail.com', 'admin', '811578402','Admin');

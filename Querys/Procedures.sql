@@ -1,4 +1,6 @@
-SET SQL_SAFE_UPDATES = 0; 
+SET SQL_SAFE_UPDATES = 0;
+
+use proyectodb;
 
 DROP PROCEDURE IF EXISTS sp_validarUsuario;
 
@@ -32,11 +34,12 @@ DROP PROCEDURE IF EXISTS sp_agregarImagenUsuario;
 DELIMITER %$
 CREATE PROCEDURE sp_agregarImagenUsuario(
 	IN pCorreo varchar (30),
-    pImagen varchar(100)
+    pImagenNombre varchar(150),
+    pImagenData mediumblob
 )
 Begin
 	INSERT INTO Imagen 
-    VALUES (0, pImagen);
+    VALUES (0, pImagenNombre, pImagenData);
     UPDATE Usuario SET imagenIdF = last_insert_id() WHERE correo = pCorreo;
 END %$
 DELIMITER ;
@@ -85,7 +88,9 @@ CREATE PROCEDURE sp_infoUsuario(
 	pNombre varchar(50)
 )
 Begin
-    SELECT Usuario.usuarioId, Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = pNombre;
+    SELECT Usuario.usuarioId, Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario
+    INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId
+    WHERE Usuario.nombre = pNombre;
 END %$
 DELIMITER ;
 
@@ -98,7 +103,8 @@ CREATE PROCEDURE sp_updateUsuario(
     pCorreo varchar(30),
     pTelefono varchar(10),
     pContraseña varchar(30),
-    pImagen varchar(100)
+    pImagen varchar(150),
+    pImagenF mediumblob
 )
 Begin
 	DECLARE idImagenSearch int;
@@ -110,7 +116,8 @@ Begin
     Usuario.correo = pCorreo,
     Usuario.telefono = pTelefono,
     Usuario.contraseña = pContraseña,
-    Imagen.imagenFile = pImagen
+    Imagen.imagenName = pImagen,
+    Imagen.imagenFile = pImagenF
     WHERE Usuario.nombre = oNombre AND Imagen.imagenId = idImagenSearch;
 END %$
 DELIMITER ;
@@ -119,8 +126,8 @@ DROP PROCEDURE IF EXISTS sp_agregarNoticia;
 
 DELIMITER %$
 CREATE PROCEDURE sp_agregarNoticia(
-	pTitulo varchar (40),
-	pSinopsis varchar(80),
+	pTitulo varchar (150),
+	pSinopsis varchar(150),
     pTexto text,
     pPalabraClave1 varchar(25),
     pPalabraClave2 varchar(25),
@@ -174,10 +181,12 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS sp_agregarImagenNoticia;
 
 DELIMITER //
-CREATE PROCEDURE sp_agregarImagenNoticia
-(IN pImagen varchar(100))
+CREATE PROCEDURE sp_agregarImagenNoticia(
+	IN pImagen varchar(150),
+    IN pImagenF mediumblob
+)
 BEGIN
-INSERT INTO Imagen VALUES(0, pImagen);
+INSERT INTO Imagen VALUES(0, pImagen, pImagenF);
 SELECT imagenId FROM Imagen WHERE imagenId = LAST_INSERT_ID();
 END //
 DELIMITER ;
@@ -186,7 +195,7 @@ DROP PROCEDURE IF EXISTS sp_agregarVideoNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_agregarVideoNoticia
-(IN pVideo varchar(100))
+(IN pVideo blob)
 BEGIN
 INSERT INTO Video VALUES(0, pVideo);
 SELECT videoId   FROM Video WHERE videoId  = LAST_INSERT_ID();
@@ -348,7 +357,7 @@ DROP PROCEDURE IF EXISTS sp_noticiaParaRevision;
 
 DELIMITER %$
 CREATE PROCEDURE sp_noticiaParaRevision(
-	pTitulo varchar(40)
+	pTitulo varchar(150)
 )
 Begin
 	DECLARE  autorNombre varchar(30);
@@ -369,14 +378,14 @@ DROP PROCEDURE IF EXISTS sp_imagenesParaRevision;
 
 DELIMITER %$
 CREATE PROCEDURE sp_imagenesParaRevision(
-	pTitulo varchar(40)
+	pTitulo varchar(150)
 )
 Begin
     DECLARE  idNoticia int;
 	SET 
 		idNoticia = (SELECT Noticia.noticiaId FROM Noticia WHERE Noticia.titulo = pTitulo);
         
-	SELECT 	multimedia.imagenIdF, imagen.imagenFile 
+	SELECT 	multimedia.imagenIdF, imagen.imagenName, imagen.imagenFile
     from multimedia 
     INNER JOIN imagen on multimedia.imagenIdF = imagen.imagenId AND multimedia.noticiaIdF = idNoticia;
 END %$
@@ -386,7 +395,7 @@ DROP PROCEDURE IF EXISTS sp_videosParaRevision;
 
 DELIMITER %$
 CREATE PROCEDURE sp_videosParaRevision(
-	pTitulo varchar(40)
+	pTitulo varchar(150)
 )
 Begin
     DECLARE  idNoticia int;
@@ -403,7 +412,7 @@ DROP PROCEDURE IF EXISTS sp_updateComentarioAdmin;
 
 DELIMITER %$
 CREATE PROCEDURE sp_updateComentarioAdmin(
-	pTitulo varchar(40),
+	pTitulo varchar(150),
     pComentario varchar(1000)
 )
 Begin
@@ -421,7 +430,7 @@ DROP PROCEDURE IF EXISTS sp_aceptarNoticia;
 
 DELIMITER %$
 CREATE PROCEDURE sp_aceptarNoticia(
-	pTitulo varchar(40)
+	pTitulo varchar(150)
 )
 Begin
     DECLARE  idNoticia int;
@@ -429,7 +438,7 @@ Begin
 		idNoticia = (SELECT Noticia.noticiaId FROM Noticia WHERE Noticia.titulo = pTitulo);
         
 	UPDATE noticia
-	SET estadoNoticia = 'Publicado'
+	SET estadoNoticia = 'Publicado', isActive = true
 	WHERE noticia.noticiaId = idNoticia;
 END %$
 DELIMITER ;
@@ -452,9 +461,9 @@ DROP PROCEDURE IF EXISTS sp_editarNoticia;
 
 DELIMITER %$
 CREATE PROCEDURE sp_editarNoticia(
-	oTitulo varchar(40),
-	pTitulo varchar (40),
-	pSinopsis varchar(80),
+	oTitulo varchar(150),
+	pTitulo varchar (150),
+	pSinopsis varchar(150),
     pTexto text,
     pPalabraClave1 varchar(25),
     pPalabraClave2 varchar(25),
@@ -489,11 +498,11 @@ DROP PROCEDURE IF EXISTS sp_updateImagenNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_updateImagenNoticia
-(IN pImagen varchar(100), idImagen int)
+(IN pImagen varchar(150), pImagenF mediumblob, idImagen int)
 BEGIN
 	IF pImagen != '' THEN
 		UPDATE Imagen 
-		SET imagenFile = pImagen WHERE imagenId = idImagen;
+		SET imagenName = pImagen, imagenFile = pImagenF WHERE imagenId = idImagen;
 	END IF;
 END //
 DELIMITER ;
@@ -502,7 +511,7 @@ DROP PROCEDURE IF EXISTS sp_updateVideoNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_updateVideoNoticia
-(IN pVideo varchar(100), idVideo int)
+(IN pVideo blob, idVideo int)
 BEGIN
 INSERT INTO Video VALUES(0, pVideo);
 	IF pVideo != '' THEN
@@ -674,7 +683,7 @@ DROP PROCEDURE IF EXISTS sp_bajaNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_bajaNoticia(
-	pTitulo varchar(50)
+	pTitulo varchar(150)
 )
 BEGIN
     UPDATE noticia set isActive = false WHERE titulo = pTitulo;
@@ -685,7 +694,7 @@ DROP PROCEDURE IF EXISTS sp_alzaNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_alzaNoticia(
-	pTitulo varchar(50)
+	pTitulo varchar(150)
 )
 BEGIN
     UPDATE noticia set isActive = true WHERE titulo = pTitulo;
@@ -696,7 +705,7 @@ DROP PROCEDURE IF EXISTS sp_comentariosActivos;
 
 DELIMITER //
 CREATE PROCEDURE sp_comentariosActivos(
-	pTitulo varchar(50)
+	pTitulo varchar(150)
 )
 BEGIN
 DECLARE idTitulo int;
@@ -728,108 +737,63 @@ DROP PROCEDURE IF EXISTS sp_eliminarComentarios;
 DELIMITER //
 CREATE PROCEDURE sp_eliminarComentarios(
     spUser varchar(50),
-    spTitulo varchar(40)
+    spTitulo varchar(150)
 )
 BEGIN
     DECLARE user_ID int;
     DECLARE noticia_ID int;
-    SET user_ID = (SELECT usuarioId FROM Usuario WHERE nombre = spUser);
-    SET noticia_ID = (SELECT noticiaId FROM Noticia WHERE titulo = spTitulo);
+    SET user_ID = (SELECT usuarioId FROM Usuario WHERE Usuario.nombre = spUser);
+    SET noticia_ID = (SELECT noticiaId FROM Noticia WHERE Noticia.titulo = spTitulo);
     
     UPDATE Comentario SET isActive = false WHERE noticiaIdF = noticia_ID AND usuarioIdF = user_ID;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_ImagenUsuario;
+
+DELIMITER //
+CREATE PROCEDURE sp_ImagenUsuario(
+    spUsuario varchar(50)
+)
+BEGIN
+
+    SELECT I.imagenFile FROM Usuario U
+    INNER JOIN Imagen I ON I.imagenId = U.imagenIdF
+    WHERE U.nombre = spUsuario;
 
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_NoticiasRelacionadas;
 
-/*------------------------------------------------------CAMPO DE PRUEBAS -----------------------------------------------------------------------------*/
+DELIMITER //
+CREATE PROCEDURE sp_NoticiasRelacionadas(
+    pNoticia int
+)
+BEGIN
+    DECLARE miSeccion int;
+    SET miSeccion = (SELECT seccionIdF FROM noticia WHERE noticia.noticiaId = pNoticia);
 
-INSERT INTO Usuario(nombre, correo, telefono, contraseña, tipoUsuario) VALUES ('danko', 'admin@hotmail.com', '9513375708', 'admin', 'Admin');
+    SELECT N.noticiaId, N.titulo, N.sinopsis, N.fechaCreacion FROM noticia N
+    INNER JOIN Seccion S ON S.seccionId = N.seccionIdF
+    WHERE N.isActive = true AND N.estadoNoticia = 'Publicado' AND S.isActive = true AND N.seccionIdF = miSeccion AND N.noticiaId <> pNoticia
+    ORDER BY N.noticiaId DESC
+    LIMIT 3;
 
-call sp_agregarUsuario('erick', 'lala@hotmail.com', '9512375708', 'dodo');
-call sp_agregarImagenUsuario('lala@hotmail.com','monky_flip.mp4');
-call sp_cambiarReportero ('orlando');
-call sp_selectUsuarios();
-call sp_llenarCategorias();
-call sp_infoUsuario('danko');
-call sp_imagenUsuarioMostrar('papotericudo');
-call sp_updateUsuario ('papucho', 'perro', 'perro@hotmail.com', '9512278531', 'Peludin9$', 'perro.jpg');
-call sp_agregarNoticia ('Una partida de Huevos', 'hubo muchos huevos', 'se sacaron los calzones', 'huevos', 'juegos', 'Lol', 'orlando', '', 'ps5', false);
-call sp_agregarCategoria('el', 'danko', '#f0f0f0');
-call sp_deleteCategorias('ella');
-call sp_noticiasPendientes();
-call sp_noticiaParaRevision('prueba si');
-call sp_imagenesParaRevision('3');
-call sp_videosParaRevision('noticia 2 actualizada');
-call sp_updateComentarioAdmin('primera noticia seria', 'si jala carnal');
-call sp_noticiasReportero('reportero3');
-call sp_editarNoticia('Nueva noticia seria', 'Nueva nueva noticia seria', 'Ahora esta cambiada', 'Esta es nueva y mejorada', 'Nueva', 'Recargada', 'LMAO', 'switch', false);
-call sp_updateImagenNoticia('avatar1.jpg', '1');
-call sp_updateImagenNoticia('Problems.jpg', '2');
-call sp_NoticiasEspeciales();
-call sp_NoticiasRegulares();
-call sp_imagenesEspeciales();
-call sp_imagenesRegulares();
+END //
+DELIMITER ;
 
-call sp_NoticiasUnica('1');
-call sp_imagenesUnica('4');
-call sp_videosUnica('2');
+DROP PROCEDURE IF EXISTS sp_ImagenNoticia;
 
-call sp_bajaNoticia('1');
-call sp_alzaNoticia('1');
+DELIMITER //
+CREATE PROCEDURE sp_ImagenNoticia(
+    pNoticia int
+)
+BEGIN
 
-call sp_NoticiasReporteroActivas('reportero3');
-
-call sp_comentariosActivos('12');
-call sp_NoticiasReporteroGeneral('reportero3');
-call sp_eliminarComentarios('reportero3', '12');
-
-call sp_mostrarComentarios('9');
-
-select * from Usuario;
-select * from Imagen;
-select * from video;
-select * from Seccion;
-select * from noticia;
-select * from multimedia;
-select * from comentario;
-	
-
-SELECT Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = 'erick';
-
-INSERT INTO Noticia (titulo, sinopsis, texto, palabraClave1, palabraClave2, palabraClave3, autorIdF, isActive, estadoNoticia, seccionIdF)
-					VALUES('Crossplay en Warzon', 'Jugadores de PC se quejan', 'Jugadores de PC se quejan por el autoaim de la consola', 'Warzone', 'Crossplay', 'Consola', '1', '1', 'Publicado', '10');
-                    
-INSERT INTO Noticia (titulo, sinopsis, texto, palabraClave1, palabraClave2, palabraClave3, autorIdF, isActive, estadoNoticia, seccionIdF, fechaCreacion)
-					VALUES('Nueva temporada de Fornai', 'Nueva temporada esta semana', 'En esta semana se estrena la nueva temporada de Fortnite', 'Fortnite', 'Evento', 'Temporada', '1', '1', 'Publicado', '11', '2020-11-30 00:01:00');
-                    
-INSERT INTO Noticia (titulo, sinopsis, texto, palabraClave1, palabraClave2, palabraClave3, autorIdF, isActive, estadoNoticia, seccionIdF, fechaCreacion)
-					VALUES('Chingo de frio en monterrey', 'Hace frio en monterrey', 'Si o no raza', 'Monterrey', 'Frio', 'Chingos', '1', '1', 'Publicado', '2', '2020-12-12 00:01:00');
-
-
-CALL sp_Busqueda('Apex', NULL, NULL, NULL);
-
-CALL sp_cargaCategorias();
-
-CALL sp_validarUsuario('rodyap182@gmail.com', 'admin');
-
-CALL sp_deleteCategorias('5');
-
-SELECT nombre, tipoUsuario FROM Usuario where correo='orlando_gague17@hotmail.com' and contraseña='moquito';
-select * from usuario;
-select * from seccion WHERE isActive = 1;
-select * from noticia WHERE isActive = 1 AND estadoNoticia = 'Publicado'
-AND ('Apex' LIKE CONCAT('%', titulo, '%') OR 'Apex' LIKE CONCAT('%', palabraClave1, '%') OR 'Apex' LIKE CONCAT('%', palabraClave2, '%') OR 'Apex' LIKE CONCAT('%', palabraClave3, '%'));
-
-TRUNCATE TABLE seccion;
-
-INSERT INTO Usuario (nombre, correo, telefono, contraseña, imagenIdF, tipoUsuario) VALUES ('Rodrigo', 'rodyap182@gmail.com', '8116751678', 'admin', null, 'Admin');
-
-INSERT INTO seccion SET Nombre = "Orange", isActive = 1, usuarioIdF = 1, Color = "#FF6633";
-INSERT INTO seccion SET Nombre = "Pink", isActive = 1, usuarioIdF = 1, Color = "#FF80C0";
-INSERT INTO seccion SET Nombre = "Cyan", isActive = 1, usuarioIdF = 1, Color = "#6FF6FF";
-
-CALL sp_MostrarComentarios(7);
-CALL sp_NoticiasReportero('reportero3');
-
-Update comentario set isActive = true where usuarioIdF = '3';
+    SELECT I.imagenFile FROM Multimedia M
+    INNER JOIN imagen I ON I.imagenId = M.imagenIdF
+    WHERE noticiaIdF = pNoticia
+	limit 1;
+END //
+DELIMITER ;
