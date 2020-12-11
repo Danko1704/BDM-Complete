@@ -51,7 +51,11 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <button class="material-icons floating-btn imagenSinUsuario" onclick="window.location.href='perfilUsuario.php'" id='imagenDentro'><img src=<?php echo 'multimedia/'.$set5[0]['imagenFile']?> /></button>
+=======
+    <button class="material-icons floating-btn imagenSinUsuario" onclick="window.location.href='perfilUsuario.php'" id='imagenDentro'><img src=data:image/jpeg;base64,<?php echo base64_encode($set5[0]['imagenFile'])?> /></button>
+>>>>>>> Yap_branch2
     <!-- HEADER -->
     <section class="container-fluid slider d-flex justify-content-center align-items-center">
         <img src="Imagenes/Header.jpg" class="img-fluid" alt="Responsive image">
@@ -208,21 +212,21 @@
     <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src=<?php echo 'multimedia/'.$set3[2]['imagenFile']?> alt="First slide">
+                <img class="d-block w-100" src=data:image;base64,<?php echo base64_encode($set3[2]['imagenFile'])?> alt="First slide">
                 <div class="carousel-caption d-none d-md-block bg-dark">
                     <h3><?php echo $set['0']['titulo'] ?></h3>
                     <p style="font-size:120%;"><?php echo $set['0']['sinopsis'] ?></p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src=<?php echo 'multimedia/'.$set3[5]['imagenFile']?> alt="Second slide">
+                <img class="d-block w-100" src=data:image;base64,<?php echo base64_encode($set3[5]['imagenFile'])?> alt="Second slide">
                 <div class="carousel-caption d-none d-md-block bg-dark">
                     <h3><?php echo $set['1']['titulo'] ?></h3>
                     <p style="font-size:120%;"><?php echo $set['1']['sinopsis'] ?></p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src=<?php echo 'multimedia/'.$set3[8]['imagenFile']?> alt="Third slide">
+                <img class="d-block w-100" src=data:image;base64,<?php echo base64_encode($set3[8]['imagenFile'])?> alt="Third slide">
                 <div class="carousel-caption d-none d-md-block bg-dark">
                     <h3><?php echo $set['2']['titulo'] ?></h3>
                     <p style="font-size:120%;"><?php echo $set['2']['sinopsis'] ?></p>
@@ -249,7 +253,7 @@
             <div class="card mt-3 text-white bg-dark">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src=<?php echo 'multimedia/'.$set3[2]['imagenFile']?> class="img-fluid">
+                        <img src=data:image;base64,<?php echo base64_encode($set3[2]['imagenFile'])?> class="img-fluid">
                     </div>
                     <div class="col-md-8">
                         <h2 class="card-title mt-2"><?php echo $set['0']['titulo'] ?></h2>
@@ -263,7 +267,7 @@
             <div class="card mt-3 text-white bg-dark">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src=<?php echo 'multimedia/'.$set3[5]['imagenFile']?> class="img-fluid">
+                        <img src=data:image;base64,<?php echo base64_encode($set3[5]['imagenFile'])?> class="img-fluid">
                     </div>
                     <div class="col-md-8">
                         <h2 class="card-title mt-2"><?php echo $set['1']['titulo'] ?></h2>
@@ -277,7 +281,7 @@
             <div class="card mt-3 text-white bg-dark">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src=<?php echo 'multimedia/'.$set3[8]['imagenFile']?> class="img-fluid">
+                        <img src=data:image;base64,<?php echo base64_encode($set3[8]['imagenFile'])?> class="img-fluid">
                     </div>
                     <div class="col-md-8">
                         <h2 class="card-title mt-2"><?php echo $set['2']['titulo'] ?></h2>
@@ -298,7 +302,7 @@
     <form action="" method="post">
         <div class="card-deck mt-4" style="width: fit-content;">
             <div class="card text-white bg-dark">
-                <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[2]['imagenFile']?> alt="Card image cap">
+                <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[2]['imagenFile'])?> alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $set2['0']['titulo'] ?></h5>
                     <p class="card-text"><?php echo $set2['0']['sinopsis'] ?></p>
@@ -311,7 +315,7 @@
                 </div>
             </div>
             <div class="card text-white bg-dark">
-                <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[5]['imagenFile']?> alt="Card image cap">
+                <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[5]['imagenFile'])?> alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $set2['1']['titulo'] ?></h5>
                     <p class="card-text"><?php echo $set2['1']['sinopsis'] ?></p>
@@ -324,7 +328,7 @@
                 </div>
             </div>
             <div class="card text-white bg-dark">
-                <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[8]['imagenFile']?> alt="Card image cap">
+                <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[8]['imagenFile'])?> alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $set2['2']['titulo'] ?></h5>
                     <p class="card-text"><?php echo $set2['2']['sinopsis'] ?></p>

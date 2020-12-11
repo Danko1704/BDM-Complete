@@ -15,7 +15,12 @@ DROP TABLE IF EXISTS Imagen;
 
 CREATE TABLE IF NOT EXISTS Imagen(
 	imagenId int auto_increment not null comment 'Id de la imagen en la tabla',
+<<<<<<< HEAD
     imagenFile blob comment 'Archivo de imagen',
+=======
+    imagenName varchar(150) comment 'Nombre de imagen',
+    imagenFile mediumblob comment 'Archivo de la imagen',
+>>>>>>> Yap_branch2
     primary key (imagenId)
 );
 

@@ -1,4 +1,6 @@
-SET SQL_SAFE_UPDATES = 0; 
+SET SQL_SAFE_UPDATES = 0;
+
+use proyectodb;
 
 DROP PROCEDURE IF EXISTS sp_validarUsuario;
 
@@ -32,11 +34,16 @@ DROP PROCEDURE IF EXISTS sp_agregarImagenUsuario;
 DELIMITER %$
 CREATE PROCEDURE sp_agregarImagenUsuario(
 	IN pCorreo varchar (30),
+<<<<<<< HEAD
     pImagen blob
+=======
+    pImagenNombre varchar(150),
+    pImagenData mediumblob
+>>>>>>> Yap_branch2
 )
 Begin
 	INSERT INTO Imagen 
-    VALUES (0, pImagen);
+    VALUES (0, pImagenNombre, pImagenData);
     UPDATE Usuario SET imagenIdF = last_insert_id() WHERE correo = pCorreo;
 END %$
 DELIMITER ;
@@ -85,7 +92,9 @@ CREATE PROCEDURE sp_infoUsuario(
 	pNombre varchar(50)
 )
 Begin
-    SELECT Usuario.usuarioId, Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId WHERE Usuario.nombre = pNombre;
+    SELECT Usuario.usuarioId, Usuario.nombre, Usuario.correo, Usuario.telefono, Usuario.contraseña, Imagen.imagenFile FROM Usuario
+    INNER JOIN Imagen ON Usuario.imagenIdF = Imagen.imagenId
+    WHERE Usuario.nombre = pNombre;
 END %$
 DELIMITER ;
 
@@ -98,7 +107,12 @@ CREATE PROCEDURE sp_updateUsuario(
     pCorreo varchar(30),
     pTelefono varchar(10),
     pContraseña varchar(30),
+<<<<<<< HEAD
     pImagen blob
+=======
+    pImagen varchar(150),
+    pImagenF mediumblob
+>>>>>>> Yap_branch2
 )
 Begin
 	DECLARE idImagenSearch int;
@@ -110,7 +124,8 @@ Begin
     Usuario.correo = pCorreo,
     Usuario.telefono = pTelefono,
     Usuario.contraseña = pContraseña,
-    Imagen.imagenFile = pImagen
+    Imagen.imagenName = pImagen,
+    Imagen.imagenFile = pImagenF
     WHERE Usuario.nombre = oNombre AND Imagen.imagenId = idImagenSearch;
 END %$
 DELIMITER ;
@@ -174,10 +189,17 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS sp_agregarImagenNoticia;
 
 DELIMITER //
+<<<<<<< HEAD
 CREATE PROCEDURE sp_agregarImagenNoticia
 (IN pImagen blob)
+=======
+CREATE PROCEDURE sp_agregarImagenNoticia(
+	IN pImagen varchar(150),
+    IN pImagenF mediumblob
+)
+>>>>>>> Yap_branch2
 BEGIN
-INSERT INTO Imagen VALUES(0, pImagen);
+INSERT INTO Imagen VALUES(0, pImagen, pImagenF);
 SELECT imagenId FROM Imagen WHERE imagenId = LAST_INSERT_ID();
 END //
 DELIMITER ;
@@ -376,7 +398,7 @@ Begin
 	SET 
 		idNoticia = (SELECT Noticia.noticiaId FROM Noticia WHERE Noticia.titulo = pTitulo);
         
-	SELECT 	multimedia.imagenIdF, imagen.imagenFile 
+	SELECT 	multimedia.imagenIdF, imagen.imagenName, imagen.imagenFile
     from multimedia 
     INNER JOIN imagen on multimedia.imagenIdF = imagen.imagenId AND multimedia.noticiaIdF = idNoticia;
 END %$
@@ -489,11 +511,15 @@ DROP PROCEDURE IF EXISTS sp_updateImagenNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_updateImagenNoticia
+<<<<<<< HEAD
 (IN pImagen blob, idImagen int)
+=======
+(IN pImagen varchar(150), pImagenF mediumblob, idImagen int)
+>>>>>>> Yap_branch2
 BEGIN
 	IF pImagen != '' THEN
 		UPDATE Imagen 
-		SET imagenFile = pImagen WHERE imagenId = idImagen;
+		SET imagenName = pImagen, imagenFile = pImagenF WHERE imagenId = idImagen;
 	END IF;
 END //
 DELIMITER ;

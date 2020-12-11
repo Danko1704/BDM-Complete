@@ -102,7 +102,11 @@
     ?>
 
     <button class="material-icons floating-btn imagenSinUsuario" onclick="window.location.href='perfilUsuario.php'"
+<<<<<<< HEAD
         id='imagenDentro'><img src=<?php echo 'multimedia/'.$set5[0]['imagenFile']?> /></button>
+=======
+        id='imagenDentro'><img src=data:image;base64,<?php echo base64_encode($set5[0]['imagenFile'])?> /></button>
+>>>>>>> Yap_branch2
 
     <!-- HEADER -->
     <section class="container-fluid slider d-flex justify-content-center align-items-center">
@@ -269,13 +273,13 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner mt-4">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src=<?php echo 'multimedia/'.$set[0]['imagenFile']?> alt="First slide">
+                    <img class="d-block w-100" src=data:image;base64,<?php echo base64_encode($set[0]['imagenFile'])?> alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src=<?php echo 'multimedia/'.$set[1]['imagenFile']?> alt="Second slide">
+                    <img class="d-block w-100" src=data:image;base64,<?php echo base64_encode($set[1]['imagenFile'])?> alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src=<?php echo 'multimedia/'.$set[2]['imagenFile']?> alt="Third slide">
+                    <img class="d-block w-100" src=data:image;base64,<?php echo base64_encode($set[2]['imagenFile'])?> alt="Third slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -336,7 +340,11 @@
                 <?php 
                     if (strcmp($mandado1, '') !== 0){
                         ?>
+<<<<<<< HEAD
                         <img class="card-img-top" src=<?php echo 'multimedia/'.$set7[0]['imagenFile']?> alt="Card image cap">
+=======
+                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set7[0]['imagenFile'])?> alt="Card image cap">
+>>>>>>> Yap_branch2
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set6['0']['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set6['0']['sinopsis'] ?></p>
@@ -350,7 +358,11 @@
                         <?php
                     } else{
                         ?>
+<<<<<<< HEAD
                         <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[2]['imagenFile']?> alt="Card image cap">
+=======
+                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[2]['imagenFile'])?> alt="Card image cap">
+>>>>>>> Yap_branch2
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set2['0']['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set2['0']['sinopsis'] ?></p>
@@ -369,7 +381,11 @@
                 <?php 
                     if (strcmp($mandado2, '') !== 0){
                         ?>
+<<<<<<< HEAD
                         <img class="card-img-top" src=<?php echo 'multimedia/'.$set8[0]['imagenFile']?> alt="Card image cap">
+=======
+                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set8[0]['imagenFile'])?> alt="Card image cap">
+>>>>>>> Yap_branch2
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set6[1]['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set6[1]['sinopsis'] ?></p>
@@ -383,7 +399,11 @@
                         <?php
                     } else{
                         ?>
+<<<<<<< HEAD
                         <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[5]['imagenFile']?> alt="Card image cap">
+=======
+                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[5]['imagenFile'])?> alt="Card image cap">
+>>>>>>> Yap_branch2
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set2[1]['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set2[1]['sinopsis'] ?></p>
@@ -402,7 +422,11 @@
                 <?php 
                     if (strcmp($mandado3, '') !== 0){
                         ?>
+<<<<<<< HEAD
                         <img class="card-img-top" src=<?php echo 'multimedia/'.$set9[0]['imagenFile']?> alt="Card image cap">
+=======
+                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set9[0]['imagenFile'])?> alt="Card image cap">
+>>>>>>> Yap_branch2
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set6[2]['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set6[2]['sinopsis'] ?></p>
@@ -416,7 +440,11 @@
                         <?php
                     } else{
                         ?>
+<<<<<<< HEAD
                         <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[8]['imagenFile']?> alt="Card image cap">
+=======
+                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[8]['imagenFile'])?> alt="Card image cap">
+>>>>>>> Yap_branch2
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set2[2]['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set2[2]['sinopsis'] ?></p>
