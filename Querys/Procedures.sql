@@ -34,24 +34,8 @@ DROP PROCEDURE IF EXISTS sp_agregarImagenUsuario;
 DELIMITER %$
 CREATE PROCEDURE sp_agregarImagenUsuario(
 	IN pCorreo varchar (30),
-<<<<<<< HEAD
-<<<<<<< HEAD
-    pImagen blob
-=======
     pImagenNombre varchar(150),
     pImagenData mediumblob
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-    pImagenNombre varchar(150),
-    pImagenData mediumblob
-=======
-    pImagen blob
->>>>>>> LISTO
-=======
-    pImagen blob
->>>>>>> Yap_branch
->>>>>>> Yap_branch
 )
 Begin
 	INSERT INTO Imagen 
@@ -119,24 +103,8 @@ CREATE PROCEDURE sp_updateUsuario(
     pCorreo varchar(30),
     pTelefono varchar(10),
     pContraseña varchar(30),
-<<<<<<< HEAD
-<<<<<<< HEAD
-    pImagen blob
-=======
     pImagen varchar(150),
     pImagenF mediumblob
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-    pImagen varchar(150),
-    pImagenF mediumblob
-=======
-    pImagen blob
->>>>>>> LISTO
-=======
-    pImagen blob
->>>>>>> Yap_branch
->>>>>>> Yap_branch
 )
 Begin
 	DECLARE idImagenSearch int;
@@ -213,29 +181,10 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS sp_agregarImagenNoticia;
 
 DELIMITER //
-<<<<<<< HEAD
-<<<<<<< HEAD
-CREATE PROCEDURE sp_agregarImagenNoticia
-(IN pImagen blob)
-=======
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
->>>>>>> Yap_branch
 CREATE PROCEDURE sp_agregarImagenNoticia(
 	IN pImagen varchar(150),
     IN pImagenF mediumblob
 )
-<<<<<<< HEAD
->>>>>>> Yap_branch2
-=======
-=======
-CREATE PROCEDURE sp_agregarImagenNoticia
-(IN pImagen blob)
-<<<<<<< HEAD
->>>>>>> LISTO
-=======
->>>>>>> Yap_branch
->>>>>>> Yap_branch
 BEGIN
 INSERT INTO Imagen VALUES(0, pImagen, pImagenF);
 SELECT imagenId FROM Imagen WHERE imagenId = LAST_INSERT_ID();
@@ -549,22 +498,7 @@ DROP PROCEDURE IF EXISTS sp_updateImagenNoticia;
 
 DELIMITER //
 CREATE PROCEDURE sp_updateImagenNoticia
-<<<<<<< HEAD
-<<<<<<< HEAD
-(IN pImagen blob, idImagen int)
-=======
 (IN pImagen varchar(150), pImagenF mediumblob, idImagen int)
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-(IN pImagen varchar(150), pImagenF mediumblob, idImagen int)
-=======
-(IN pImagen blob, idImagen int)
->>>>>>> LISTO
-=======
-(IN pImagen blob, idImagen int)
->>>>>>> Yap_branch
->>>>>>> Yap_branch
 BEGIN
 	IF pImagen != '' THEN
 		UPDATE Imagen 

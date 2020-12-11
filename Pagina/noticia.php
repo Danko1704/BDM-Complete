@@ -102,22 +102,7 @@
     ?>
 
     <button class="material-icons floating-btn imagenSinUsuario" onclick="window.location.href='perfilUsuario.php'"
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id='imagenDentro'><img src=<?php echo 'multimedia/'.$set5[0]['imagenFile']?> /></button>
-=======
         id='imagenDentro'><img src=data:image;base64,<?php echo base64_encode($set5[0]['imagenFile'])?> /></button>
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-        id='imagenDentro'><img src=data:image;base64,<?php echo base64_encode($set5[0]['imagenFile'])?> /></button>
-=======
-        id='imagenDentro'><img src=<?php echo 'multimedia/'.$set5[0]['imagenFile']?> /></button>
->>>>>>> todo backup
-=======
-        id='imagenDentro'><img src=<?php echo 'multimedia/'.$set5[0]['imagenFile']?> /></button>
->>>>>>> Yap_branch
->>>>>>> Yap_branch
 
     <!-- HEADER -->
     <section class="container-fluid slider d-flex justify-content-center align-items-center">
@@ -351,22 +336,7 @@
                 <?php 
                     if (strcmp($mandado1, '') !== 0){
                         ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set7[0]['imagenFile']?> alt="Card image cap">
-=======
                         <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set7[0]['imagenFile'])?> alt="Card image cap">
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set7[0]['imagenFile'])?> alt="Card image cap">
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set7[0]['imagenFile']?> alt="Card image cap">
->>>>>>> todo backup
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set7[0]['imagenFile']?> alt="Card image cap">
->>>>>>> Yap_branch
->>>>>>> Yap_branch
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set6['0']['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set6['0']['sinopsis'] ?></p>
@@ -380,22 +350,7 @@
                         <?php
                     } else{
                         ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[2]['imagenFile']?> alt="Card image cap">
-=======
                         <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[2]['imagenFile'])?> alt="Card image cap">
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[2]['imagenFile'])?> alt="Card image cap">
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[2]['imagenFile']?> alt="Card image cap">
->>>>>>> todo backup
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[2]['imagenFile']?> alt="Card image cap">
->>>>>>> Yap_branch
->>>>>>> Yap_branch
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set2['0']['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set2['0']['sinopsis'] ?></p>
@@ -414,22 +369,7 @@
                 <?php 
                     if (strcmp($mandado2, '') !== 0){
                         ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set8[0]['imagenFile']?> alt="Card image cap">
-=======
                         <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set8[0]['imagenFile'])?> alt="Card image cap">
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set8[0]['imagenFile'])?> alt="Card image cap">
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set8[0]['imagenFile']?> alt="Card image cap">
->>>>>>> todo backup
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set8[0]['imagenFile']?> alt="Card image cap">
->>>>>>> Yap_branch
->>>>>>> Yap_branch
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set6[1]['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set6[1]['sinopsis'] ?></p>
@@ -443,22 +383,7 @@
                         <?php
                     } else{
                         ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[5]['imagenFile']?> alt="Card image cap">
-=======
                         <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[5]['imagenFile'])?> alt="Card image cap">
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[5]['imagenFile'])?> alt="Card image cap">
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[5]['imagenFile']?> alt="Card image cap">
->>>>>>> todo backup
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[5]['imagenFile']?> alt="Card image cap">
->>>>>>> Yap_branch
->>>>>>> Yap_branch
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set2[1]['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set2[1]['sinopsis'] ?></p>
@@ -477,22 +402,7 @@
                 <?php 
                     if (strcmp($mandado3, '') !== 0){
                         ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set9[0]['imagenFile']?> alt="Card image cap">
-=======
                         <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set9[0]['imagenFile'])?> alt="Card image cap">
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set9[0]['imagenFile'])?> alt="Card image cap">
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set9[0]['imagenFile']?> alt="Card image cap">
->>>>>>> todo backup
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set9[0]['imagenFile']?> alt="Card image cap">
->>>>>>> Yap_branch
->>>>>>> Yap_branch
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set6[2]['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set6[2]['sinopsis'] ?></p>
@@ -506,22 +416,7 @@
                         <?php
                     } else{
                         ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[8]['imagenFile']?> alt="Card image cap">
-=======
                         <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[8]['imagenFile'])?> alt="Card image cap">
->>>>>>> Yap_branch2
-=======
-<<<<<<< refs/remotes/origin/Yap_branch2
-                        <img class="card-img-top" src=data:image;base64,<?php echo base64_encode($set4[8]['imagenFile'])?> alt="Card image cap">
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[8]['imagenFile']?> alt="Card image cap">
->>>>>>> todo backup
-=======
-                        <img class="card-img-top" src=<?php echo 'multimedia/'.$set4[8]['imagenFile']?> alt="Card image cap">
->>>>>>> Yap_branch
->>>>>>> Yap_branch
                         <div class="card-body">
                         <h5 class="card-title"><?php echo $set2[2]['titulo'] ?></h5>
                         <p class="card-text"><?php echo $set2[2]['sinopsis'] ?></p>
