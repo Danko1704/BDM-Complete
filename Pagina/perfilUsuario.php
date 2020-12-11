@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="image-preview text-center" id="imagePreview">
-                        <img src=<?php echo 'multimedia/'.$data['imagenFile']?> alt="Image Preview"
+                        <img src=data:image;base64,<?php echo base64_encode($data['imagenFile'])?> alt="Image Preview"
                             class="image-preview__image rounded-circle text-center" height="70%" width="70%">
                         <span class="image-preview__default-text">Image Preview</span>
                     </div>
@@ -104,21 +104,28 @@ $nombreOriginal = $data['nombre'];
         $numero = $_POST['numeroBox'];
         $contraseña = $_POST['contraseñaBox'];
         $filename = $_FILES['inpFile']['name'];
-        $filetmpname = $_FILES['inpFile']['tmp_name'];
+        $filedata = addslashes(file_get_contents($_FILES['inpFile']['tmp_name']));
 
-        //folder where images will be uploaded
-        $folder = 'multimedia/';
+            //folder where images will be uploaded
+        //$folder = 'multimedia/';
 
-        //function for saving the uploaded images in a specific folder
-        move_uploaded_file($filetmpname, $folder.$filename);
+            //function for saving the uploaded images in a specific folder
+        //move_uploaded_file($filetmpname, $folder.$filename);
 
         //inserting image details (ie image name) in the database
-        $userUpdate = "call sp_updateUsuario('$nombreOriginal', '$nombre', '$correo', '$numero', '$contraseña', '$filename')";
+        $userUpdate = "call sp_updateUsuario('$nombreOriginal', '$nombre', '$correo', '$numero', '$contraseña', '$filename', '$filedata')";
 
         $qry1 = mysqli_query($con,  $userUpdate);
 
-        if( $userUpdate) {
-          header("Location:index.php");
+        // $error = mysqli_error($con);
+
+        // echo "<script>console.log($error)</script>";
+
+        //echo "<script>console.log($qry1)</script>";
+
+        if( $qry1) {
+          //header("Location:index.php");
+          echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
         } else {
           echo "no se pudo guardar la imagen";
         }

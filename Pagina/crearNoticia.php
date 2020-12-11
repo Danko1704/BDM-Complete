@@ -69,12 +69,12 @@
     <div class="container-lg my-4 bg-white rounded">
         <form form action="" method="post" enctype="multipart/form-data">
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">Titulo</label>
+                <label for="exampleFormControlInput1">Titulo (hasta 150 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese un titulo para la noticia" name="tituloBox" required>
             </div>
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">Sinopsis</label>
+                <label for="exampleFormControlInput1">Sinopsis (hasta 150 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese una Sinopsis para la noticia" name="sinopsisBox" required>
             </div>
@@ -97,17 +97,17 @@
                     required></textarea>
             </div>
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">PalabraClave1</label>
+                <label for="exampleFormControlInput1">PalabraClave1 (hasta 25 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese una palabra clave" name="clave1" required>
             </div>
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">PalabraClave2</label>
+                <label for="exampleFormControlInput1">PalabraClave2 (hasta 25 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese una palabra clave" name="clave2" required>
             </div>
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">PalabraClave3</label>
+                <label for="exampleFormControlInput1">PalabraClave3 (hasta 25 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
                     placeholder="Ingrese una palabra clave" name="clave3" required>
             </div>
@@ -225,18 +225,18 @@ include('Php/dbOrlando.php');
 
         
         $filename1 = $_FILES['inpFile1']['name'];
-        $filetmpname1 = $_FILES['inpFile1']['tmp_name'];
+        $filedata1 = addslashes(file_get_contents($_FILES['inpFile1']['tmp_name']));
 
         $filename2 = $_FILES['inpFile2']['name'];
-        $filetmpname2 = $_FILES['inpFile2']['tmp_name'];
+        $filedata2 = addslashes(file_get_contents($_FILES['inpFile2']['tmp_name']));
 
         $filename3 = $_FILES['inpFile3']['name'];
-        $filetmpname3 = $_FILES['inpFile3']['tmp_name'];
+        $filedata3 = addslashes(file_get_contents($_FILES['inpFile3']['tmp_name']));
 
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
         
-        
+        require 'Php/dbOrlando.php';
 
         //inserting image details (ie image name) in the database
         $insertarNoticia = "call sp_agregarNoticia ('$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$varSesion', '$textoAdmin', '$categoria', false);";
@@ -247,14 +247,15 @@ include('Php/dbOrlando.php');
         $notiID = $row['noticiaId'];
 
         $nombreVideoOrg = $notiID.$filename4;
+        $nombreVideoTmp = $notiID.$filetmpname4;
 
         //folder where images will be uploaded
         $folder = 'multimedia/';
 
-        //function for saving the uploaded images in a specific folder
-        move_uploaded_file($filetmpname1, $folder.$filename1);
-        move_uploaded_file($filetmpname2, $folder.$filename2);
-        move_uploaded_file($filetmpname3, $folder.$filename3);
+            //function for saving the uploaded images in a specific folder
+        //move_uploaded_file($filetmpname1, $folder.$filename1);
+        //move_uploaded_file($filetmpname2, $folder.$filename2);
+        //move_uploaded_file($filetmpname3, $folder.$filename3);
         move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
 
         if($current_id) {
@@ -267,7 +268,7 @@ include('Php/dbOrlando.php');
 
         if( $noticiaBool === true) {
             include('Php/dbOrlando.php');
-            $image1 = "call sp_agregarImagenNoticia('$filename1')";
+            $image1 = "call sp_agregarImagenNoticia('$filename1', '$filedata1')";
             $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
@@ -284,7 +285,7 @@ include('Php/dbOrlando.php');
 
         if( $imagen1Bool === true) {
             include('Php/dbOrlando.php');
-            $image2 = "call sp_agregarImagenNoticia('$filename2')";
+            $image2 = "call sp_agregarImagenNoticia('$filename2', '$filedata2')";
             $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
@@ -301,7 +302,7 @@ include('Php/dbOrlando.php');
 
         if( $imagen2Bool === true) {
             include('Php/dbOrlando.php');
-            $image3 = "call sp_agregarImagenNoticia('$filename3')";
+            $image3 = "call sp_agregarImagenNoticia('$filename3', '$filedata3')";
             $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
@@ -367,28 +368,21 @@ include('Php/dbOrlando.php');
 
         
         $filename1 = $_FILES['inpFile1']['name'];
-        $filetmpname1 = $_FILES['inpFile1']['tmp_name'];
+        $filedata1 = addslashes(file_get_contents($_FILES['inpFile1']['tmp_name']));
 
         $filename2 = $_FILES['inpFile2']['name'];
-        $filetmpname2 = $_FILES['inpFile2']['tmp_name'];
+        $filedata2 = addslashes(file_get_contents($_FILES['inpFile2']['tmp_name']));
 
         $filename3 = $_FILES['inpFile3']['name'];
-        $filetmpname3 = $_FILES['inpFile3']['tmp_name'];
+        $filedata3 = addslashes(file_get_contents($_FILES['inpFile3']['tmp_name']));
 
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
 
-        $nombreVideoOrg = $titulo.$filename4;
-
         //folder where images will be uploaded
         $folder = 'multimedia/';
 
-        //function for saving the uploaded images in a specific folder
-        move_uploaded_file($filetmpname1, $folder.$filename1);
-        move_uploaded_file($filetmpname2, $folder.$filename2);
-        move_uploaded_file($filetmpname3, $folder.$filename3);
-        move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
-
+        require 'Php/dbOrlando.php';
 
         //inserting image details (ie image name) in the database
         $insertarNoticia = "call sp_agregarNoticia ('$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$varSesion', '$textoAdmin', '$categoria', true);";
@@ -399,14 +393,15 @@ include('Php/dbOrlando.php');
         $notiID = $row['noticiaId'];
 
         $nombreVideoOrg = $notiID.$filename4;
+        $nombreVideoTmp = $notiID.$filetmpname4;
 
         //folder where images will be uploaded
         $folder = 'multimedia/';
 
         //function for saving the uploaded images in a specific folder
-        move_uploaded_file($filetmpname1, $folder.$filename1);
-        move_uploaded_file($filetmpname2, $folder.$filename2);
-        move_uploaded_file($filetmpname3, $folder.$filename3);
+        //move_uploaded_file($filetmpname1, $folder.$filename1);
+        //move_uploaded_file($filetmpname2, $folder.$filename2);
+        //move_uploaded_file($filetmpname3, $folder.$filename3);
         move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
 
         if($current_id) {
@@ -419,7 +414,7 @@ include('Php/dbOrlando.php');
 
         if( $noticiaBool === true) {
             include('Php/dbOrlando.php');
-            $image1 = "call sp_agregarImagenNoticia('$filename1')";
+            $image1 = "call sp_agregarImagenNoticia('$filename1', '$filedata1')";
             $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
@@ -436,7 +431,7 @@ include('Php/dbOrlando.php');
 
         if( $imagen1Bool === true) {
             include('Php/dbOrlando.php');
-            $image2 = "call sp_agregarImagenNoticia('$filename2')";
+            $image2 = "call sp_agregarImagenNoticia('$filename2', '$filedata2')";
             $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];
@@ -453,7 +448,7 @@ include('Php/dbOrlando.php');
 
         if( $imagen2Bool === true) {
             include('Php/dbOrlando.php');
-            $image3 = "call sp_agregarImagenNoticia('$filename3')";
+            $image3 = "call sp_agregarImagenNoticia('$filename3', '$filedata3')";
             $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             $row = mysqli_fetch_assoc($current_id);
             $imgID= $row['imagenId'];

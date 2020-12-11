@@ -91,20 +91,27 @@ include('Php/dbOrlando.php');
         $numero = $_POST['numeroBox'];
         $contraseña = $_POST['contraseñaBox'];
         $filename = $_FILES['inpFile']['name'];
-        $filetmpname = $_FILES['inpFile']['tmp_name'];
+        $filedata = addslashes(file_get_contents($_FILES['inpFile']['tmp_name']));
+        //$filetype = $_FILES['inpFile']['type'];
 
-        //folder where images will be uploaded
-        $folder = 'multimedia/';
+            //folder where images will be uploaded
+        //$folder = 'multimedia/';
 
-        //function for saving the uploaded images in a specific folder
-        move_uploaded_file($filetmpname, $folder.$filename);
+            //function for saving the uploaded images in a specific folder
+        //move_uploaded_file($filetmpname, $folder.$filename);
 
+
+        //echo "<script>console.log('$filedata')</script>";
         //inserting image details (ie image name) in the database
         $userInsert = "call sp_agregarUsuario('$nombre', '$correo', '$numero', '$contraseña')";
-        $sql = "call sp_agregarImagenUsuario('$correo', '$filename')";
+        $sql = "call sp_agregarImagenUsuario('$correo', '$filename', '$filedata')";
 
         $qry1 = mysqli_query($con,  $userInsert);
         $qry2 = mysqli_query($con,  $sql);
+
+        //$error = mysqli_error($con);
+
+        //echo "<script>console.log($error)</script>";
 
         if( $qry1 && $qry2) {
           header("Location:index.php");

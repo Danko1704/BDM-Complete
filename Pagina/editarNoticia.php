@@ -31,6 +31,8 @@
     $titulo = $data['titulo'];
     $sinopsis = $data['sinopsis'];
 
+    echo $set2[0]['videoIdF'];
+
 
 ?>
 
@@ -94,14 +96,13 @@
     <div class="container-lg my-4 bg-white rounded">
         <form form action="" method="post" enctype="multipart/form-data">
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">Titulo</label>
+                <label for="exampleFormControlInput1">Titulo (hasta 150 caracteres)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Ingrese un titulo para la noticia" name="tituloBox"  value="<?= htmlspecialchars($titulo) ?>" required>
+                    placeholder="Ingrese un titulo para la noticia" name="tituloBox"  value="<?=htmlspecialchars($titulo) ?>" required>
             </div>
             <div class="form-group" style="padding-top: 15px;">
-                <label for="exampleFormControlInput1">Sinopsis</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1"
-                    name="sinopsisBox" value="<?= htmlspecialchars($sinopsis) ?>" required>
+                <label for="exampleFormControlInput1">Sinopsis (hasta 150 caracteres)</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="sinopsisBox" value="<?=htmlspecialchars($sinopsis) ?>" required>
             </div>
             <div class="form-group">
                 <label for="categoBox">Categoria</label>
@@ -119,55 +120,55 @@
             <div class="form-group" style="padding-top: 15px;">
                 <label for="exampleFormControlTextarea1">Texto</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textoBox"
-                    required> <?php echo $data['texto'] ?> </textarea>
+                    required><?php echo $data['texto'] ?></textarea>
             </div>
             <div class="form-group" style="padding-top: 15px;">
                 <label for="exampleFormControlInput1">PalabraClave1</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Ingrese una palabra clave" name="clave1" value="<?= htmlspecialchars($data['palabraClave1']) ?>" required>
+                    placeholder="Ingrese una palabra clave" name="clave1" value="<?=htmlspecialchars($data['palabraClave1']) ?>" required>
             </div>
             <div class="form-group" style="padding-top: 15px;">
                 <label for="exampleFormControlInput1">PalabraClave2</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Ingrese una palabra clave" name="clave2" value="<?= htmlspecialchars($data['palabraClave2']) ?>" required>
+                    placeholder="Ingrese una palabra clave" name="clave2" value="<?=htmlspecialchars($data['palabraClave2']) ?>" required>
             </div>
             <div class="form-group" style="padding-top: 15px;">
                 <label for="exampleFormControlInput1">PalabraClave3</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Ingrese una palabra clave" name="clave3" value="<?= htmlspecialchars($data['palabraClave3']) ?>" required>
+                    placeholder="Ingrese una palabra clave" name="clave3" value="<?=htmlspecialchars($data['palabraClave3']) ?>" required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Comentarios del Admin</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                    name="textoBoxAdmin"><?= htmlspecialchars($data['comentarioEditor']) ?></textarea>
+                    name="textoBoxAdmin"><?=htmlspecialchars($data['comentarioEditor']) ?></textarea>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlFile1">Eliga la imagen 1 a mostrar</label>
+                <label for="exampleFormControlFile1">Elija la imagen 1 a mostrar</label>
                 <input type="file" class="form-control-file" id="inpFile1" name="inpFile1">
                 <label for="exampleFormControlInput1">Previamente puesta (si no desea cambiarlo, no agregue ninguna imagen):</label>
                 <input type="text" class="form-control"
-                     value="<?= htmlspecialchars($set[0]['imagenFile']) ?>" disabled="disabled" required>
+                     value="<?=htmlspecialchars($set[0]['imagenName']) ?>" disabled="disabled" required>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlFile1">Eliga la imagen 2 a mostrar</label>
+                <label for="exampleFormControlFile1">Elija la imagen 2 a mostrar</label>
                 <input type="file" class="form-control-file" id="inpFile2" name="inpFile2">
                 <label for="exampleFormControlInput1">Previamente puesta (si no desea cambiarlo, no agregue ninguna imagen):</label>
                 <input type="text" class="form-control"
-                     value="<?= htmlspecialchars($set[1]['imagenFile']) ?>" disabled="disabled" required>
+                     value="<?=htmlspecialchars($set[1]['imagenName']) ?>" disabled="disabled" required>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlFile1">Eliga la imagen 3 a mostrar</label>
+                <label for="exampleFormControlFile1">Elija la imagen 3 a mostrar</label>
                 <input type="file" class="form-control-file" id="inpFile3" name="inpFile3">
                 <label for="exampleFormControlInput1">Previamente puesta (si no desea cambiarlo, no agregue ninguna imagen):</label>
                 <input type="text" class="form-control"
-                     value="<?= htmlspecialchars($set[2]['imagenFile']) ?>" disabled="disabled" required>
+                     value="<?=htmlspecialchars($set[2]['imagenName']) ?>" disabled="disabled" required>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlFile1">Eliga el video a mostrar</label>
+                <label for="exampleFormControlFile1">Elija el video a mostrar</label>
                 <input type="file" class="form-control-file" id="inpFile4" name="inpFile4">
                 <label for="exampleFormControlInput1">Previamente puesta (si no desea cambiarlo, no agregue ninguna imagen):</label>
                 <input type="text" class="form-control"
-                     value="<?= htmlspecialchars($set2[0]['videoFile']) ?>" disabled="disabled" required>
+                     value="<?=htmlspecialchars($set2[0]['videoFile']) ?>" disabled="disabled" required>
             </div>
             <div class="Like d-flex bd-highlight" style="padding-bottom:15px">
                 <input type="submit" class="uploadfilesub btn btn-success  ml-auto" name="aceptar" value="Agregar">
@@ -262,15 +263,17 @@ include('Php/dbOrlando.php');
         $textoAdmin = $_POST['textoBoxAdmin'];
         $categoria = $_POST['categoBox'];
 
+        $videoTexto = $_POST['inpFile4'];
+
         
         $filename1 = $_FILES['inpFile1']['name'];
-        $filetmpname1 = $_FILES['inpFile1']['tmp_name'];
+        $filedata1 = addslashes(file_get_contents($_FILES['inpFile1']['tmp_name']));
 
         $filename2 = $_FILES['inpFile2']['name'];
-        $filetmpname2 = $_FILES['inpFile2']['tmp_name'];
+        $filedata2 = addslashes(file_get_contents($_FILES['inpFile2']['tmp_name']));
 
         $filename3 = $_FILES['inpFile3']['name'];
-        $filetmpname3 = $_FILES['inpFile3']['tmp_name'];
+        $filedata3 = addslashes(file_get_contents($_FILES['inpFile3']['tmp_name']));
 
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
@@ -285,47 +288,52 @@ include('Php/dbOrlando.php');
         $notiID = $row['noticiaId'];
 
         $nombreVideoOrg = $notiID.$filename4;
-        $nombreVideoTmp = $titulo.$filetmpname4;
+        $nombreVideoTmp = $notiID.$filetmpname4;
 
         //folder where images will be uploaded
         $folder = 'multimedia/';
 
         //function for saving the uploaded images in a specific folder
-        if ('inpFile1' != ''){
-            move_uploaded_file($filetmpname1, $folder.$filename1);
+        if (strcmp('inpFile1', '') !== 0){
+            //move_uploaded_file($filetmpname1, $folder.$filename1);
 
             include('Php/dbOrlando.php');
             $oldImage1 = $set[0]['imagenIdF'];
-            $image1 = "call sp_updateImagenNoticia('$filename1', '$oldImage1')";
-            $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
+            $image1 = "call sp_updateImagenNoticia('$filename1', '$filedata1', '$oldImage1')";
+            $imagen1 = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
-        if ('inpFile2' != ''){
-            move_uploaded_file($filetmpname2, $folder.$filename2);
+        if (strcmp('inpFile2', '') !== 0){
+            //move_uploaded_file($filetmpname2, $folder.$filename2);
 
             include('Php/dbOrlando.php');
             $oldImage2 = $set[1]['imagenIdF'];
-            $image2 = "call sp_updateImagenNoticia('$filename2', '$oldImage2')";
-            $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
+            $image2 = "call sp_updateImagenNoticia('$filename2', '$filedata2', '$oldImage2')";
+            $imagen2 = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
-        if ('inpFile3' != ''){
-            move_uploaded_file($filetmpname3, $folder.$filename3);
+        if (strcmp('inpFile3', '') !== 0){
+            //move_uploaded_file($filetmpname3, $folder.$filename3);
             include('Php/dbOrlando.php');
             $oldImage3 = $set[2]['imagenIdF'];
-            $image3 = "call sp_updateImagenNoticia('$filename3', '$oldImage3')";
-            $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
+            $image3 = "call sp_updateImagenNoticia('$filename3', '$filedata3', '$oldImage3')";
+            $imagen3 = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
-        if ('inpFile4' != ''){
+
+        if(strcmp($filename4, '') !== 0) {
             move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
 
             include('Php/dbOrlando.php');
             $oldImage4 = $set2[0]['videoIdF'];
             $video1 = "call sp_updateVideoNoticia('$nombreVideoOrg', '$oldImage4')";
-            $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
+            $videoQuery = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
+        
+        // if ('inpFile4' != ''){
+            
+        // }
 
         if($current_id) {
           $noticiaBool = true;
@@ -357,6 +365,8 @@ include('Php/dbOrlando.php');
         $imagen3Bool = false;
         $videoBool = false;
 
+        $notiID = '';
+
         $titulo = $_POST['tituloBox'];
         $sinopsis = $_POST['sinopsisBox'];
         $texto = $_POST['textoBox'];
@@ -368,13 +378,13 @@ include('Php/dbOrlando.php');
 
         
         $filename1 = $_FILES['inpFile1']['name'];
-        $filetmpname1 = $_FILES['inpFile1']['tmp_name'];
+        $filedata1 = addslashes(file_get_contents($_FILES['inpFile1']['tmp_name']));
 
         $filename2 = $_FILES['inpFile2']['name'];
-        $filetmpname2 = $_FILES['inpFile2']['tmp_name'];
+        $filedata2 = addslashes(file_get_contents($_FILES['inpFile2']['tmp_name']));
 
         $filename3 = $_FILES['inpFile3']['name'];
-        $filetmpname3 = $_FILES['inpFile3']['tmp_name'];
+        $filedata3 = addslashes(file_get_contents($_FILES['inpFile3']['tmp_name']));
 
         $filename4 = $_FILES['inpFile4']['name'];
         $filetmpname4 = $_FILES['inpFile4']['tmp_name'];
@@ -382,52 +392,53 @@ include('Php/dbOrlando.php');
         //inserting image details (ie image name) in the database
         include('Php/dbOrlando.php');
         $insertarNoticia = "call sp_editarNoticia ('$varTituloNoticia', '$titulo', '$sinopsis', '$texto', '$clave1', '$clave2', '$clave3', '$categoria', true);";
-
+       
         $current_id = mysqli_query($con, $insertarNoticia) or die("<b>Error:</b> Error al subir la noticia: <br/>" . mysqli_error($con));
-
+       
         $row = mysqli_fetch_assoc($current_id);
         $notiID = $row['noticiaId'];
 
         $nombreVideoOrg = $notiID.$filename4;
-        $nombreVideoTmp = $titulo.$filetmpname4;
+        $nombreVideoTmp = $notiID.$filetmpname4;
 
         //folder where images will be uploaded
         $folder = 'multimedia/';
 
         //function for saving the uploaded images in a specific folder
-        if ('inpFile1' != ''){
-            move_uploaded_file($filetmpname1, $folder.$filename1);
+        if (strcmp('inpFile1', '') !== 0){
+            //move_uploaded_file($filetmpname1, $folder.$filename1);
 
             include('Php/dbOrlando.php');
             $oldImage1 = $set[0]['imagenIdF'];
-            $image1 = "call sp_updateImagenNoticia('$filename1', '$oldImage1')";
-            $current_id = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
+            $image1 = "call sp_updateImagenNoticia('$filename1', '$filedata1', '$oldImage1')";
+            $imagen1 = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
-        if ('inpFile2' != ''){
-            move_uploaded_file($filetmpname2, $folder.$filename2);
+        if (strcmp('inpFile2', '') !== 0){
+            //move_uploaded_file($filetmpname2, $folder.$filename2);
 
             include('Php/dbOrlando.php');
             $oldImage2 = $set[1]['imagenIdF'];
-            $image2 = "call sp_updateImagenNoticia('$filename2', '$oldImage2')";
-            $current_id = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
+            $image2 = "call sp_updateImagenNoticia('$filename2', '$filedata2', '$oldImage2')";
+            $imagen2 = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
-        if ('inpFile3' != ''){
-            move_uploaded_file($filetmpname3, $folder.$filename3);
+        if (strcmp('inpFile3', '') !== 0){
+            //move_uploaded_file($filetmpname3, $folder.$filename3);
             include('Php/dbOrlando.php');
             $oldImage3 = $set[2]['imagenIdF'];
-            $image3 = "call sp_updateImagenNoticia('$filename3', '$oldImage3')";
-            $current_id = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
+            $image3 = "call sp_updateImagenNoticia('$filename3', '$filedata3', '$oldImage3')";
+            $imagen3 = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
-        if ('inpFile4' != ''){
+
+        if(strcmp($filename4, '') !== 0) {
             move_uploaded_file($filetmpname4, $folder.$nombreVideoOrg);
 
             include('Php/dbOrlando.php');
             $oldImage4 = $set2[0]['videoIdF'];
             $video1 = "call sp_updateVideoNoticia('$nombreVideoOrg', '$oldImage4')";
-            $current_id = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
+            $videoQuery = mysqli_query($con, $video1) or die("<b>Error:</b> Error al subir video: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
 
