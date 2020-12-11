@@ -51,11 +51,15 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
     <button class="material-icons floating-btn imagenSinUsuario" onclick="window.location.href='perfilUsuario.php'" id='imagenDentro'><img src=data:image/jpeg;base64,<?php echo base64_encode($set5[0]['imagenFile'])?> /></button>
 =======
     <button class="material-icons floating-btn imagenSinUsuario" onclick="window.location.href='perfilUsuario.php'" id='imagenDentro'><img src=<?php echo 'multimedia/'.$set5[0]['imagenFile']?> /></button>
 >>>>>>> todo backup
+=======
+    <button class="material-icons floating-btn imagenSinUsuario" onclick="window.location.href='perfilUsuario.php'" id='imagenDentro'><img src=<?php echo 'multimedia/'.$set5[0]['imagenFile']?> /></button>
+>>>>>>> Yap_branch
     <!-- HEADER -->
     <section class="container-fluid slider d-flex justify-content-center align-items-center">
         <img src="Imagenes/Header.jpg" class="img-fluid" alt="Responsive image">

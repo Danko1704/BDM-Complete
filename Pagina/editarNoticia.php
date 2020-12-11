@@ -147,33 +147,45 @@
                 <input type="file" class="form-control-file" id="inpFile1" name="inpFile1">
                 <label for="exampleFormControlInput1">Previamente puesta (si no desea cambiarlo, no agregue ninguna imagen):</label>
                 <input type="text" class="form-control"
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
                      value="<?=htmlspecialchars($set[0]['imagenName']) ?>" disabled="disabled" required>
 =======
                      value="<?=htmlspecialchars($set[0]['imagenFile']) ?>" disabled="disabled" required>
 >>>>>>> todo backup
+=======
+                     value="<?=htmlspecialchars($set[0]['imagenFile']) ?>" disabled="disabled" required>
+>>>>>>> Yap_branch
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Elija la imagen 2 a mostrar</label>
                 <input type="file" class="form-control-file" id="inpFile2" name="inpFile2">
                 <label for="exampleFormControlInput1">Previamente puesta (si no desea cambiarlo, no agregue ninguna imagen):</label>
                 <input type="text" class="form-control"
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
                      value="<?=htmlspecialchars($set[1]['imagenName']) ?>" disabled="disabled" required>
 =======
                      value="<?=htmlspecialchars($set[1]['imagenFile']) ?>" disabled="disabled" required>
 >>>>>>> todo backup
+=======
+                     value="<?=htmlspecialchars($set[1]['imagenFile']) ?>" disabled="disabled" required>
+>>>>>>> Yap_branch
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Elija la imagen 3 a mostrar</label>
                 <input type="file" class="form-control-file" id="inpFile3" name="inpFile3">
                 <label for="exampleFormControlInput1">Previamente puesta (si no desea cambiarlo, no agregue ninguna imagen):</label>
                 <input type="text" class="form-control"
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
                      value="<?=htmlspecialchars($set[2]['imagenName']) ?>" disabled="disabled" required>
 =======
                      value="<?=htmlspecialchars($set[2]['imagenFile']) ?>" disabled="disabled" required>
 >>>>>>> todo backup
+=======
+                     value="<?=htmlspecialchars($set[2]['imagenFile']) ?>" disabled="disabled" required>
+>>>>>>> Yap_branch
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Elija el video a mostrar</label>
@@ -307,6 +319,7 @@ include('Php/dbOrlando.php');
 
         //function for saving the uploaded images in a specific folder
         if (strcmp('inpFile1', '') !== 0){
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
             //move_uploaded_file($filetmpname1, $folder.$filename1);
 
@@ -314,16 +327,22 @@ include('Php/dbOrlando.php');
             $oldImage1 = $set[0]['imagenIdF'];
             $image1 = "call sp_updateImagenNoticia('$filename1', '$filedata1', '$oldImage1')";
 =======
+=======
+>>>>>>> Yap_branch
             move_uploaded_file($filetmpname1, $folder.$filename1);
 
             include('Php/dbOrlando.php');
             $oldImage1 = $set[0]['imagenIdF'];
             $image1 = "call sp_updateImagenNoticia('$filename1', '$oldImage1')";
+<<<<<<< HEAD
 >>>>>>> todo backup
+=======
+>>>>>>> Yap_branch
             $imagen1 = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
         if (strcmp('inpFile2', '') !== 0){
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
             //move_uploaded_file($filetmpname2, $folder.$filename2);
 
@@ -331,27 +350,38 @@ include('Php/dbOrlando.php');
             $oldImage2 = $set[1]['imagenIdF'];
             $image2 = "call sp_updateImagenNoticia('$filename2', '$filedata2', '$oldImage2')";
 =======
+=======
+>>>>>>> Yap_branch
             move_uploaded_file($filetmpname2, $folder.$filename2);
 
             include('Php/dbOrlando.php');
             $oldImage2 = $set[1]['imagenIdF'];
             $image2 = "call sp_updateImagenNoticia('$filename2', '$oldImage2')";
+<<<<<<< HEAD
 >>>>>>> todo backup
+=======
+>>>>>>> Yap_branch
             $imagen2 = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
         if (strcmp('inpFile3', '') !== 0){
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
             //move_uploaded_file($filetmpname3, $folder.$filename3);
             include('Php/dbOrlando.php');
             $oldImage3 = $set[2]['imagenIdF'];
             $image3 = "call sp_updateImagenNoticia('$filename3', '$filedata3', '$oldImage3')";
 =======
+=======
+>>>>>>> Yap_branch
             move_uploaded_file($filetmpname3, $folder.$filename3);
             include('Php/dbOrlando.php');
             $oldImage3 = $set[2]['imagenIdF'];
             $image3 = "call sp_updateImagenNoticia('$filename3', '$oldImage3')";
+<<<<<<< HEAD
 >>>>>>> todo backup
+=======
+>>>>>>> Yap_branch
             $imagen3 = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
@@ -441,6 +471,7 @@ include('Php/dbOrlando.php');
 
         //function for saving the uploaded images in a specific folder
         if (strcmp('inpFile1', '') !== 0){
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
             //move_uploaded_file($filetmpname1, $folder.$filename1);
 
@@ -448,16 +479,22 @@ include('Php/dbOrlando.php');
             $oldImage1 = $set[0]['imagenIdF'];
             $image1 = "call sp_updateImagenNoticia('$filename1', '$filedata1', '$oldImage1')";
 =======
+=======
+>>>>>>> Yap_branch
             move_uploaded_file($filetmpname1, $folder.$filename1);
 
             include('Php/dbOrlando.php');
             $oldImage1 = $set[0]['imagenIdF'];
             $image1 = "call sp_updateImagenNoticia('$filename1', '$oldImage1')";
+<<<<<<< HEAD
 >>>>>>> todo backup
+=======
+>>>>>>> Yap_branch
             $imagen1 = mysqli_query($con, $image1) or die("<b>Error:</b> Error al subir imagen1: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
         if (strcmp('inpFile2', '') !== 0){
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
             //move_uploaded_file($filetmpname2, $folder.$filename2);
 
@@ -465,27 +502,38 @@ include('Php/dbOrlando.php');
             $oldImage2 = $set[1]['imagenIdF'];
             $image2 = "call sp_updateImagenNoticia('$filename2', '$filedata2', '$oldImage2')";
 =======
+=======
+>>>>>>> Yap_branch
             move_uploaded_file($filetmpname2, $folder.$filename2);
 
             include('Php/dbOrlando.php');
             $oldImage2 = $set[1]['imagenIdF'];
             $image2 = "call sp_updateImagenNoticia('$filename2', '$oldImage2')";
+<<<<<<< HEAD
 >>>>>>> todo backup
+=======
+>>>>>>> Yap_branch
             $imagen2 = mysqli_query($con, $image2) or die("<b>Error:</b> Error al subir imagen2: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
         if (strcmp('inpFile3', '') !== 0){
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Yap_branch2
             //move_uploaded_file($filetmpname3, $folder.$filename3);
             include('Php/dbOrlando.php');
             $oldImage3 = $set[2]['imagenIdF'];
             $image3 = "call sp_updateImagenNoticia('$filename3', '$filedata3', '$oldImage3')";
 =======
+=======
+>>>>>>> Yap_branch
             move_uploaded_file($filetmpname3, $folder.$filename3);
             include('Php/dbOrlando.php');
             $oldImage3 = $set[2]['imagenIdF'];
             $image3 = "call sp_updateImagenNoticia('$filename3', '$oldImage3')";
+<<<<<<< HEAD
 >>>>>>> todo backup
+=======
+>>>>>>> Yap_branch
             $imagen3 = mysqli_query($con, $image3) or die("<b>Error:</b> Error al subir imagen3: <br/>" . mysqli_error($con));
             mysqli_close($con);
         }
